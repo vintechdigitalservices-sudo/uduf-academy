@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UDUF Africa Academy</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<header class="header">
+  <div class="nav">
+
+    <div class="logo">
+      <img src="logo.webp" alt="UDUF Africa">
+    </div>
+
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <nav class="nav-menu" id="navMenu">
+      <div class="close-menu" id="closeMenu">&times;</div>
+
+      <a href="#" data-scroll="hero">Home</a>
+      <!-- Fixed: Orientation Course now scrolls to the volunteer course card -->
+      <a href="#" data-scroll="course-volunteer">Orientation Course</a>
+
+      <div class="nav-dropdown">
+        <button class="nav-dropbtn">Executive Courses</button>
+        <div class="nav-dropdown-content">
+          <a href="executive-leadership-academy.html?role=president">President</a>
+          <a href="executive-leadership-academy.html?role=vice-president">Vice President</a>
+          <a href="executive-leadership-academy.html?role=executive-secretary">Executive Secretary</a>
+          <a href="executive-leadership-academy.html?role=assistant-executive-secretary">Assistant Executive Secretary</a>
+          <a href="executive-leadership-academy.html?role=director-media">Director of Media</a>
+          <a href="executive-leadership-academy.html?role=assistant-director-media">Assistant Director of Media</a>
+          <a href="executive-leadership-academy.html?role=director-finance">Director of Finance</a>
+        </div>
+      </div>
+
+      <div class="nav-dropdown">
+        <button class="nav-dropbtn">Other Courses</button>
+        <div class="nav-dropdown-content">
+          <a href="#" data-scroll="course-dei">DEI</a>
+          <a href="#" data-scroll="course-team">Team Leadership</a>
+          <a href="#" data-scroll="course-effective">Effective Leadership</a>
+          <a href="#" data-scroll="course-emotional">Emotional Intelligence</a>
+        </div>
+      </div>
+
+    </nav>
+
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="hero">
+    <div class="hero-container">
+      <div class="hero-text">
+        <div class="slide active">
+          <h1>Preparing Africa’s Next Generation of Leaders</h1>
+          <p>preparing a new generation of young African leaders committed to entrepreneurship, leadership development, community service, and volunteerism..</p>
+        </div>
+        <div class="slide">
+          <h1>Build In-Demand Digital Skills</h1>
+          <p>Learn entrepreneurship, leadership and digital tools to build impactful ventures.</p>
+        </div>
+        <div class="slide">
+          <h1>Learn From the Best</h1>
+          <p>Connect with mentors, innovators and creators across the continent.</p>
+        </div>
+        <div class="hero-buttons">
+          <!-- Hero buttons now scroll to the courses section (id="courses-section") -->
+          <a href="#courses-section" class="hero-btn primary explore-programs-btn">Explore our Courses</a>
+          <a href="#courses-section" class="hero-btn secondary apply-now-btn">Apply Now</a>
+        </div>
+      </div>
+      <div class="hero-image">
+        <div id="mapImage"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="top-categories" id="top-categories">
+    <div class="categories-container">
+      <h2 class="categories-title">Our Top Categories</h2>
+      <div class="categories-grid">
+        <button class="category-pill orientation-course" data-scroll="course-volunteer">
+          <i class="fa-solid fa-compass"></i>
+          <span>Orientation Course</span>
+        </button>
+
+        <div class="category-dropdown">
+          <button class="category-pill executive-courses dropdown-btn">
+            <i class="fa-solid fa-briefcase"></i>
+            <span>Executive Courses</span>
+          </button>
+          <div class="dropdown-content">
+            <a href="executive-leadership-academy.html">President</a>
+            <a href="executive-leadership-academy.html">Vice President</a>
+            <a href="executive-leadership-academy.html">Executive Secretary</a>
+            <a href="executive-leadership-academy.html">Assistant Executive Secretary</a>
+            <a href="executive-leadership-academy.html">Director of Media</a>
+            <a href="executive-leadership-academy.html">Assistant Director of Media</a>
+            <a href="executive-leadership-academy.html">Director of Finance</a>
+            <a href="executive-leadership-academy.html">Director of Programmes</a>
+            <a href="executive-leadership-academy.html">Assistant Director of Programmes</a>
+            <a href="executive-leadership-academy.html">Director of Assets & Internal Affairs</a>
+            <a href="executive-leadership-academy.html">Assistant Director of Assets & Internal Affairs</a>
+            <a href="executive-leadership-academy.html">Director of Women Affairs</a>
+            <a href="executive-leadership-academy.html">Assistant Director of Women Affairs</a>
+          </div>
+        </div>
+
+        <div class="category-dropdown">
+          <button class="category-pill other-courses dropdown-btn">
+            <i class="fa-solid fa-layer-group"></i>
+            <span>Other Courses</span>
+          </button>
+          <div class="dropdown-content">
+            <a href="#" data-scroll="course-dei">Diversity, Equity and Inclusion (DEI) Course</a>
+            <a href="#" data-scroll="course-team">UDUF Africa Team Leadership Course</a>
+            <a href="#" data-scroll="course-effective">Effective Team Leadership Course</a>
+            <a href="#" data-scroll="course-emotional">Emotional Intelligence in Leadership</a>
+            <a href="#" data-scroll="course-community">Community Service in Leadership</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="why-uduf">
+    <div class="why-container">
+      <h2 class="why-title">Why Learn With UDUF</h2>
+      <div class="why-grid">
+        <div class="why-card">
+          <i class="fa-solid fa-hands"></i>
+          <h3>Practical Training</h3>
+          <p>Learn real digital and leadership skills designed for practical African business environments.</p>
+        </div>
+        <div class="why-card">
+          <i class="fa-solid fa-user-tie"></i>
+          <h3>Expert Mentorship</h3>
+          <p>Gain guidance from experienced professionals and mentors across the UDUF network.</p>
+        </div>
+        <div class="why-card">
+          <i class="fa-solid fa-people-group"></i>
+          <h3>Strong Community</h3>
+          <p>Connect with innovators, entrepreneurs and leaders building impact across Africa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="impact-section">
+    <div class="impact-container">
+      <div class="impact-text">
+        <h2>Join Learners Transforming Africa</h2>
+        <p>Join learners building real skills, inspired to take action and committed to transforming Africa.</p>
+        <a href="#" class="impact-btn explore-courses-btn">Explore Our Courses</a>
+      </div>
+      <div class="hex-cluster">
+        <div class="hex big"><img src="students-group.webp" alt="Certified Students"></div>
+        <div class="hex small s1"><img src="student1.webp"></div>
+        <div class="hex small s2"><img src="student2.webp"></div>
+        <div class="hex small s3"><img src="student3.webp"></div>
+        <div class="hex small s4"><img src="student4.webp"></div>
+        <div class="hex small s5"><img src="student5.webp"></div>
+        <div class="hex small s6"><img src="student6.webp"></div>
+        <div class="hex small s7"><img src="student7.webp"></div>
+        <div class="hex small s8"><img src="student8.webp"></div>
+        <div class="hex small s9"><img src="student9.webp"></div>
+        <div class="hex small s10"><img src="student10.webp"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Added id="courses-section" to allow direct scrolling from hero buttons -->
+  <section class="courses-section" id="courses-section">
+    <div class="courses-header">
+      <h2>Our Courses</h2>
+      <p>Explore our volunteer training programmes designed to equip you for leadership and service.</p>
+    </div>
+    <div class="courses-container">
+      <!-- Course 1: Volunteer Orientation Course -->
+      <div class="course-card" data-course="volunteer" id="course-volunteer">
+        <div class="course-image"><img src="course1.webp" alt="Volunteer Orientation"><div class="badge popular">Most Popular ★★★★★</div><div class="instructor"><img src="student1.webp"><span>Ezuma Smart</span></div><div class="heart"><i class="fa-regular fa-heart"></i><span class="like-count">0</span></div></div>
+        <div class="course-content"><h3>Volunteer Orientation Course</h3><div class="meta"><i class="fa-solid fa-book"></i><span>5 Lessons</span></div><div class="course-footer"><div class="price"><span class="old">₦20,000</span><span class="free">Free</span></div><a href="#" class="course-btn take-course-btn" data-course-name="Volunteer Orientation Course">Take Course</a></div></div>
+      </div>
+      <!-- Course 2: Executive Leadership Academy -->
+      <div class="course-card" data-course="executive" id="course-executive">
+        <div class="course-image"><img src="course2.webp"><div class="badge">Leadership</div><div class="instructor"><img src="student1.webp"><span>Ezuma Smart</span></div><div class="heart"><i class="fa-regular fa-heart"></i><span class="like-count">0</span></div></div>
+        <div class="course-content"><h3>Executive Leadership Academy</h3><div class="meta"><i class="fa-solid fa-book"></i><span>11 Modules</span></div><div class="course-footer"><div class="price"><span class="old">₦20,000</span><span class="free">Free</span></div><a href="#" class="course-btn take-course-btn" data-course-name="Executive Leadership Academy">Take Course</a></div></div>
+      </div>
+      <!-- Course 3: DEI -->
+      <div class="course-card" data-course="dei" id="course-dei">
+        <div class="course-image"><img src="course3.webp"><div class="badge">Leadership</div><div class="instructor"><img src="student1.webp"><span>Ezuma Smart</span></div><div class="heart"><i class="fa-regular fa-heart"></i><span class="like-count">0</span></div></div>
+        <div class="course-content"><h3>Diversity, Equity, and Inclusion (DEI) Course</h3><div class="meta"><i class="fa-solid fa-book"></i><span>6 Lessons</span></div><div class="course-footer"><div class="price"><span class="old">₦20,000</span><span class="free">Free</span></div><a href="#" class="course-btn take-course-btn" data-course-name="Diversity, Equity, and Inclusion (DEI) Course">Take Course</a></div></div>
+      </div>
+      <!-- Course 4: Team Leadership -->
+      <div class="course-card" data-course="team" id="course-team">
+        <div class="course-image"><img src="course4.webp"><div class="badge">Leadership</div><div class="instructor"><img src="student1.webp"><span>Ezuma Smart</span></div><div class="heart"><i class="fa-regular fa-heart"></i><span class="like-count">0</span></div></div>
+        <div class="course-content"><h3>UDUF Africa Team Leadership Course</h3><div class="meta"><i class="fa-solid fa-book"></i><span>6 Lessons</span></div><div class="course-footer"><div class="price"><span class="old">₦20,000</span><span class="free">Free</span></div><a href="#" class="course-btn take-course-btn" data-course-name="UDUF Africa Team Leadership Course">Take Course</a></div></div>
+      </div>
+      <!-- Course 5: Effective Leadership -->
+      <div class="course-card" data-course="effective" id="course-effective">
+        <div class="course-image"><img src="course5.webp"><div class="badge">Leadership</div><div class="instructor"><img src="student1.webp"><span>Ezuma Smart</span></div><div class="heart"><i class="fa-regular fa-heart"></i><span class="like-count">0</span></div></div>
+        <div class="course-content"><h3>Effective Team Leadership Course</h3><div class="meta"><i class="fa-solid fa-book"></i><span>6 Lessons</span></div><div class="course-footer"><div class="price"><span class="old">₦20,000</span><span class="free">Free</span></div><a href="#" class="course-btn take-course-btn" data-course-name="Effective Team Leadership Course">Take Course</a></div></div>
+      </div>
+      <!-- Course 6: Emotional Intelligence -->
+      <div class="course-card" data-course="emotional" id="course-emotional">
+        <div class="course-image"><img src="course6.webp"><div class="badge">Leadership</div><div class="instructor"><img src="student1.webp"><span>Ezuma Smart</span></div><div class="heart"><i class="fa-regular fa-heart"></i><span class="like-count">0</span></div></div>
+        <div class="course-content"><h3>Emotional Intelligence in Leadership</h3><div class="meta"><i class="fa-solid fa-book"></i><span>6 Lessons</span></div><div class="course-footer"><div class="price"><span class="old">₦20,000</span><span class="free">Free</span></div><a href="#" class="course-btn take-course-btn" data-course-name="Emotional Intelligence in Leadership">Take Course</a></div></div>
+      </div>
+      <!-- Course 7: Community Service -->
+      <div class="course-card" data-course="community" id="course-community">
+        <div class="course-image"><img src="course7.webp"><div class="badge">Community</div><div class="instructor"><img src="student1.webp"><span>Ezuma Smart</span></div><div class="heart"><i class="fa-regular fa-heart"></i><span class="like-count">0</span></div></div>
+        <div class="course-content"><h3>Community Service in Leadership</h3><div class="meta"><i class="fa-solid fa-book"></i><span>6 Lessons</span></div><div class="course-footer"><div class="price"><span class="old">₦20,000</span><span class="free">Free</span></div><a href="#" class="course-btn take-course-btn" data-course-name="Community Service in Leadership">Take Course</a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="recognition-section" id="recognition">
+    <div class="recognition-container">
+      <div class="recognition-text">
+        <h2>Institutional Recognition</h2>
+        <h3>Recognised Through International Academic Collaboration</h3>
+        <p>UDUF Africa Academy operates in partnership with Highstone Global University, Texas USA. This collaboration acknowledges the academy's commitment to leadership development, volunteer training, and community transformation across Africa.</p>
+      </div>
+      <div class="certificate-wrapper">
+        <figure class="certificate-protect">
+          <img src="uduf-certificate.webp" alt="Official partnership certificate between UDUF Africa Academy and Highstone Global University Texas USA" class="certificate-img" loading="lazy" draggable="false" oncontextmenu="return false" onmousedown="return false" onselectstart="return false" />
+          <div class="watermark" aria-hidden="true">UDUF AFRICA</div>
+        </figure>
+        <figcaption class="certificate-caption">Official Certificate of Partnership issued by Highstone Global University, Texas USA.</figcaption>
+      </div>
+    </div>
+  </section>
+
+  <section class="partners-section">
+    <div class="partners-header">
+      <h2>Our Partners</h2>
+      <p>Organisations collaborating with UDUF Africa to inspire and transform communities.</p>
+    </div>
+    <div class="partners-slider">
+      <div class="partners-track">
+        <img src="logo1.webp" alt="Partner"><img src="logo2.webp" alt="Partner"><img src="logo3.webp" alt="Partner"><img src="logo4.webp" alt="Partner"><img src="logo5.webp" alt="Partner"><img src="logo6.webp" alt="Partner"><img src="logo7.webp" alt="Partner"><img src="logo8.webp" alt="Partner"><img src="logo9.webp" alt="Partner"><img src="logo10.webp" alt="Partner"><img src="logo11.webp" alt="Partner"><img src="logo12.webp" alt="Partner">
+        <img src="logo1.webp" alt="Partner"><img src="logo2.webp" alt="Partner"><img src="logo3.webp" alt="Partner"><img src="logo4.webp" alt="Partner"><img src="logo5.webp" alt="Partner"><img src="logo6.webp" alt="Partner"><img src="logo7.webp" alt="Partner"><img src="logo8.webp" alt="Partner"><img src="logo9.webp" alt="Partner"><img src="logo10.webp" alt="Partner"><img src="logo11.webp" alt="Partner"><img src="logo12.webp" alt="Partner">
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="footer-container">
+    <div class="footer-brand">
+      <img src="logo.webp" alt="UDUF Africa Logo" class="footer-logo">
+      <p class="footer-vision">Empowering volunteers and raising transformational leaders across Africa through structured learning and community impact.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Courses</a></li>
+        <li><a href="#">Partners</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-contact">
+      <h4>Contact Us</h4>
+      <div class="contact-item"><img src="location.webp" alt="Location icon" class="contact-icon"><p>Onitsha Business School, 19A Regina Nwankwu Avenue, GRA, Onitsha</p></div>
+      <div class="contact-item"><img src="phone.webp" alt="Phone icon" class="contact-icon"><p>0706 150 7103</p></div>
+      <div class="contact-item"><img src="mail.webp" alt="Email icon" class="contact-icon"><p>udufafrica@gmail.com</p></div>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/udufafrica"><img src="facebook.webp" alt="Facebook"></a>
+        <a href="https://x.com/udufafrica"><img src="twitter.webp" alt="Twitter"></a>
+        <a href="https://www.instagram.com/uduf_official?igsh=enMyajVzdWtsYjM2"><img src="instagram.webp" alt="Instagram"></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2026 UDUF Africa. All rights reserved.</p></div>
+</footer>
+
+<!-- Firebase SDK -->
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-firestore-compat.js"></script>
+
+<!-- Form Popup HTML -->
+<div id="courseFormPopup" class="form-popup">
+  <div class="form-popup-inner">
+    <button class="close-popup">&times;</button>
+    <h3 id="popupTitle">Sign Up for Course</h3>
+    <form id="courseForm">
+      <input type="hidden" name="courseName" id="courseNameInput" value="">
+      <input type="text" name="name" placeholder="Full Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <input type="tel" name="phone" placeholder="Phone Number" required>
+      <button type="submit" class="submit-btn">Submit</button>
+      <button type="button" id="closeFormBtn" class="cancel-btn">Cancel</button>
+    </form>
+    <div id="formMessage" class="form-message"></div>
+  </div>
+</div>
+
+<!-- Popup Styles (inline – can be moved to style.css) -->
+<style>
+  .form-popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+  }
+  .form-popup.show { display: flex; }
+  .form-popup-inner {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 450px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  }
+  .close-popup {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+  }
+  .close-popup:hover { color: #333; }
+  .form-popup h3 {
+    margin-bottom: 25px;
+    color: #1e3c72;
+    font-size: 24px;
+    text-align: center;
+  }
+  .form-popup input {
+    width: 100%;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+  }
+  .form-popup button {
+    width: 48%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+  .submit-btn {
+    background-color: #1e3c72;
+    color: white;
+    margin-right: 4%;
+  }
+  .submit-btn:hover { background-color: #2a4a8a; }
+  .cancel-btn {
+    background-color: #e74c3c;
+    color: white;
+  }
+  .cancel-btn:hover { background-color: #c0392b; }
+  .form-message {
+    margin-top: 15px;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    display: none;
+  }
+  .form-message.success {
+    display: block;
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
+  .form-message.error {
+    display: block;
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+  }
+</style>
+
+<!-- Inline script to override hero button popup and ensure scrolling -->
+<script>
+  (function() {
+    // Override click for hero buttons to scroll to courses section
+    const heroButtons = document.querySelectorAll('.hero-btn.primary, .hero-btn.secondary');
+    const coursesSection = document.getElementById('courses-section');
+    if (coursesSection && heroButtons.length) {
+      heroButtons.forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          coursesSection.scrollIntoView({ behavior: 'smooth' });
+        });
+      });
+    }
+    // Also ensure the "Explore Our Courses" button in impact section scrolls
+    const exploreCoursesBtn = document.querySelector('.impact-btn.explore-courses-btn');
+    if (exploreCoursesBtn && coursesSection) {
+      exploreCoursesBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        coursesSection.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+  })();
+</script>
+
+<script src="script.js"></script>
+</body>
+</html>
