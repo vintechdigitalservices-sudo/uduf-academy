@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>UDUF Africa — Certificate Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@1,600&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<style>
+  :root {
+    --blue-dark:  #0D1B6E;
+    --blue-mid:   #1A3AAF;
+    --blue-light: #2F5FE8;
+    --green:      #1E8C45;
+    --green-light:#27AE60;
+    --orange:     #F07C1A;
+    --orange-soft:#FFA94D;
+    --bg:         #F0F4FF;
+    --surface:    #FFFFFF;
+    --text:       #0D1B6E;
+    --muted:      #6B7BAD;
+    --border:     #C8D4F5;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--bg);
+    min-height: 100vh;
+    color: var(--text);
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 40% at 0% 0%, rgba(30,140,69,0.08) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 50% at 100% 100%, rgba(240,124,26,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 60% at 100% 0%, rgba(13,27,110,0.08) 0%, transparent 60%);
+    pointer-events: none; z-index: 0;
+  }
+
+  header {
+    position: relative; z-index: 10;
+    background: var(--blue-dark);
+    padding: 0 40px;
+    display: flex; align-items: center; gap: 18px;
+    height: 72px;
+    box-shadow: 0 2px 20px rgba(13,27,110,0.3);
+  }
+  .header-logo { display: flex; align-items: center; gap: 12px; }
+  header h1 { font-family: 'Playfair Display', serif; font-size: 1.35rem; color: white; }
+  header h1 span { color: var(--orange-soft); }
+
+  main { position: relative; z-index: 1; max-width: 780px; margin: 0 auto; padding: 56px 24px 80px; }
+
+  .congrats-banner {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px; padding: 40px;
+    margin-bottom: 36px; position: relative; overflow: hidden;
+    box-shadow: 0 4px 30px rgba(13,27,110,0.07);
+    animation: slideDown 0.6s cubic-bezier(0.16,1,0.3,1) both;
+  }
+  .congrats-banner::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, var(--green), var(--blue-mid), var(--orange)); }
+  .congrats-banner h2 { font-family: 'Playfair Display', serif; font-size: 1.9rem; color: var(--blue-dark); margin-bottom: 14px; }
+  .congrats-banner p { font-size: 0.95rem; color: var(--muted); line-height: 1.7; }
+
+  .form-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px; padding: 40px;
+    box-shadow: 0 4px 30px rgba(13,27,110,0.07);
+  }
+
+  .field-group { margin-bottom: 22px; }
+  .field-group label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--blue-dark); text-transform: uppercase; margin-bottom: 8px; }
+  .field-group input, .field-group select {
+    width: 100%; background: var(--bg); border: 1.5px solid var(--border);
+    border-radius: 10px; padding: 13px; font-family: 'DM Sans', sans-serif; outline: none;
+  }
+
+  .generate-btn {
+    width: 100%; padding: 16px; background: var(--blue-dark); color: white;
+    font-weight: 600; border: none; border-radius: 12px; cursor: pointer;
+    box-shadow: 0 4px 20px rgba(13,27,110,0.3);
+  }
+  .generate-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  /* ── ALERTS ── */
+  .alert { display: none; border-radius: 10px; padding: 14px; font-size: 0.875rem; margin-top: 16px; border-left: 4px solid; gap: 10px; }
+  .alert.show { display: flex; }
+  .alert-error { background: #FFF0F0; border-color: #E53E3E; color: #C53030; }
+  .alert-success { background: #F0FFF4; border-color: var(--green); color: #276749; }
+
+  /* ── CERTIFICATE CAPTURE (HIDDEN) ── */
+  #cert-wrapper { position: absolute; left: -9999px; top: 0; }
+  #cert-capture { width: 1000px; height: 780px; position: relative; background: white; overflow: hidden; }
+  .bg-img { width: 100%; height: 100%; position: absolute; }
+  .render-text { position: absolute; text-align: center; color: #1a237e; display: flex; justify-content: center; align-items: center; }
+
+  #render-name {
+    top: 305px; left: 50px; width: 900px; height: 90px;
+    font-weight: bold; font-style: italic; font-family: 'Lora', serif;
+    white-space: nowrap;
+  }
+  #render-course { top: 440px; left: 190px; width: 620px; font-size: 26px; font-weight: 800; font-family: 'DM Sans', sans-serif; line-height: 1.1; }
+  #render-date { top: 490px; left: 635px; width: 250px; font-size: 22px; font-weight: bold; font-family: 'DM Sans', sans-serif; justify-content: flex-start; }
+  #render-id { bottom: 18px; left: 415px; font-size: 24px; font-weight: bold; font-family: 'Courier New', monospace; }
+
+  /* ── PREVIEW SECTION ── */
+  #cert-section { display: none; margin-top: 40px; text-align: center; }
+  #cert-section.show { display: block; }
+  #preview-image { width: 100%; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); margin-bottom: 20px; }
+
+  .download-btn {
+    width: 100%; padding: 15px; background: var(--green); color: white;
+    font-weight: 600; border: none; border-radius: 12px; cursor: pointer;
+  }
+
+  @keyframes slideDown { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-logo">
+    <img src="logo.webp" alt="UDUF Logo" style="width:40px; height:40px; border-radius:6px; background:white; padding:2px;"/>
+    <h1>UDUF <span>Africa</span></h1>
+  </div>
+</header>
+
+<main>
+  <div class="congrats-banner">
+    <h2>Outstanding work! 🎓</h2>
+    <p>You've successfully completed your training. Fill out the form below to generate your official certificate.</p>
+  </div>
+
+  <div class="form-card">
+    <form id="certForm">
+        <div class="field-group">
+          <label>Full Name</label>
+          <input type="text" id="userName" placeholder="e.g. John Doe" required />
+        </div>
+
+        <div class="field-group">
+          <label>Course Email</label>
+          <input type="email" id="userEmail" placeholder="you@example.com" required />
+        </div>
+
+        <div class="field-group">
+          <label>Course Taken</label>
+          <select id="courseSelect" required>
+            <option value="">— Select your course —</option>
+            <option value="volunteer_orientation">Volunteer Orientation Course</option>
+            <option value="team_leadership">Team Leadership Course</option>
+            <option value="dei_course">Diversity Equity and Inclusion (DEI) Course</option>
+            <option value="effective_team_leadership">Effective Team Leadership Course</option>
+            <option value="emotional_intelligence">Emotional Intelligence in Leadership</option>
+            <option value="community_service">Community Service through Servant Leadership</option>
+          </select>
+        </div>
+
+        <button type="submit" class="generate-btn" id="generateBtn">GENERATE CERTIFICATE</button>
+    </form>
+
+    <div class="alert alert-error" id="alert-error">⚠️ <span id="error-msg"></span></div>
+    <div class="alert alert-success" id="alert-success">✅ Certificate generated successfully! Scroll down to download.</div>
+  </div>
+
+  <div id="cert-section">
+    <h3 style="margin-bottom: 15px;">Preview</h3>
+    <img id="preview-image" src="" alt="Certificate Preview" />
+    <button class="download-btn" id="finalDownloadBtn">DOWNLOAD PDF</button>
+  </div>
+</main>
+
+<div id="cert-wrapper">
+    <div id="cert-capture">
+        <img src="background.webp" class="bg-img" alt="Background">
+        <div id="render-name" class="render-text"></div>
+        <div id="render-course" class="render-text"></div>
+        <div id="render-date" class="render-text"></div>
+        <div id="render-id" class="render-text"></div>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, query, where, getDocs, doc, updateDoc, addDoc, limit, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyD_m5yTOkHCj42f8zzmpNmg7I6dqtc1vNY",
+        authDomain: "udufafrica-project.firebaseapp.com",
+        projectId: "udufafrica-project",
+        storageBucket: "udufafrica-project.firebasestorage.app",
+        messagingSenderId: "1070479742500",
+        appId: "1:1070479742500:web:3b77676d5592860d44aab1"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const courseMap = {
+        volunteer_orientation: "Volunteer Orientation Course",
+        team_leadership: "Team Leadership Course",
+        dei_course: "Diversity Equity and Inclusion (DEI) course",
+        effective_team_leadership: "Effective Team leadership course",
+        emotional_intelligence: "Emotional Intelligence in leadership",
+        community_service: "Community Service through Servant leadership"
+    };
+
+    let currentPdfData = null;
+    let currentFileName = "Certificate.pdf";
+
+    function getOrdinal(d) {
+        if (d > 3 && d < 21) return 'th';
+        switch (d % 10) {
+            case 1:  return "st";
+            case 2:  return "nd";
+            case 3:  return "rd";
+            default: return "th";
+        }
+    }
+
+    function adjustFontSize(element, maxFontSize) {
+        let fontSize = maxFontSize;
+        element.style.fontSize = fontSize + "px";
+        while (element.scrollWidth > element.offsetWidth && fontSize > 15) {
+            fontSize -= 1;
+            element.style.fontSize = fontSize + "px";
+        }
+    }
+
+    document.getElementById('certForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('generateBtn');
+        const errAlert = document.getElementById('alert-error');
+        const succAlert = document.getElementById('alert-success');
+        
+        btn.disabled = true;
+        btn.innerText = "Verifying Record...";
+        errAlert.classList.remove('show');
+        succAlert.classList.remove('show');
+
+        const name = document.getElementById('userName').value.trim();
+        const email = document.getElementById('userEmail').value.toLowerCase().trim();
+        const courseKey = document.getElementById('courseSelect').value;
+        const fullCourseName = courseMap[courseKey];
+
+        try {
+            // Check if certificate already exists for this email/course to avoid duplicates
+            const certsRef = collection(db, "certificates");
+            const qDup = query(certsRef, where("email", "==", email), where("course", "==", fullCourseName));
+            const dupSnap = await getDocs(qDup);
+            
+            if (!dupSnap.empty) {
+                throw new Error("You have generated a certificate for this course already. Double generation is not allowed.");
+            }
+
+            const progressRef = collection(db, "progress");
+            const q = query(progressRef, where("userId", "==", email), where("courseId", "==", courseKey));
+            const snap = await getDocs(q);
+            
+            if (snap.empty) throw new Error("Enrollment not found for this email/course combination.");
+            if (snap.docs[0].data().completed !== true) throw new Error("Record shows course is not yet completed.");
+
+            const codesRef = collection(db, "codes");
+            const qCodes = query(codesRef, where("used", "==", false), limit(1));
+            const codeSnap = await getDocs(qCodes);
+            if (codeSnap.empty) throw new Error("Verification codes depleted. Please contact support.");
+
+            const codeDoc = codeSnap.docs[0];
+            const finalCode = `UDUF-${codeDoc.data().code}`;
+
+            await updateDoc(doc(db, "codes", codeDoc.id), { used: true, assignedTo: email });
+            await addDoc(collection(db, "certificates"), { name, email, course: fullCourseName, code: finalCode, issuedAt: serverTimestamp() });
+
+            await showPreview(name, fullCourseName, finalCode);
+            
+            succAlert.classList.add('show');
+            btn.innerText = "GENERATE CERTIFICATE";
+            btn.disabled = false;
+        } catch (err) {
+            document.getElementById('error-msg').innerText = err.message;
+            errAlert.classList.add('show');
+            btn.innerText = "GENERATE CERTIFICATE";
+            btn.disabled = false;
+        }
+    });
+
+    async function showPreview(name, course, code) {
+        const today = new Date();
+        const dateStr = `${today.getDate()}${getOrdinal(today.getDate())} of ${today.toLocaleString('default', { month: 'long' })} ${today.getFullYear()}`;
+
+        const nameEl = document.getElementById('render-name');
+        nameEl.innerText = name;
+        adjustFontSize(nameEl, 65);
+
+        document.getElementById('render-course').innerText = course;
+        document.getElementById('render-date').innerText = dateStr;
+        document.getElementById('render-id').innerText = code;
+
+        const canvas = await html2canvas(document.getElementById('cert-capture'), { scale: 2, useCORS: true });
+        const imgData = canvas.toDataURL('image/png');
+        document.getElementById('preview-image').src = imgData;
+        
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('l', 'px', [1000, 780]);
+        pdf.addImage(imgData, 'PNG', 0, 0, 1000, 780);
+        
+        currentPdfData = pdf;
+        currentFileName = `UDUF_Cert_${name.replace(/\s+/g, '_')}.pdf`;
+        document.getElementById('cert-section').classList.add('show');
+    }
+
+    document.getElementById('finalDownloadBtn').addEventListener('click', () => {
+        if(currentPdfData) currentPdfData.save(currentFileName);
+    });
+</script>
+
+<footer>
+  &copy; 2026 <strong>UDUF Africa</strong>. Secured & Verified Portal.
+</footer>
+
+</body>
+</html>

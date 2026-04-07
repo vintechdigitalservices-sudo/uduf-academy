@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Director of Women Affairs Course - Executive Leadership Academy</title>
+    <title>Emotional Intelligence in Leadership - Executive Leadership Academy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        /* ===== Full CSS (same as previous course pages) ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -74,7 +73,7 @@
             padding: 40px;
             margin-bottom: 30px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            border-left: 5px solid #f39c12;
+            border-left: 5px solid #3498db;
         }
         .course-header h1 {
             font-size: 2rem;
@@ -102,7 +101,7 @@
             color: #1e3c72;
         }
         .meta-item i {
-            color: #f39c12;
+            color: #3498db;
         }
         .progress-section {
             background: white;
@@ -201,7 +200,7 @@
             color: white;
         }
         .page-dot:hover:not(.active) {
-            background: #f39c12;
+            background: #3498db;
             color: white;
         }
         .course-text {
@@ -218,7 +217,7 @@
             font-size: 1.3rem;
         }
         .course-text h4 {
-            color: #f39c12;
+            color: #3498db;
             margin: 20px 0 10px;
             font-size: 1.1rem;
         }
@@ -228,13 +227,6 @@
             border-radius: 15px;
             border-left: 4px solid #f39c12;
             margin: 20px 0;
-        }
-        .vision-mission {
-            background: #e8f5e9;
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            border-left: 4px solid #27ae60;
         }
         .info-box {
             background: #e3f2fd;
@@ -296,7 +288,7 @@
             padding: 25px;
             background: #f8f9fa;
             border-radius: 15px;
-            border-left: 4px solid #f39c12;
+            border-left: 4px solid #3498db;
         }
         .quiz-question h4 {
             color: #1e3c72;
@@ -319,7 +311,7 @@
             border: 2px solid #e0e0e0;
         }
         .quiz-option:hover {
-            border-color: #f39c12;
+            border-color: #3498db;
             transform: translateX(5px);
         }
         .quiz-option.selected {
@@ -391,7 +383,7 @@
             right: 30px;
             width: 60px;
             height: 60px;
-            background: #f39c12;
+            background: #3498db;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -571,12 +563,12 @@
 
 <div class="course-wrapper">
     <div class="course-header">
-        <h1><i class="fas fa-female"></i> Director of Women Affairs Course</h1>
-        <p>Promoting Women Leadership, Empowerment & Participation</p>
+        <h1><i class="fas fa-brain"></i> Emotional Intelligence in Leadership</h1>
+        <p>Master self-awareness, empathy, and social skills to become an outstanding African Team Leaders' Fellow (ATLF).</p>
         <div class="course-meta">
-            <div class="meta-item"><i class="fas fa-book"></i> 7 Pages</div>
-            <div class="meta-item"><i class="fas fa-question-circle"></i> Final Quiz (20 Questions)</div>
-            <div class="meta-item"><i class="fas fa-certificate"></i> Certificate on Completion</div>
+            <div class="meta-item"><i class="fas fa-book"></i> 6 Pages</div>
+            <div class="meta-item"><i class="fas fa-question-circle"></i> 20 Questions Quiz</div>
+            <div class="meta-item"><i class="fas fa-certificate"></i> Certificate on Completion (80% pass)</div>
         </div>
     </div>
 
@@ -586,7 +578,7 @@
     </div>
 
     <div class="module-indicator" id="moduleIndicator">
-        <div class="module-badge" id="moduleBadge"><i class="fas fa-book-open"></i> Director of Women Affairs Training</div>
+        <div class="module-badge"><i class="fas fa-heart"></i> Emotional Intelligence Course</div>
         <div class="module-status" id="moduleStatus"><i class="fas fa-lock"></i> Complete quiz to finish</div>
     </div>
 
@@ -620,151 +612,96 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // Course pages (split content into logical sections)
+    // Course Pages (6 content pages)
     const pages = [
         {
-            title: "Introduction & Purpose",
+            title: "Introduction & What is Emotional Intelligence?",
             content: `<div class="course-text">
-                <h3>Introduction</h3>
-                <p>The Office of the Director of Women Affairs in UDUF Africa plays an important role in promoting the participation, development, and empowerment of women within the organisation. The Director serves as the coordinator and representative of all female members and ensures that women are actively involved in leadership, entrepreneurship, and community service programmes.</p>
-                <p>This orientation course is designed to guide the Director of Women Affairs on how to effectively carry out the responsibilities of the office and contribute to the growth of UDUF Africa.</p>
-                <h3>Purpose of the Office</h3>
-                <p>The purpose of the Office of Women Affairs is to promote the growth, inclusion, and empowerment of female members of the foundation. The office ensures that women are given opportunities to develop leadership skills, participate in programmes, and contribute to the vision of the organisation.</p>
-                <p>The Director of Women Affairs helps create an environment where women feel respected, supported, and encouraged to grow personally and professionally.</p>
+                <h3>COURSE INTRODUCTION</h3>
+                <p>This topic is superb and essential. It teaches you all the necessary skills you need for a happy and successful career as a team leader. To be highly sound, resourceful and effective team leaders, you must have a depth understanding of how your emotion empowers your actions and how your actions affect your team mates and team effectiveness.</p>
+                <p>This course has been endorsed by the Board of Director of UDUF as a requirement to become An African Team Leaders' Fellow. At the end of this course and other three courses, successful learners will receive a Certificate of Achievement from the Ultimate Destiny Uplifter Foundation. Become African Team Leaders Fellow (ATLF), have the right to use the acronym ATLF after your name.</p>
+                <h3>WHAT IS EMOTIONAL INTELLIGENCE?</h3>
+                <p>Emotional intelligence (EI) is defined as the ability to understand and manage your own emotions, as well as recognize and influence the emotions of those around you. People with high EI know what they're feeling, what their emotions mean, and how these emotions can affect other people.</p>
+                <div class="info-box"><p><strong>Key Insight:</strong> Emotional intelligence helps to put people at ease, create trust and respect, align people, and promote a can-do attitude. It leads to personal achievement, happiness, and professional success. Your mood is contagious — as a team leader, a positive mood ignites trust, good energy, collaboration, and healthy risk taking.</p></div>
+                <p>The term Emotional Intelligence was first coined in 1990 by researchers John Mayer and Peter Salovey, later popularized by psychologist Daniel Goleman. According to research and experience, there are six key elements to Emotional Intelligence.</p>
             </div>`
         },
         {
-            title: "Key Responsibilities & Powers",
+            title: "Self-awareness & Self-regulation",
             content: `<div class="course-text">
-                <h3>Key Responsibilities of the Director of Women Affairs</h3>
-                <ul><li>Coordinate and support all female members of the organisation.</li>
-                <li>Promote active participation of women in UDUF Africa activities and programmes.</li>
-                <li>Design programmes that support women leadership, entrepreneurship, and personal development.</li>
-                <li>Serve as the voice of female members in executive discussions and planning.</li>
-                <li>Encourage unity, inclusion, and cooperation among women in the organisation.</li>
-                <li>Work with the Director of Programmes to ensure that women-focused initiatives are included in events.</li>
-                <li>Organise mentorship, training, and empowerment sessions for female members.</li>
-                <li>Support the recruitment and engagement of new female members.</li>
-                <li>Promote the welfare, safety, and respect of women within the organisation.</li>
-                <li>Submit activity reports to the Executive at agreed intervals.</li>
-                <li>Perform any other duty assigned by the President, CEO, or Executive of UDUF Africa.</li></ul>
-                <h3>Powers of the Director of Women Affairs</h3>
-                <ul><li>Convene meetings of female members when necessary.</li>
-                <li>Propose programmes or policies that will improve the participation and development of women.</li>
-                <li>Recommend committees or volunteers to assist in women-related projects.</li>
-                <li>Represent the organisation in women-focused programmes or partnerships when delegated.</li>
-                <li>Advise the Executive on matters affecting female members.</li></ul>
-                <h3>Leadership Expectations</h3>
-                <p>The Director of Women Affairs must demonstrate strong leadership qualities, promote teamwork, cooperation, and respect among female members, encourage women to participate in leadership and organisational activities, inspire confidence, motivate women to develop their skills, and always act with integrity and responsibility.</p>
+                <h3>SELF-AWARENESS</h3>
+                <p>If you're self-aware, you always know how you feel, and you know how your emotions and actions can affect others. Being self-aware also means having a clear picture of your strengths and weaknesses, behaving with humility.</p>
+                <ul><li><strong>Keep a journal</strong> — write down thoughts to improve self-awareness.</li><li><strong>Slow down</strong> — when angry, examine why. You can always choose how to react.</li></ul>
+                <h3>SELF-REGULATION</h3>
+                <p>Leaders who regulate themselves effectively rarely verbally attack others, make rushed decisions, stereotype people, or compromise their values. Self-regulation covers flexibility and commitment to personal accountability.</p>
+                <ul><li><strong>Know your values</strong> — examine your code of ethics.</li><li><strong>Hold yourself accountable</strong> — admit mistakes and face consequences.</li><li><strong>Practice being calm</strong> — use deep-breathing, write down negative thoughts then discard.</li></ul>
             </div>`
         },
         {
-            title: "Programme Development, Mentorship & Engagement",
+            title: "Motivation & Empathy",
             content: `<div class="course-text">
-                <h3>Programme Development</h3>
-                <p>The Director should design programmes that promote women development in areas such as leadership, entrepreneurship, education, and community service. These programmes may include leadership workshops, business training sessions, mentoring programmes, and empowerment conferences. Such programmes help women build confidence and become more effective leaders.</p>
-                <h3>Mentorship and Women Empowerment</h3>
-                <p>Mentorship programmes are important for developing strong female leaders. The Director should create opportunities where experienced women can guide younger members. Mentorship helps women learn leadership skills, gain confidence, and develop their careers and businesses.</p>
-                <h3>Recruitment and Engagement</h3>
-                <p>The Director should encourage more women to join UDUF Africa through outreach, networking, and engagement activities. The Director must also ensure that female members remain active and involved in organisational activities.</p>
-                <h3>Reporting and Accountability</h3>
-                <p>The Director of Women Affairs must provide reports of activities and programmes organised. Reports help the Executive understand the progress of women-related programmes and plan future activities. Transparency and accountability are important parts of leadership.</p>
+                <h3>MOTIVATION</h3>
+                <p>Self-motivated leaders work consistently toward goals and have extremely high standards for quality. How to improve motivation:</p>
+                <ul><li>Re-examine why you're doing your job — reconnect with your purpose.</li><li>Know where you stand — assess your motivation to lead.</li><li>Be hopeful and find something good — every challenge has a positive lesson.</li></ul>
+                <h3>EMPATHY</h3>
+                <p>Empathy is critical to managing a successful team. Empathetic leaders put themselves in others' situations, help develop their team, challenge unfair actions, give constructive feedback, and listen.</p>
+                <ul><li>Put yourself in someone else's position.</li><li>Pay attention to body language.</li><li>Respond to feelings — acknowledge disappointment and show appreciation.</li></ul>
             </div>`
         },
         {
-            title: "Understanding UDUF Africa (Vision, Mission, Focus Areas)",
+            title: "Social Skills & Relationship Management",
             content: `<div class="course-text">
-                <h3>Understanding UDUF Africa</h3>
-                <p>UDUF Africa is a platform that provides capacity building opportunities to young leaders, entrepreneurs, politicians, traditional rulers, religious leaders, and student leaders who are committed to selfless service and the transformation of African communities.</p>
-                <p>The organisation is legally registered in Nigeria with the Corporate Affairs Commission (CAC), Registration Number CAC/IT/NO 103111, registered on 15th November 2017.</p>
-                <h3>Vision of UDUF Africa</h3>
-                <p>To be a sought-after organisation that inspires Africa's new generation of ethical and community-focused servant leaders and entrepreneurs.</p>
-                <h3>Mission of UDUF Africa</h3>
-                <p>To Connect, Inspire, and Transform young people and communities across Africa.</p>
-                <ul><li><strong>CONNECT</strong> – Facilitate networking among young people across cultures, religions, and political beliefs.</li>
-                <li><strong>INSPIRE</strong> – Encourage responsible action and personal, professional, and societal growth.</li>
-                <li><strong>TRANSFORM</strong> – Lead activities that positively impact communities across Africa.</li></ul>
-                <h3>Core Focus Areas</h3>
-                <ul><li>Entrepreneurship</li><li>Leadership</li><li>Community Service</li><li>Volunteerism</li></ul>
-                <p><strong>Motto:</strong> Connecting youth leaders, shaping minds, transforming communities in Africa.<br>
-                <strong>Slogan:</strong> Get Inspired, Transform Africa.</p>
-                <h3>Faith and Values</h3>
-                <p>We believe in God, human potential, and selfless service. Members are encouraged to commit their time, talent, and resources to uplift communities, develop leaders, and make Africa better.</p>
+                <h3>SOCIAL SKILLS</h3>
+                <p>Leaders with strong social skills are great communicators, open to bad news as well as good, and expert at getting their team excited about new missions. They manage change and resolve conflicts diplomatically, setting an example with their own behavior.</p>
+                <ul><li>Learn conflict resolution.</li><li>Improve communication skills.</li><li>Learn how to praise others genuinely.</li></ul>
+                <h3>RELATIONSHIP MANAGEMENT</h3>
+                <p>Relationship management refers to your ability to influence, coach, mentor others, and resolve conflict effectively. Unaddressed conflict wastes time and drains morale. The best leaders show traits of motivation, self-awareness, self-regulation, social skills, empathy, and relationship management.</p>
+                <div class="highlight-box"><p><strong>Key point:</strong> To be effective, team leaders must have a solid understanding of how their emotions and actions affect the people around them.</p></div>
             </div>`
         },
         {
-            title: "Membership, Logo Meaning & Executive Structure",
+            title: "Leading Self, Others & Organization + Emotional Maturity",
             content: `<div class="course-text">
-                <h3>Membership and Volunteering</h3>
-                <p>Members have opportunities to develop skills through training and mentorship, connect with leaders and entrepreneurs, participate in community development projects, and grow in confidence and ethical leadership.</p>
-                <h3>Logo Meaning</h3>
-                <ul><li><strong style="color:#1e3c72;">Blue</strong> – Stability, trust, leadership</li>
-                <li><strong style="color:#f39c12;">Orange</strong> – Energy, innovation, enthusiasm</li>
-                <li><strong style="color:#27ae60;">Green</strong> – Growth, transformation, community service</li>
-                <li><strong>Four interconnected human figures</strong> – Unity, collaboration, inclusivity, equal participation</li></ul>
-                <h3>Executive Structure</h3>
-                <ol><li>Founder & Chairman, Board of Directors</li>
-                <li>Chief Executive Officer (Non-elected)</li>
-                <li><strong>President</strong></li>
-                <li><strong>Vice President 1</strong></li>
-                <li><strong>Vice President 2</strong></li>
-                <li><strong>Executive Secretary</strong></li>
-                <li><strong>Assistant Executive Secretary</strong></li>
-                <li><strong>Director of Media</strong></li>
-                <li><strong>Assistant Director of Media</strong></li>
-                <li><strong>Director of Finance</strong></li>
-                <li><strong>Director of Programmes</strong></li>
-                <li><strong>Assistant Director of Programmes</strong></li>
-                <li><strong>Director of Assets & Internal Affairs</strong></li>
-                <li><strong>Assistant Director of Assets & Internal Affairs</strong></li>
-                <li><strong>Director of Women Affairs</strong></li>
-                <li><strong>Assistant Director of Women Affairs</strong></li></ol>
-                <p>All executive and business meetings follow the <strong>parliamentary system</strong>.</p>
+                <h3>HOW TEAM LEADERS USE EMOTIONAL INTELLIGENCE</h3>
+                <p><strong>Leading Self:</strong> Acknowledge weaknesses, strive for improvement, keep calm under pressure, stay optimistic.</p>
+                <p><strong>Leading Others:</strong> Unlock potential of others, understand motivations, be flexible, listen and respect expertise.</p>
+                <p><strong>Leading Organization:</strong> Inspire others, be visionary, build relationships with boards, partners, stakeholders. Hold yourself and team accountable to the goal.</p>
+                <h3>EMOTIONAL MATURITY</h3>
+                <p>Emotional maturity means managing emotions no matter the circumstances. Key characteristics: taking responsibility, showing empathy, owning mistakes, being unafraid of vulnerability, recognizing and accepting needs, setting healthy boundaries. Age is less important than emotional intelligence. Work on emotional maturity by identifying emotions, letting go of shame, setting boundaries, taking ownership, observing with curiosity, and following a role model.</p>
             </div>`
         },
         {
-            title: "A Story About Leadership: Two Directors, Two Paths",
+            title: "Conclusion & Quiz",
             content: `<div class="course-text">
-                <div class="vision-mission">
-                    <h3>A Story About Leadership: Two Directors, Two Paths</h3>
-                    <p>There was once a time when two different women served as Director of Women Affairs in two different organisations. Both were educated and given the same opportunity to lead.</p>
-                    <p>The first Director understood that leadership is service. She met regularly with female members, listened to their concerns, organised training programmes, and created mentorship opportunities. She worked with other leaders and encouraged women to grow in leadership and entrepreneurship. Because of her dedication, female participation increased and many women discovered their leadership potential. At the end of her tenure, she left the office with great honour, respect, and appreciation. Her leadership was remembered as a period of growth and unity.</p>
-                    <p>The second Director followed another path. She rarely communicated with female members and did not organise programmes for their development. She focused more on personal recognition than service. Gradually the women became inactive and discouraged. By the end of her tenure, she left the office with disappointment and criticism.</p>
-                    <p><strong>The lesson is simple.</strong> Leadership is not about position. Leadership is about responsibility and service. As the new Director of Women Affairs in UDUF Africa, you must choose the path of honour. Choose the path of dedication, service, unity, and empowerment. If you serve faithfully and build people, your leadership will also be remembered with honour.</p>
-                </div>
-            </div>`
-        },
-        {
-            title: "Your Leadership Challenge",
-            content: `<div class="course-text">
-                <h3>Your Leadership Challenge</h3>
-                <p>Every day as Director of Women Affairs is an opportunity to uplift, empower, and unite the women of UDUF Africa. Lead with purpose, serve with dedication, and build a legacy of growth and inclusion. Your work ensures that women are not just participants but leaders and change-makers in the organisation.</p>
-                <p><strong>Motto to Remember:</strong><br>Get Inspired. Take Action. Transform Africa.</p>
+                <h3>CONCLUSION</h3>
+                <p>Emotional intelligence is not about turning off emotions but focusing on interpersonal and intrapersonal skills. Being an effective team leader requires technical skill, strategic thinking, knowledge, and emotional intelligence. Take time to work on self-awareness, self-regulation, motivation, empathy, social skills, and relationship management. These areas will help you excel in the future and earn the ATLF recognition.</p>
+                <p>Now, test your understanding with the quiz. You need 80% to pass and receive your certificate.</p>
             </div>`
         }
     ];
 
+    // 20 quiz questions (from provided material, correct answers mapped)
     const quizQuestions = [
-        { text: "What is the primary duty of the Director of Women Affairs?", options: ["Managing organisational finances", "Coordinating female members and promoting participation", "Supervising media activities", "Managing assets"], correct: 1 },
-        { text: "The Director of Women Affairs represents who in executive discussions?", options: ["External organisations", "Male members", "Female members", "Government agencies"], correct: 2 },
-        { text: "Which officer does the Director of Women Affairs collaborate with to include women initiatives in events?", options: ["Director of Finance", "Director of Media", "Director of Programmes", "Executive Secretary"], correct: 2 },
-        { text: "Which of the following is one of the responsibilities of the Director of Women Affairs?", options: ["Auditing accounts", "Designing women empowerment programmes", "Supervising elections", "Managing assets"], correct: 1 },
-        { text: "The Director of Women Affairs may organise meetings for:", options: ["Only executives", "Female members", "Government officials", "External partners"], correct: 1 },
-        { text: "UDUF Africa was registered in which year?", options: ["2015", "2016", "2017", "2018"], correct: 2 },
-        { text: "The mission of UDUF Africa includes which three key actions?", options: ["Build, Train, Empower", "Connect, Inspire, Transform", "Lead, Manage, Control", "Plan, Finance, Expand"], correct: 1 },
-        { text: "Which of the following is NOT a focus area of UDUF Africa?", options: ["Entrepreneurship", "Leadership", "Community Service", "Aviation"], correct: 3 },
-        { text: "The motto of UDUF Africa focuses on:", options: ["Youth leadership and community transformation", "Government administration", "Banking and finance", "Political campaigns"], correct: 0 },
-        { text: "Blue in the UDUF Africa logo represents:", options: ["Agriculture", "Leadership and trust", "Wealth", "Politics"], correct: 1 },
-        { text: "Orange in the UDUF Africa logo represents:", options: ["Discipline", "Energy and innovation", "Security", "Authority"], correct: 1 },
-        { text: "Green in the UDUF Africa logo represents:", options: ["Government", "Growth and community service", "Competition", "Politics"], correct: 1 },
-        { text: "The four human figures in the logo symbolise:", options: ["Political unity", "Collaboration and inclusiveness", "Government leadership", "Military strength"], correct: 1 },
-        { text: "Which leadership system guides UDUF Africa meetings?", options: ["Military system", "Parliamentary system", "Judicial system", "Traditional system"], correct: 1 },
-        { text: "One responsibility of the Director of Women Affairs is to:", options: ["Promote unity among female members", "Control government funds", "Supervise political campaigns", "Manage banking systems"], correct: 0 },
-        { text: "Mentorship programmes help women to:", options: ["Reduce meetings", "Develop leadership and career skills", "Avoid responsibilities", "Replace training"], correct: 1 },
-        { text: "The Director of Women Affairs should submit activity reports to:", options: ["Government agencies", "The Executive", "The public", "External donors"], correct: 1 },
-        { text: "One lesson from the story of the two Directors is that:", options: ["Leadership is about popularity", "Leadership is about service and responsibility", "Leadership is about power", "Leadership is about wealth"], correct: 1 },
-        { text: "The successful Director in the story succeeded because she:", options: ["Avoided meetings", "Focused on personal recognition", "Served members and organised programmes", "Ignored female members"], correct: 2 },
-        { text: "A Director of Women Affairs who serves with dedication will leave office with:", options: ["Confusion", "Honour and respect", "Fear", "Opposition"], correct: 1 }
+        { text: "When you think of a 'perfect leader', what comes to mind? You might picture someone who never lets his temper get out of control, no matter what problems he's facing. Or you might think of someone who has the complete trust of her/his team members, listens to her/his team, is easy to talk to, and always makes careful, informed decisions.", options: ["True", "False", "None of the above", "Not very sure"], correct: 0 },
+        { text: "These are qualities of someone with a high degree of emotional intelligence: i. Someone who never lets his temper get out of control, ii. Someone who has complete trust of team members, iii. Someone who listens to team, iv. Someone who always makes careful decisions.", options: ["Only i and ii", "Only i, iii and iv", "All of the above", "None of the above"], correct: 2 },
+        { text: "................. Is the ability to understand and manage your own emotions, as well as recognize and influence the emotions of those around you?", options: ["Integrity in relationship", "Good attitude", "Emotional management", "Emotional intelligence"], correct: 3 },
+        { text: "Emotional intelligence is defined as a critical group of non-cognitive skills, capabilities and competencies which help individuals to control and manage their emotional response to events and pressures.", options: ["True", "False", "Not very sure", "None of the above"], correct: 0 },
+        { text: "Emotional intelligence is not that 'something' within us that helps us to ..........................", options: ["Sense how we feel and connect with others", "Be present and listen when needed", "Have internal balance to keep composure", "Sleep on matters, fight for our right systematically, react effectively and win during competition"], correct: 3 },
+        { text: "It's our .................... that put people at ease, helps them feel appreciated, and enable us to build and maintain solid relationships founded on confidence and trust.", options: ["Soft skills", "Hard work", "Demand", "Smartness"], correct: 0 },
+        { text: "As a Team leader, if our mood is positive, it ignites a spirit of trust, good energy, collaboration, pride, respect, and healthy risk taking. If our mood is bad, we can expect a culture rife with fear, anxiety, high turnover, and poor financial results.", options: ["True", "False", "Not very sure", "None of the above"], correct: 0 },
+        { text: "Who is more likely to succeed?", options: ["A team leader who shouts at his team when under stress", "A team leader who stays in control and calmly assesses the situation", "None of the above", "All of the above"], correct: 1 },
+        { text: "According to our study, there are ............... to Emotional intelligence", options: ["Six key elements", "Five key elements", "Seven key elements", "Ten key elements"], correct: 0 },
+        { text: "This element of emotional intelligence, according to Goleman, also covers a leader's flexibility and commitment to personal accountability.", options: ["True", "False", "Not very sure", "All of the above"], correct: 0 },
+        { text: "Leaders who regulate themselves effectively rarely verbally attack others, make rushed or emotional decisions, stereotype people, or compromise their values.", options: ["True", "False", "Not very sure", "All of the above"], correct: 0 },
+        { text: "How can you improve your ability to self-regulation?", options: ["Know your values, Hold yourself accountable, and Practice being calm", "Know your values, Hold yourself, and Practice being calm", "Know your Future, Hold yourself accountable, and Practice being calm", "Know your values, Hold yourself accountable, and Practice early to work"], correct: 0 },
+        { text: ".................. Work consistently towards their goals, and they have extremely high standards for the quality of their work.", options: ["Self-disciplined leaders", "Self-accredited leaders", "Self-motivated leaders", "Self-righteous leaders"], correct: 2 },
+        { text: "..................., ................... and ............... are ways a team leader can improve his motivation.", options: ["Be hopeful and find a good friend, know where you stand and Re-examine why you're doing your job", "Know your values, Hold yourself accountable, and Practice being calm", "Be hopeful and find something good, know where you stand and Re-examine why you're doing your job", "Be hopeful and find something good know where you stand and Re-examine why you're not happy"], correct: 2 },
+        { text: "Leaders with empathy have the ability to put themselves in someone else's situation. They help develop the people on their team, challenge others who are acting unfairly, give constructive feedback, and listen to those who need it.", options: ["True", "False", "Not very sure", "All of the above"], correct: 0 },
+        { text: "How can you improve your empathy as a team leader?", options: ["Put yourself in someone else's position", "Pay attention to body language", "Respond to feelings", "All of the above"], correct: 3 },
+        { text: "Leaders who have good social skills are also good at managing change and resolving conflicts diplomatically. They're rarely satisfied with leaving things as they are, but they don't .....................................", options: ["Sit back and make everyone else angry: they set an example with their own behavior", "Sit back and make everyone else do the work: they set an example with others", "Look at people's faces", "Sit back and make everyone else do the work: they set an example with their own behavior"], correct: 3 },
+        { text: "To be effective, team leaders must have a solid understanding of how their emotions and actions affect..........................", options: ["The team leader", "The people around them", "The people in his family", "The management team"], correct: 1 },
+        { text: "Successful team leadership is about being effective in three ways:", options: ["Leading self, leading others, and leading the team or organization", "Leading team, leading partners and family", "Leading union, leading others, and leading the team or organization", "Leading organization, people and team"], correct: 0 },
+        { text: "What are key characteristics and things you can do to develop emotional maturity?", options: ["Taking responsibility, showing empathy, owning mistakes, being unafraid of future and life", "Taking responsibility, showing empathy, owning mistakes, and Being unafraid of vulnerability", "Recognizing and accepting needs, setting healthy boundaries, being intelligent and taking responsibility", "All of the above"], correct: 1 }
     ];
 
     // State
@@ -775,14 +712,13 @@
     let userName = null;
     let quizAnswers = [];
 
-    // Page functions (same pattern as previous pages)
     function loadPage() {
         if (moduleCompleted) {
             document.getElementById('pageContent').innerHTML = `
                 <div class="module-complete">
                     <i class="fas fa-check-circle"></i>
                     <h3>Course Completed!</h3>
-                    <p>You have successfully completed the Director of Women Affairs course. Well done!</p>
+                    <p>Congratulations! You have successfully completed the Emotional Intelligence in Leadership course.</p>
                     <button class="complete-module-btn" onclick="goToCertificate()"><i class="fas fa-certificate"></i> Get Your Certificate</button>
                     <p style="margin-top:15px;"><a href="executive-leadership-academy.html" style="color:#27ae60;">Return to Academy Hub</a></p>
                 </div>
@@ -800,7 +736,7 @@
         const page = pages[currentPage];
         document.getElementById('pageContent').innerHTML = `
             <div class="course-text">
-                <div style="margin-bottom:20px;"><span style="background:#f39c12; color:white; padding:5px 12px; border-radius:20px;">Page ${currentPage+1} of ${pages.length}</span></div>
+                <div style="margin-bottom:20px;"><span style="background:#3498db; color:white; padding:5px 12px; border-radius:20px;">Page ${currentPage+1} of ${pages.length}</span></div>
                 ${page.content}
             </div>
         `;
@@ -837,7 +773,7 @@
     }
 
     function renderQuiz() {
-        let html = `<div class="quiz-container"><h3><i class="fas fa-question-circle"></i> Director of Women Affairs Knowledge Quiz</h3><p>Answer all 20 questions to complete the course. You need 80% to pass.</p>`;
+        let html = `<div class="quiz-container"><h3><i class="fas fa-question-circle"></i> Emotional Intelligence Quiz (80% to pass)</h3><p>Answer all 20 questions. You need at least 16 correct to pass.</p>`;
         quizQuestions.forEach((q, idx) => {
             const saved = quizAnswers[idx];
             html += `<div class="quiz-question"><h4>${idx+1}. ${q.text}</h4><div class="quiz-options">`;
@@ -867,8 +803,8 @@
             const percentage = (correctCount/quizQuestions.length)*100;
             const passed = percentage >= 80;
             html += `<div style="margin-top:30px; padding:20px; background:${passed?'#e8f5e9':'#fee'}; border-radius:15px; text-align:center;">
-                        <h3>Your Score: ${correctCount}/${quizQuestions.length} (${percentage}%)</h3>
-                        ${passed ? '<p style="color:#27ae60;">Congratulations! You passed!</p><button class="complete-module-btn" onclick="completeCourse()">Complete Course</button>' : '<p style="color:#e74c3c;">You need 80% to pass. Please review and try again.</p><button class="complete-module-btn" onclick="resetQuiz()" style="background:#f39c12;">Retake Quiz</button>'}
+                        <h3>Your Score: ${correctCount}/20 (${percentage}%)</h3>
+                        ${passed ? '<p style="color:#27ae60;">Congratulations! You passed the 80% threshold!</p><button class="complete-module-btn" onclick="completeCourse()">Complete Course</button>' : '<p style="color:#e74c3c;">You need 80% to pass. Please review the material and retake the quiz.</p><button class="complete-module-btn" onclick="resetQuiz()" style="background:#f39c12;">Retake Quiz</button>'}
                      </div>`;
         }
         return html;
@@ -883,7 +819,7 @@
 
     function resetQuiz() { quizAnswers = []; document.getElementById('pageContent').innerHTML = renderQuiz(); }
     function completeCourse() { moduleQuizPassed = true; saveModuleCompletion(); loadPage(); }
-    function goToCertificate() { window.location.href = "certificates.html"; }
+    function goToCertificate() { window.location.href = "certificate.html"; }
 
     function updateOverallProgress() {
         let percent = 0;
@@ -897,7 +833,7 @@
     }
 
     function updateOutline() {
-        let html = `<div class="module-outline"><div class="module-header expanded"><span>Director of Women Affairs Course</span><i class="fas fa-chevron-down"></i></div><div class="module-pages show">`;
+        let html = `<div class="module-outline"><div class="module-header expanded"><span>Emotional Intelligence in Leadership</span><i class="fas fa-chevron-down"></i></div><div class="module-pages show">`;
         pages.forEach((page, idx) => {
             let statusClass = '';
             let statusIcon = '<i class="far fa-circle"></i>';
@@ -905,7 +841,7 @@
             else if (idx === currentPage) { statusClass = 'current'; statusIcon = '<i class="fas fa-play-circle" style="color:#f39c12;"></i>'; }
             html += `<div class="page-outline-item ${statusClass}" onclick="jumpToPage(${idx})">${statusIcon} Page ${idx+1}: ${page.title}</div>`;
         });
-        html += `<div class="page-outline-item ${moduleQuizPassed?'completed':(moduleCompleted?'completed':'')}" onclick="jumpToQuiz()">${moduleQuizPassed?'<i class="fas fa-check-circle" style="color:#27ae60;"></i>':'<i class="far fa-question-circle"></i>'} Quiz</div>`;
+        html += `<div class="page-outline-item ${moduleQuizPassed?'completed':(moduleCompleted?'completed':'')}" onclick="jumpToQuiz()">${moduleQuizPassed?'<i class="fas fa-check-circle" style="color:#27ae60;"></i>':'<i class="far fa-question-circle"></i>'} Quiz (20 Q's, 80% pass)</div>`;
         html += `</div></div>`;
         document.getElementById('outlineList').innerHTML = html;
     }
@@ -914,14 +850,13 @@
     window.jumpToQuiz = function() { if (!moduleCompleted && !moduleQuizPassed) startQuiz(); toggleOutline(); };
     window.toggleOutline = function() { document.getElementById('outlineModal').classList.toggle('show'); };
 
-    // Firebase save/load
     async function saveProgress() {
         if (!userEmail) return;
         try {
-            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_director_women_affairs`;
+            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_ei_course`;
             await db.collection('progress').doc(progressId).set({
                 userId: userEmail,
-                courseId: "director_women_affairs",
+                courseId: "ei_course",
                 currentPage: currentPage,
                 moduleCompleted: moduleCompleted,
                 moduleQuizPassed: moduleQuizPassed,
@@ -933,7 +868,7 @@
     async function saveQuizProgress() {
         if (!userEmail) return;
         try {
-            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_director_women_affairs`;
+            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_ei_course`;
             await db.collection('progress').doc(progressId).set({
                 quizAnswers: quizAnswers,
                 lastAccessed: firebase.firestore.FieldValue.serverTimestamp()
@@ -944,7 +879,7 @@
     async function saveModuleCompletion() {
         if (!userEmail) return;
         try {
-            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_director_women_affairs`;
+            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_ei_course`;
             await db.collection('progress').doc(progressId).set({
                 moduleCompleted: moduleCompleted,
                 moduleQuizPassed: moduleQuizPassed,
@@ -957,7 +892,7 @@
     async function loadProgress() {
         if (!userEmail) return;
         try {
-            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_director_women_affairs`;
+            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_ei_course`;
             const doc = await db.collection('progress').doc(progressId).get();
             if (doc.exists) {
                 const data = doc.data();
@@ -978,7 +913,6 @@
         setTimeout(() => toast.style.display = 'none', 3000);
     }
 
-    // User auth
     function checkUserSession() {
         const storedEmail = sessionStorage.getItem('userEmail');
         const storedName = sessionStorage.getItem('userName');
@@ -1020,7 +954,7 @@
         await db.collection('users').doc(userEmail).set({
             name: userName,
             email: userEmail,
-            enrolledCourses: firebase.firestore.FieldValue.arrayUnion('director_women_affairs'),
+            enrolledCourses: firebase.firestore.FieldValue.arrayUnion('ei_course'),
             createdAt: firebase.firestore.FieldValue.serverTimestamp()
         }, { merge: true });
         document.getElementById('emailModal').remove();
@@ -1034,7 +968,6 @@
         window.location.href = "index.html";
     };
 
-    // Event listeners
     document.getElementById('prevPageBtn').addEventListener('click', () => { if (currentPage > 0) { currentPage--; loadPage(); } });
     document.getElementById('nextPageBtn').addEventListener('click', () => {
         if (currentPage === pages.length - 1) startQuiz();
@@ -1043,6 +976,20 @@
     document.getElementById('outlineModal').addEventListener('click', function(e) { if (e.target === this) this.classList.remove('show'); });
 
     document.addEventListener('DOMContentLoaded', checkUserSession);
+</script>
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+function startPayment(courseId, amount, userEmail) {
+  let handler = PaystackPop.setup({
+    key: 'pk_test_51d77463757586d69cbf1a4d631859c5de74eceb',
+    email: userEmail,
+    amount: amount * 100,
+    metadata: { courseId: courseId },
+    callback: function(response) { alert('Payment successful. Ref: ' + response.reference); },
+    onClose: function() { alert('Payment cancelled'); }
+  });
+  handler.openIframe();
+}
 </script>
 </body>
 </html>

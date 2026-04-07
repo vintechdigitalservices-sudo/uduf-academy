@@ -772,7 +772,7 @@
     <!-- Intro Section (hidden initially, shown if no progress) -->
     <div id="introSection" class="intro-section" style="display: none;">
         <h2><i class="fas fa-info-circle"></i> Orientation Introduction</h2>
-        <p>Welcome to this orientation session organised by UDUF Africa. It is a great privilege that you are participating in this training.</p>
+        <p>Welcome to this orientation session organised by UDUF Africa. We are pleased to have you join this training and take this important step towards your growth and development.</p>
         <p>This orientation is designed to help you understand the meaning, value, and responsibility of volunteering in UDUF Africa. The organisation was established to inspire and connect a new generation of young African leaders who are committed to entrepreneurship, leadership development, community service, and volunteerism.</p>
         <p>Before anyone becomes a volunteer or member of UDUF Africa, it is important to clearly understand the vision of the organisation, the expectations from members, and the commitment required to serve effectively.</p>
         <p>This session will therefore guide you through the principles of volunteering, the responsibilities expected from members, and the opportunities that come with serving in a purpose driven organisation like UDUF Africa.</p>
@@ -1782,6 +1782,29 @@
         checkUserSession();
     });
 </script>
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+function startPayment(courseId, amount, userEmail) {
+  let handler = PaystackPop.setup({
+    key: 'pk_test_51d77463757586d69cbf1a4d631859c5de74eceb',
+    email: userEmail,
+    amount: amount * 100,
 
+    metadata: {
+      courseId: courseId
+    },
+
+    callback: function(response) {
+      alert('Payment successful. Ref: ' + response.reference);
+    },
+
+    onClose: function() {
+      alert('Payment cancelled');
+    }
+  });
+
+  handler.openIframe();
+}
+</script>
 </body>
 </html>

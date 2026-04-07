@@ -677,7 +677,8 @@
                 <ol><li>Founder & Chairman, Board of Directors</li>
                 <li>Chief Executive Officer (Non-elected)</li>
                 <li><strong>President</strong></li>
-                <li><strong>Vice President</strong></li>
+                <li><strong>Vice President 1</strong></li>
+                <li><strong>Vice President 2</strong></li>
                 <li><strong>Executive Secretary</strong></li>
                 <li><strong>Assistant Executive Secretary</strong></li>
                 <li><strong>Director of Media</strong></li>
@@ -815,7 +816,7 @@
     }
 
     function renderQuiz() {
-        let html = `<div class="quiz-container"><h3><i class="fas fa-question-circle"></i> Director of Programmes Knowledge Quiz</h3><p>Answer all questions correctly to complete the course. You need 70% to pass.</p>`;
+        let html = `<div class="quiz-container"><h3><i class="fas fa-question-circle"></i> Director of Programmes Knowledge Quiz</h3><p>Answer all questions correctly to complete the course. You need 80% to pass.</p>`;
         quizQuestions.forEach((q, idx) => {
             const saved = quizAnswers[idx];
             html += `<div class="quiz-question"><h4>${idx+1}. ${q.text}</h4><div class="quiz-options">`;
@@ -843,10 +844,10 @@
         if (allAnswered) {
             const correctCount = quizQuestions.filter((q,i) => quizAnswers[i] === q.correct).length;
             const percentage = (correctCount/quizQuestions.length)*100;
-            const passed = percentage >= 70;
+            const passed = percentage >= 80;
             html += `<div style="margin-top:30px; padding:20px; background:${passed?'#e8f5e9':'#fee'}; border-radius:15px; text-align:center;">
                         <h3>Your Score: ${correctCount}/${quizQuestions.length} (${percentage}%)</h3>
-                        ${passed ? '<p style="color:#27ae60;">Congratulations! You passed!</p><button class="complete-module-btn" onclick="completeCourse()">Complete Course</button>' : '<p style="color:#e74c3c;">You need 70% to pass. Please review and try again.</p><button class="complete-module-btn" onclick="resetQuiz()" style="background:#f39c12;">Retake Quiz</button>'}
+                        ${passed ? '<p style="color:#27ae60;">Congratulations! You passed!</p><button class="complete-module-btn" onclick="completeCourse()">Complete Course</button>' : '<p style="color:#e74c3c;">You need 80% to pass. Please review and try again.</p><button class="complete-module-btn" onclick="resetQuiz()" style="background:#f39c12;">Retake Quiz</button>'}
                      </div>`;
         }
         return html;
@@ -861,7 +862,7 @@
 
     function resetQuiz() { quizAnswers = []; document.getElementById('pageContent').innerHTML = renderQuiz(); }
     function completeCourse() { moduleQuizPassed = true; saveModuleCompletion(); loadPage(); }
-    function goToCertificate() { window.location.href = "certificate.html"; }
+    function goToCertificate() { window.location.href = "certificates.html"; }
 
     function updateOverallProgress() {
         let percent = 0;

@@ -3,7 +3,8 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+
   <title>UDUF Africa Academy</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
@@ -191,12 +192,12 @@
       <!-- Course 1: Volunteer Orientation Course -->
       <div class="course-card" data-course="volunteer" id="course-volunteer">
         <div class="course-image"><img src="course1.webp" alt="Volunteer Orientation"><div class="badge popular">Most Popular ★★★★★</div><div class="instructor"><img src="student1.webp"><span>Ezuma Smart</span></div><div class="heart"><i class="fa-regular fa-heart"></i><span class="like-count">0</span></div></div>
-        <div class="course-content"><h3>Volunteer Orientation Course</h3><div class="meta"><i class="fa-solid fa-book"></i><span>5 Lessons</span></div><div class="course-footer"><div class="price"><span class="old">₦20,000</span><span class="free">Free</span></div><a href="#" class="course-btn take-course-btn" data-course-name="Volunteer Orientation Course">Take Course</a></div></div>
+        <div class="course-content"><h3>Volunteer Orientation Course</h3><div class="meta"><i class="fa-solid fa-book"></i><span>3 Modules</span></div><div class="course-footer"><div class="price"><span class="old">₦20,000</span><span class="free">Free</span></div><a href="#" class="course-btn take-course-btn" data-course-name="Volunteer Orientation Course">Take Course</a></div></div>
       </div>
       <!-- Course 2: Executive Leadership Academy -->
       <div class="course-card" data-course="executive" id="course-executive">
-        <div class="course-image"><img src="course2.webp"><div class="badge">Leadership</div><div class="instructor"><img src="student1.webp"><span>Ezuma Smart</span></div><div class="heart"><i class="fa-regular fa-heart"></i><span class="like-count">0</span></div></div>
-        <div class="course-content"><h3>Executive Leadership Academy</h3><div class="meta"><i class="fa-solid fa-book"></i><span>11 Modules</span></div><div class="course-footer"><div class="price"><span class="old">₦20,000</span><span class="free">Free</span></div><a href="#" class="course-btn take-course-btn" data-course-name="Executive Leadership Academy">Take Course</a></div></div>
+        <div class="course-image"><img src="course2.jpg"><div class="badge">Leadership</div><div class="instructor"><img src="student1.webp"><span>Ezuma Smart</span></div><div class="heart"><i class="fa-regular fa-heart"></i><span class="like-count">0</span></div></div>
+        <div class="course-content"><h3>Executive Leadership Academy</h3><div class="meta"><i class="fa-solid fa-book"></i><span>Role Specific Courses</span></div><div class="course-footer"><div class="price"><span class="old">₦20,000</span><span class="free">Free</span></div><a href="#" class="course-btn take-course-btn" data-course-name="Executive Leadership Academy">Take Course</a></div></div>
       </div>
       <!-- Course 3: DEI -->
       <div class="course-card" data-course="dei" id="course-dei">
@@ -206,7 +207,7 @@
       <!-- Course 4: Team Leadership -->
       <div class="course-card" data-course="team" id="course-team">
         <div class="course-image"><img src="course4.webp"><div class="badge">Leadership</div><div class="instructor"><img src="student1.webp"><span>Ezuma Smart</span></div><div class="heart"><i class="fa-regular fa-heart"></i><span class="like-count">0</span></div></div>
-        <div class="course-content"><h3>UDUF Africa Team Leadership Course</h3><div class="meta"><i class="fa-solid fa-book"></i><span>6 Lessons</span></div><div class="course-footer"><div class="price"><span class="old">₦20,000</span><span class="free">Free</span></div><a href="#" class="course-btn take-course-btn" data-course-name="UDUF Africa Team Leadership Course">Take Course</a></div></div>
+        <div class="course-content"><h3>UDUF Africa Team Leadership Course</h3><div class="meta"><i class="fa-solid fa-book"></i><span>4 Modules</span></div><div class="course-footer"><div class="price"><span class="old">₦20,000</span><span class="free">Free</span></div><a href="#" class="course-btn take-course-btn" data-course-name="UDUF Africa Team Leadership Course">Take Course</a></div></div>
       </div>
       <!-- Course 5: Effective Leadership -->
       <div class="course-card" data-course="effective" id="course-effective">
@@ -296,17 +297,32 @@
 <!-- Form Popup HTML -->
 <div id="courseFormPopup" class="form-popup">
   <div class="form-popup-inner">
-    <button class="close-popup">&times;</button>
+    <button class="close-popup" id="closeFormX">&times;</button>
     <h3 id="popupTitle">Sign Up for Course</h3>
     <form id="courseForm">
       <input type="hidden" name="courseName" id="courseNameInput" value="">
       <input type="text" name="name" placeholder="Full Name" required>
-      <input type="email" name="email" placeholder="Email" required>
+      <input type="email" name="email" id="formEmail" placeholder="Email" required>
       <input type="tel" name="phone" placeholder="Phone Number" required>
-      <button type="submit" class="submit-btn">Submit</button>
-      <button type="button" id="closeFormBtn" class="cancel-btn">Cancel</button>
+      
+      <div id="certFieldContainer" style="display: none;">
+        <input type="text" name="certCode" id="certCodeInput" placeholder="Orientation Course Certificate Code">
+      </div>
+
+      <div style="display: flex; justify-content: space-between;">
+        <button type="submit" class="submit-btn" id="submitBtn">Submit</button>
+        <button type="button" id="closeFormBtn" class="cancel-btn">Cancel</button>
+      </div>
     </form>
     <div id="formMessage" class="form-message"></div>
+  </div>
+</div>
+
+<div id="redirectModal" class="custom-modal-overlay" style="display: none;">
+  <div class="custom-modal-card">
+    <div class="loader"></div>
+    <h3>You've already signed up!</h3>
+    <p>Please wait as you get redirected to your course...</p>
   </div>
 </div>
 

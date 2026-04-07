@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Director of Women Affairs Course - Executive Leadership Academy</title>
+    <title>Effective Team Leadership Course (ETLC) - Executive Leadership Academy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        /* ===== Full CSS (same as previous course pages) ===== */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -74,7 +73,7 @@
             padding: 40px;
             margin-bottom: 30px;
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            border-left: 5px solid #f39c12;
+            border-left: 5px solid #e67e22;
         }
         .course-header h1 {
             font-size: 2rem;
@@ -102,7 +101,7 @@
             color: #1e3c72;
         }
         .meta-item i {
-            color: #f39c12;
+            color: #e67e22;
         }
         .progress-section {
             background: white;
@@ -201,7 +200,7 @@
             color: white;
         }
         .page-dot:hover:not(.active) {
-            background: #f39c12;
+            background: #e67e22;
             color: white;
         }
         .course-text {
@@ -218,7 +217,7 @@
             font-size: 1.3rem;
         }
         .course-text h4 {
-            color: #f39c12;
+            color: #e67e22;
             margin: 20px 0 10px;
             font-size: 1.1rem;
         }
@@ -228,13 +227,6 @@
             border-radius: 15px;
             border-left: 4px solid #f39c12;
             margin: 20px 0;
-        }
-        .vision-mission {
-            background: #e8f5e9;
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px 0;
-            border-left: 4px solid #27ae60;
         }
         .info-box {
             background: #e3f2fd;
@@ -296,7 +288,7 @@
             padding: 25px;
             background: #f8f9fa;
             border-radius: 15px;
-            border-left: 4px solid #f39c12;
+            border-left: 4px solid #e67e22;
         }
         .quiz-question h4 {
             color: #1e3c72;
@@ -319,7 +311,7 @@
             border: 2px solid #e0e0e0;
         }
         .quiz-option:hover {
-            border-color: #f39c12;
+            border-color: #e67e22;
             transform: translateX(5px);
         }
         .quiz-option.selected {
@@ -391,7 +383,7 @@
             right: 30px;
             width: 60px;
             height: 60px;
-            background: #f39c12;
+            background: #e67e22;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -571,12 +563,12 @@
 
 <div class="course-wrapper">
     <div class="course-header">
-        <h1><i class="fas fa-female"></i> Director of Women Affairs Course</h1>
-        <p>Promoting Women Leadership, Empowerment & Participation</p>
+        <h1><i class="fas fa-users"></i> Effective Team Leadership Course (ETLC)</h1>
+        <p>Learn the people management skills required to lead a successful, high-performing team. Inspire, motivate, and deliver results.</p>
         <div class="course-meta">
-            <div class="meta-item"><i class="fas fa-book"></i> 7 Pages</div>
-            <div class="meta-item"><i class="fas fa-question-circle"></i> Final Quiz (20 Questions)</div>
-            <div class="meta-item"><i class="fas fa-certificate"></i> Certificate on Completion</div>
+            <div class="meta-item"><i class="fas fa-book"></i> 6 Pages</div>
+            <div class="meta-item"><i class="fas fa-question-circle"></i> 20 Questions Quiz</div>
+            <div class="meta-item"><i class="fas fa-certificate"></i> Certificate on Completion (80% pass)</div>
         </div>
     </div>
 
@@ -586,7 +578,7 @@
     </div>
 
     <div class="module-indicator" id="moduleIndicator">
-        <div class="module-badge" id="moduleBadge"><i class="fas fa-book-open"></i> Director of Women Affairs Training</div>
+        <div class="module-badge"><i class="fas fa-chalkboard-user"></i> Team Leadership Course</div>
         <div class="module-status" id="moduleStatus"><i class="fas fa-lock"></i> Complete quiz to finish</div>
     </div>
 
@@ -620,151 +612,112 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // Course pages (split content into logical sections)
+    // 6 Course Pages
     const pages = [
         {
-            title: "Introduction & Purpose",
+            title: "Overview & Understanding Team Leadership",
             content: `<div class="course-text">
-                <h3>Introduction</h3>
-                <p>The Office of the Director of Women Affairs in UDUF Africa plays an important role in promoting the participation, development, and empowerment of women within the organisation. The Director serves as the coordinator and representative of all female members and ensures that women are actively involved in leadership, entrepreneurship, and community service programmes.</p>
-                <p>This orientation course is designed to guide the Director of Women Affairs on how to effectively carry out the responsibilities of the office and contribute to the growth of UDUF Africa.</p>
-                <h3>Purpose of the Office</h3>
-                <p>The purpose of the Office of Women Affairs is to promote the growth, inclusion, and empowerment of female members of the foundation. The office ensures that women are given opportunities to develop leadership skills, participate in programmes, and contribute to the vision of the organisation.</p>
-                <p>The Director of Women Affairs helps create an environment where women feel respected, supported, and encouraged to grow personally and professionally.</p>
+                <h3>COURSE OVERVIEW</h3>
+                <p>Effective team leaders are highly sought after in every organization. Whether you are already in a team leadership role or want to improve your chances of being promoted, this online team leadership training can help you cultivate the best practices to support, inspire and motivate your team to deliver the best results for your organization.</p>
+                <p><strong>Featuring:</strong> Experienced instructor, Personalized learning, Learn at your own pace, Mobile learning, Unlimited tests and quizzes, Get certified.</p>
+                <h3>UNDERSTANDING TEAM LEADERSHIP</h3>
+                <p>The difference between success and failure is a great team. The only way to build a company with great success and scale is to build a great team. A successful leader is one who can spur team members to work well together toward a common vision and goals.</p>
+                <h4>Who is a team leader?</h4>
+                <p>A team leader provides guidance, instruction, direction and leadership to a group for the purpose of achieving key results. The team leader monitors qualitative and quantitative achievements and reports results to a coordinating authority. The leader often works within the team as a member, carrying out the same roles with additional leader responsibilities.</p>
+                <div class="info-box"><p>Scouler (2011): "The purpose of a leader is to ensure all four dimensions of leadership: shared motivating purpose, action/progress/results, collective unity, and attention to the individual."</p></div>
             </div>`
         },
         {
-            title: "Key Responsibilities & Powers",
+            title: "Effective Qualities of a Team Leader",
             content: `<div class="course-text">
-                <h3>Key Responsibilities of the Director of Women Affairs</h3>
-                <ul><li>Coordinate and support all female members of the organisation.</li>
-                <li>Promote active participation of women in UDUF Africa activities and programmes.</li>
-                <li>Design programmes that support women leadership, entrepreneurship, and personal development.</li>
-                <li>Serve as the voice of female members in executive discussions and planning.</li>
-                <li>Encourage unity, inclusion, and cooperation among women in the organisation.</li>
-                <li>Work with the Director of Programmes to ensure that women-focused initiatives are included in events.</li>
-                <li>Organise mentorship, training, and empowerment sessions for female members.</li>
-                <li>Support the recruitment and engagement of new female members.</li>
-                <li>Promote the welfare, safety, and respect of women within the organisation.</li>
-                <li>Submit activity reports to the Executive at agreed intervals.</li>
-                <li>Perform any other duty assigned by the President, CEO, or Executive of UDUF Africa.</li></ul>
-                <h3>Powers of the Director of Women Affairs</h3>
-                <ul><li>Convene meetings of female members when necessary.</li>
-                <li>Propose programmes or policies that will improve the participation and development of women.</li>
-                <li>Recommend committees or volunteers to assist in women-related projects.</li>
-                <li>Represent the organisation in women-focused programmes or partnerships when delegated.</li>
-                <li>Advise the Executive on matters affecting female members.</li></ul>
-                <h3>Leadership Expectations</h3>
-                <p>The Director of Women Affairs must demonstrate strong leadership qualities, promote teamwork, cooperation, and respect among female members, encourage women to participate in leadership and organisational activities, inspire confidence, motivate women to develop their skills, and always act with integrity and responsibility.</p>
+                <h3>THE EFFECTIVE QUALITIES OF A TEAM LEADER</h3>
+                <p>An effective team leader has traits that encourage team members to follow. These include compassion, integrity, and skills learned through training.</p>
+                <ul><li><strong>Clear Communicator:</strong> Quality verbal/written skills, active listening.</li>
+                <li><strong>Strong Organizational Skills:</strong> Plan objectives and strategies.</li>
+                <li><strong>Confidence in the Team:</strong> Secure in decisions, reassures team authority.</li>
+                <li><strong>Respect for Others:</strong> Accept and celebrate personality and uniqueness.</li>
+                <li><strong>Fairness and Kindness:</strong> Consistent with rewards, recognition, and discipline.</li>
+                <li><strong>Influential in Core Areas:</strong> Inspire commitment, manage change.</li>
+                <li><strong>Willingness to Delegate:</strong> Share leadership through delegation.</li>
+                <li><strong>Excellent Facilitation:</strong> Help members understand goals and action plans.</li>
+                <li><strong>Skilled Negotiator:</strong> Achieve results and resolve conflict.</li></ul>
             </div>`
         },
         {
-            title: "Programme Development, Mentorship & Engagement",
+            title: "Team Leadership Responsibilities & Core Duties",
             content: `<div class="course-text">
-                <h3>Programme Development</h3>
-                <p>The Director should design programmes that promote women development in areas such as leadership, entrepreneurship, education, and community service. These programmes may include leadership workshops, business training sessions, mentoring programmes, and empowerment conferences. Such programmes help women build confidence and become more effective leaders.</p>
-                <h3>Mentorship and Women Empowerment</h3>
-                <p>Mentorship programmes are important for developing strong female leaders. The Director should create opportunities where experienced women can guide younger members. Mentorship helps women learn leadership skills, gain confidence, and develop their careers and businesses.</p>
-                <h3>Recruitment and Engagement</h3>
-                <p>The Director should encourage more women to join UDUF Africa through outreach, networking, and engagement activities. The Director must also ensure that female members remain active and involved in organisational activities.</p>
-                <h3>Reporting and Accountability</h3>
-                <p>The Director of Women Affairs must provide reports of activities and programmes organised. Reports help the Executive understand the progress of women-related programmes and plan future activities. Transparency and accountability are important parts of leadership.</p>
+                <h3>TEAM LEADERSHIP RESPONSIBILITIES</h3>
+                <p>Responsibilities include decision-making, coaching, mentoring, developing skills, and managing conflict.</p>
+                <ul><li><strong>Coaching team members:</strong> Develop performance, offer feedback, demonstrate desired skills.</li>
+                <li><strong>Developing strengths & improving weaknesses:</strong> Identify who excels at which task, delegate appropriately.</li>
+                <li><strong>Identifying team goals & evaluating progress:</strong> Define success, set clear goals, measure progress.</li>
+                <li><strong>Conflict Resolution:</strong> Prevent and resolve conflicts, set ground rules, meet with members individually and together.</li>
+                <li><strong>Organization of team initiatives:</strong> Organize meetings, set agendas, keep documents accessible.</li></ul>
+                <h3>CORE RESPONSIBILITIES</h3>
+                <ul><li>Assemble members with required skills.</li><li>Develop strategy to reach project goals.</li><li>Assign tasks.</li><li>Determine timeline and monitor progress.</li><li>Communicate progress to upper management.</li></ul>
             </div>`
         },
         {
-            title: "Understanding UDUF Africa (Vision, Mission, Focus Areas)",
+            title: "The Mindsets of a Team Leader",
             content: `<div class="course-text">
-                <h3>Understanding UDUF Africa</h3>
-                <p>UDUF Africa is a platform that provides capacity building opportunities to young leaders, entrepreneurs, politicians, traditional rulers, religious leaders, and student leaders who are committed to selfless service and the transformation of African communities.</p>
-                <p>The organisation is legally registered in Nigeria with the Corporate Affairs Commission (CAC), Registration Number CAC/IT/NO 103111, registered on 15th November 2017.</p>
-                <h3>Vision of UDUF Africa</h3>
-                <p>To be a sought-after organisation that inspires Africa's new generation of ethical and community-focused servant leaders and entrepreneurs.</p>
-                <h3>Mission of UDUF Africa</h3>
-                <p>To Connect, Inspire, and Transform young people and communities across Africa.</p>
-                <ul><li><strong>CONNECT</strong> – Facilitate networking among young people across cultures, religions, and political beliefs.</li>
-                <li><strong>INSPIRE</strong> – Encourage responsible action and personal, professional, and societal growth.</li>
-                <li><strong>TRANSFORM</strong> – Lead activities that positively impact communities across Africa.</li></ul>
-                <h3>Core Focus Areas</h3>
-                <ul><li>Entrepreneurship</li><li>Leadership</li><li>Community Service</li><li>Volunteerism</li></ul>
-                <p><strong>Motto:</strong> Connecting youth leaders, shaping minds, transforming communities in Africa.<br>
-                <strong>Slogan:</strong> Get Inspired, Transform Africa.</p>
-                <h3>Faith and Values</h3>
-                <p>We believe in God, human potential, and selfless service. Members are encouraged to commit their time, talent, and resources to uplift communities, develop leaders, and make Africa better.</p>
+                <h3>THE MINDSETS OF A TEAM LEADER</h3>
+                <p>Mindsets are leaders' mental lenses that dictate what information they take in and use to navigate situations.</p>
+                <ul><li><strong>Sociopath:</strong> Serves no one; reckless disregard for others, manipulative.</li>
+                <li><strong>Egoist:</strong> Serves self; driven by wealth, power, status ("What's in it for me?")</li>
+                <li><strong>Chameleon:</strong> Serves anyone; extremely adaptable, pleases others, lacks courage.</li>
+                <li><strong>Dynamo:</strong> Serves goals; executes strategy flawlessly but may lose sight of broader mission.</li>
+                <li><strong>Builder:</strong> Serves institution; promotes collective good, builds lasting organizations.</li>
+                <li><strong>Transcender:</strong> Serves society; maximizes value for many stakeholders, manages complexity (e.g., Nelson Mandela).</li></ul>
+                <div class="highlight-box"><p><strong>Whom do you serve?</strong> Your answer defines your leadership style.</p></div>
             </div>`
         },
         {
-            title: "Membership, Logo Meaning & Executive Structure",
+            title: "Team Norms & Principles for New Team Leaders",
             content: `<div class="course-text">
-                <h3>Membership and Volunteering</h3>
-                <p>Members have opportunities to develop skills through training and mentorship, connect with leaders and entrepreneurs, participate in community development projects, and grow in confidence and ethical leadership.</p>
-                <h3>Logo Meaning</h3>
-                <ul><li><strong style="color:#1e3c72;">Blue</strong> – Stability, trust, leadership</li>
-                <li><strong style="color:#f39c12;">Orange</strong> – Energy, innovation, enthusiasm</li>
-                <li><strong style="color:#27ae60;">Green</strong> – Growth, transformation, community service</li>
-                <li><strong>Four interconnected human figures</strong> – Unity, collaboration, inclusivity, equal participation</li></ul>
-                <h3>Executive Structure</h3>
-                <ol><li>Founder & Chairman, Board of Directors</li>
-                <li>Chief Executive Officer (Non-elected)</li>
-                <li><strong>President</strong></li>
-                <li><strong>Vice President 1</strong></li>
-                <li><strong>Vice President 2</strong></li>
-                <li><strong>Executive Secretary</strong></li>
-                <li><strong>Assistant Executive Secretary</strong></li>
-                <li><strong>Director of Media</strong></li>
-                <li><strong>Assistant Director of Media</strong></li>
-                <li><strong>Director of Finance</strong></li>
-                <li><strong>Director of Programmes</strong></li>
-                <li><strong>Assistant Director of Programmes</strong></li>
-                <li><strong>Director of Assets & Internal Affairs</strong></li>
-                <li><strong>Assistant Director of Assets & Internal Affairs</strong></li>
-                <li><strong>Director of Women Affairs</strong></li>
-                <li><strong>Assistant Director of Women Affairs</strong></li></ol>
-                <p>All executive and business meetings follow the <strong>parliamentary system</strong>.</p>
+                <h3>TEAM NORMS</h3>
+                <p>Team norms are rules or operating principles that shape interactions. Advantages: reduces conflict, enables peer accountability, helps focus on goals.</p>
+                <p><strong>10 Steps for Establishing Team Norms:</strong> Share worst/best team experiences, suggest behaviors, discuss, document, revisit regularly.</p>
+                <h3>PRINCIPLES FOR NEW TEAM LEADERS SUCCESS</h3>
+                <ul><li>Be prepared; preparation is key.</li><li>Set clear goals.</li><li>Make time to lead — be visible and available.</li><li>Get to know your team — listen, find aspirations.</li><li>Communicate, communicate, communicate.</li><li>Act with fairness — no favoritism.</li><li>Lead by example — work hard, don't gossip.</li><li>Take on unpleasant tasks.</li><li>Make tough decisions.</li><li>Radiate happiness at work.</li><li>Stand up for your team members — never throw them under the bus.</li><li>Reward the good, learn from the bad.</li><li>Delegate — trust your team.</li><li>Be decisive — don't procrastinate.</li><li>Enjoy it!</li></ul>
             </div>`
         },
         {
-            title: "A Story About Leadership: Two Directors, Two Paths",
+            title: "Conclusion, High Performance Teams & Quiz",
             content: `<div class="course-text">
-                <div class="vision-mission">
-                    <h3>A Story About Leadership: Two Directors, Two Paths</h3>
-                    <p>There was once a time when two different women served as Director of Women Affairs in two different organisations. Both were educated and given the same opportunity to lead.</p>
-                    <p>The first Director understood that leadership is service. She met regularly with female members, listened to their concerns, organised training programmes, and created mentorship opportunities. She worked with other leaders and encouraged women to grow in leadership and entrepreneurship. Because of her dedication, female participation increased and many women discovered their leadership potential. At the end of her tenure, she left the office with great honour, respect, and appreciation. Her leadership was remembered as a period of growth and unity.</p>
-                    <p>The second Director followed another path. She rarely communicated with female members and did not organise programmes for their development. She focused more on personal recognition than service. Gradually the women became inactive and discouraged. By the end of her tenure, she left the office with disappointment and criticism.</p>
-                    <p><strong>The lesson is simple.</strong> Leadership is not about position. Leadership is about responsibility and service. As the new Director of Women Affairs in UDUF Africa, you must choose the path of honour. Choose the path of dedication, service, unity, and empowerment. If you serve faithfully and build people, your leadership will also be remembered with honour.</p>
-                </div>
-            </div>`
-        },
-        {
-            title: "Your Leadership Challenge",
-            content: `<div class="course-text">
-                <h3>Your Leadership Challenge</h3>
-                <p>Every day as Director of Women Affairs is an opportunity to uplift, empower, and unite the women of UDUF Africa. Lead with purpose, serve with dedication, and build a legacy of growth and inclusion. Your work ensures that women are not just participants but leaders and change-makers in the organisation.</p>
-                <p><strong>Motto to Remember:</strong><br>Get Inspired. Take Action. Transform Africa.</p>
+                <h3>QUALITIES OF HIGH PERFORMANCE vs. DYSFUNCTIONAL TEAMS</h3>
+                <p><strong>High Performance:</strong> Motivated, accountable, aligned objectives, engaged, confront problems, leverage trust, help each other.</p>
+                <p><strong>Dysfunctional:</strong> Turnover, missed deadlines, tolerated poor performance, ambiguity, absenteeism, dread meetings, conceal weaknesses.</p>
+                <h3>INSPIRATIONAL QUOTES</h3>
+                <p>"Individual commitment to a group effort—that is what makes a team work." — Vince Lombardi<br>
+                "The strength of the team is each individual member." — Phil Jackson<br>
+                "The best teamwork comes from men who are working independently toward one goal in unison." — James Cash Penney</p>
+                <div class="info-box"><p>Now test your understanding with the quiz. You need 80% (16/20) to pass and earn your certificate.</p></div>
             </div>`
         }
     ];
 
+    // 20 quiz questions with correct answers (indexes based on provided Q&A)
     const quizQuestions = [
-        { text: "What is the primary duty of the Director of Women Affairs?", options: ["Managing organisational finances", "Coordinating female members and promoting participation", "Supervising media activities", "Managing assets"], correct: 1 },
-        { text: "The Director of Women Affairs represents who in executive discussions?", options: ["External organisations", "Male members", "Female members", "Government agencies"], correct: 2 },
-        { text: "Which officer does the Director of Women Affairs collaborate with to include women initiatives in events?", options: ["Director of Finance", "Director of Media", "Director of Programmes", "Executive Secretary"], correct: 2 },
-        { text: "Which of the following is one of the responsibilities of the Director of Women Affairs?", options: ["Auditing accounts", "Designing women empowerment programmes", "Supervising elections", "Managing assets"], correct: 1 },
-        { text: "The Director of Women Affairs may organise meetings for:", options: ["Only executives", "Female members", "Government officials", "External partners"], correct: 1 },
-        { text: "UDUF Africa was registered in which year?", options: ["2015", "2016", "2017", "2018"], correct: 2 },
-        { text: "The mission of UDUF Africa includes which three key actions?", options: ["Build, Train, Empower", "Connect, Inspire, Transform", "Lead, Manage, Control", "Plan, Finance, Expand"], correct: 1 },
-        { text: "Which of the following is NOT a focus area of UDUF Africa?", options: ["Entrepreneurship", "Leadership", "Community Service", "Aviation"], correct: 3 },
-        { text: "The motto of UDUF Africa focuses on:", options: ["Youth leadership and community transformation", "Government administration", "Banking and finance", "Political campaigns"], correct: 0 },
-        { text: "Blue in the UDUF Africa logo represents:", options: ["Agriculture", "Leadership and trust", "Wealth", "Politics"], correct: 1 },
-        { text: "Orange in the UDUF Africa logo represents:", options: ["Discipline", "Energy and innovation", "Security", "Authority"], correct: 1 },
-        { text: "Green in the UDUF Africa logo represents:", options: ["Government", "Growth and community service", "Competition", "Politics"], correct: 1 },
-        { text: "The four human figures in the logo symbolise:", options: ["Political unity", "Collaboration and inclusiveness", "Government leadership", "Military strength"], correct: 1 },
-        { text: "Which leadership system guides UDUF Africa meetings?", options: ["Military system", "Parliamentary system", "Judicial system", "Traditional system"], correct: 1 },
-        { text: "One responsibility of the Director of Women Affairs is to:", options: ["Promote unity among female members", "Control government funds", "Supervise political campaigns", "Manage banking systems"], correct: 0 },
-        { text: "Mentorship programmes help women to:", options: ["Reduce meetings", "Develop leadership and career skills", "Avoid responsibilities", "Replace training"], correct: 1 },
-        { text: "The Director of Women Affairs should submit activity reports to:", options: ["Government agencies", "The Executive", "The public", "External donors"], correct: 1 },
-        { text: "One lesson from the story of the two Directors is that:", options: ["Leadership is about popularity", "Leadership is about service and responsibility", "Leadership is about power", "Leadership is about wealth"], correct: 1 },
-        { text: "The successful Director in the story succeeded because she:", options: ["Avoided meetings", "Focused on personal recognition", "Served members and organised programmes", "Ignored female members"], correct: 2 },
-        { text: "A Director of Women Affairs who serves with dedication will leave office with:", options: ["Confusion", "Honour and respect", "Fear", "Opposition"], correct: 1 }
+        { text: "A team leader is a person who provides ................. to a group of individuals for the purpose of achieving a key result.", options: ["guidance, instruction, direction and leadership", "Love, leadership, praise and instruction", "Knowledge, guidance, principles and love", "None of the above"], correct: 0 },
+        { text: "The team leader monitors ......... of the team and reports result to a coordinating authority.", options: ["The qualitative and quantitative achievements", "The vision and mission", "The qualitative and quantitative principles", "The project"], correct: 0 },
+        { text: "The leader often works within the team as a member, carrying out the same roles with additional leader responsibilities as opposed to higher level management which often has a separate job role.", options: ["True", "False"], correct: 0 },
+        { text: "In order for a team to function successfully, the team leader must also ............ to use their knowledge and skills to achieve the shared goals.", options: ["motivate the team", "Guide the team", "Discipline the team", "Project the team"], correct: 0 },
+        { text: "Team norms are a set of rules or operating principles that shape team members' interactions.", options: ["True", "False"], correct: 0 },
+        { text: "An effective team leader has a variety of traits and characteristics that encourage team members to follow him.", options: ["True", "False"], correct: 0 },
+        { text: "Team leaders naturally possess certain qualities, such as .........., or learn leadership skills through formal training and experience.", options: ["Hope and money", "Good thought and property", "compassion and integrity", "Integrity and leadership"], correct: 2 },
+        { text: "The qualities of an effective team leader inspire the trust and respect of the team members.", options: ["True", "False"], correct: 0 },
+        { text: "............, .............. and .............. are qualities of an effective team leader that inspire trust and respect.", options: ["A Clear Communicator, A skilled Negotiator, Strong Organization Skills and Willing to Delegate", "A good amount of money, leadership skill and communication skill", "A clear communication, hardworking and truthfulness", "A skill in negotiation, willing to contribute and a clear communication"], correct: 0 },
+        { text: "Reduces Conflict & Stress, Enables Team Members to Hold Each Other Responsible, Enables Team Members to Focus on Goals are advantages of creating team norms.", options: ["True", "False"], correct: 0 },
+        { text: "........... and ........... are NOT roles of a Team Leader.", options: ["Goal setter, and Monitor progress", "Manager or Supervisor and Strategist", "Communicator and Organizer", "Writing and reading"], correct: 3 },
+        { text: "............... are leaders' mental lenses that dictate what information they take in and use to navigate situations.", options: ["Foresight", "Mindset", "Intelligence", "Trust"], correct: 1 },
+        { text: "Leaders with predominantly Egoistic mindsets are driven by their own accumulation of wealth, power, and status.", options: ["True", "False"], correct: 0 },
+        { text: "Leaders who largely adopt a Chameleon mindset are.......", options: ["extremely adaptable", "Extremely wicked", "Extremely faithful", "Extremely focused"], correct: 0 },
+        { text: "A........ helps people execute strategy consistently and, in many cases, flawlessly.", options: ["dynamo mindset", "Egoist mindset", "Chameleon mindset", "Open mindset"], correct: 0 },
+        { text: "Leaders who largely adopt a Builder mindset promote the collective good of the organization.", options: ["True", "False"], correct: 0 },
+        { text: "These are qualities of high performance team:........................", options: ["Team members help each other, confront problems and issues quickly, and same standard for everybody", "Aligned common objectives, poor performance managed and share money as reward", "Hesitate to ask for help, confront problems quickly and same standard", "Team members help each other, overlook problems quickly, same standard"], correct: 0 },
+        { text: ".............. and ................. are qualities of poor performance or dysfunctional team.", options: ["Absenteeism and Team turnover", "Team turnover and Team Hanover", "Absenteeism and commitment", "Commitment and Team Hanover"], correct: 0 },
+        { text: "'The best teamwork comes from men who are working independently toward one goal in unison.' Who made this quote?", options: ["Peter john", "James Cash Penney", "Henry Ford", "Andrew Carnegie"], correct: 1 },
+        { text: "These are fundamental principles about how team leaders most successfully interact with their team members, establish and maintain a productive team.", options: ["Communication, lead by example and act with fairness", "If you are wrong, do not be honest and humble enough to admit it", "Set a high bar and let them know they can't succeed without you", "Always command, discipline with alacrity and lead by example"], correct: 0 }
     ];
 
     // State
@@ -775,14 +728,13 @@
     let userName = null;
     let quizAnswers = [];
 
-    // Page functions (same pattern as previous pages)
     function loadPage() {
         if (moduleCompleted) {
             document.getElementById('pageContent').innerHTML = `
                 <div class="module-complete">
                     <i class="fas fa-check-circle"></i>
                     <h3>Course Completed!</h3>
-                    <p>You have successfully completed the Director of Women Affairs course. Well done!</p>
+                    <p>Congratulations! You have successfully completed the Effective Team Leadership Course (ETLC).</p>
                     <button class="complete-module-btn" onclick="goToCertificate()"><i class="fas fa-certificate"></i> Get Your Certificate</button>
                     <p style="margin-top:15px;"><a href="executive-leadership-academy.html" style="color:#27ae60;">Return to Academy Hub</a></p>
                 </div>
@@ -800,7 +752,7 @@
         const page = pages[currentPage];
         document.getElementById('pageContent').innerHTML = `
             <div class="course-text">
-                <div style="margin-bottom:20px;"><span style="background:#f39c12; color:white; padding:5px 12px; border-radius:20px;">Page ${currentPage+1} of ${pages.length}</span></div>
+                <div style="margin-bottom:20px;"><span style="background:#e67e22; color:white; padding:5px 12px; border-radius:20px;">Page ${currentPage+1} of ${pages.length}</span></div>
                 ${page.content}
             </div>
         `;
@@ -837,7 +789,7 @@
     }
 
     function renderQuiz() {
-        let html = `<div class="quiz-container"><h3><i class="fas fa-question-circle"></i> Director of Women Affairs Knowledge Quiz</h3><p>Answer all 20 questions to complete the course. You need 80% to pass.</p>`;
+        let html = `<div class="quiz-container"><h3><i class="fas fa-question-circle"></i> Team Leadership Quiz (80% to pass - 16/20 correct)</h3><p>Answer all 20 questions.</p>`;
         quizQuestions.forEach((q, idx) => {
             const saved = quizAnswers[idx];
             html += `<div class="quiz-question"><h4>${idx+1}. ${q.text}</h4><div class="quiz-options">`;
@@ -867,8 +819,8 @@
             const percentage = (correctCount/quizQuestions.length)*100;
             const passed = percentage >= 80;
             html += `<div style="margin-top:30px; padding:20px; background:${passed?'#e8f5e9':'#fee'}; border-radius:15px; text-align:center;">
-                        <h3>Your Score: ${correctCount}/${quizQuestions.length} (${percentage}%)</h3>
-                        ${passed ? '<p style="color:#27ae60;">Congratulations! You passed!</p><button class="complete-module-btn" onclick="completeCourse()">Complete Course</button>' : '<p style="color:#e74c3c;">You need 80% to pass. Please review and try again.</p><button class="complete-module-btn" onclick="resetQuiz()" style="background:#f39c12;">Retake Quiz</button>'}
+                        <h3>Your Score: ${correctCount}/20 (${percentage}%)</h3>
+                        ${passed ? '<p style="color:#27ae60;">Congratulations! You passed the 80% threshold!</p><button class="complete-module-btn" onclick="completeCourse()">Complete Course</button>' : '<p style="color:#e74c3c;">You need 80% to pass. Please review the material and retake the quiz.</p><button class="complete-module-btn" onclick="resetQuiz()" style="background:#f39c12;">Retake Quiz</button>'}
                      </div>`;
         }
         return html;
@@ -883,7 +835,7 @@
 
     function resetQuiz() { quizAnswers = []; document.getElementById('pageContent').innerHTML = renderQuiz(); }
     function completeCourse() { moduleQuizPassed = true; saveModuleCompletion(); loadPage(); }
-    function goToCertificate() { window.location.href = "certificates.html"; }
+    function goToCertificate() { window.location.href = "certificate.html"; }
 
     function updateOverallProgress() {
         let percent = 0;
@@ -897,7 +849,7 @@
     }
 
     function updateOutline() {
-        let html = `<div class="module-outline"><div class="module-header expanded"><span>Director of Women Affairs Course</span><i class="fas fa-chevron-down"></i></div><div class="module-pages show">`;
+        let html = `<div class="module-outline"><div class="module-header expanded"><span>Effective Team Leadership Course (ETLC)</span><i class="fas fa-chevron-down"></i></div><div class="module-pages show">`;
         pages.forEach((page, idx) => {
             let statusClass = '';
             let statusIcon = '<i class="far fa-circle"></i>';
@@ -905,7 +857,7 @@
             else if (idx === currentPage) { statusClass = 'current'; statusIcon = '<i class="fas fa-play-circle" style="color:#f39c12;"></i>'; }
             html += `<div class="page-outline-item ${statusClass}" onclick="jumpToPage(${idx})">${statusIcon} Page ${idx+1}: ${page.title}</div>`;
         });
-        html += `<div class="page-outline-item ${moduleQuizPassed?'completed':(moduleCompleted?'completed':'')}" onclick="jumpToQuiz()">${moduleQuizPassed?'<i class="fas fa-check-circle" style="color:#27ae60;"></i>':'<i class="far fa-question-circle"></i>'} Quiz</div>`;
+        html += `<div class="page-outline-item ${moduleQuizPassed?'completed':(moduleCompleted?'completed':'')}" onclick="jumpToQuiz()">${moduleQuizPassed?'<i class="fas fa-check-circle" style="color:#27ae60;"></i>':'<i class="far fa-question-circle"></i>'} Quiz (20 Q's, 80% pass)</div>`;
         html += `</div></div>`;
         document.getElementById('outlineList').innerHTML = html;
     }
@@ -914,14 +866,13 @@
     window.jumpToQuiz = function() { if (!moduleCompleted && !moduleQuizPassed) startQuiz(); toggleOutline(); };
     window.toggleOutline = function() { document.getElementById('outlineModal').classList.toggle('show'); };
 
-    // Firebase save/load
     async function saveProgress() {
         if (!userEmail) return;
         try {
-            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_director_women_affairs`;
+            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_etlc_course`;
             await db.collection('progress').doc(progressId).set({
                 userId: userEmail,
-                courseId: "director_women_affairs",
+                courseId: "etlc_course",
                 currentPage: currentPage,
                 moduleCompleted: moduleCompleted,
                 moduleQuizPassed: moduleQuizPassed,
@@ -933,7 +884,7 @@
     async function saveQuizProgress() {
         if (!userEmail) return;
         try {
-            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_director_women_affairs`;
+            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_etlc_course`;
             await db.collection('progress').doc(progressId).set({
                 quizAnswers: quizAnswers,
                 lastAccessed: firebase.firestore.FieldValue.serverTimestamp()
@@ -944,7 +895,7 @@
     async function saveModuleCompletion() {
         if (!userEmail) return;
         try {
-            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_director_women_affairs`;
+            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_etlc_course`;
             await db.collection('progress').doc(progressId).set({
                 moduleCompleted: moduleCompleted,
                 moduleQuizPassed: moduleQuizPassed,
@@ -957,7 +908,7 @@
     async function loadProgress() {
         if (!userEmail) return;
         try {
-            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_director_women_affairs`;
+            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_etlc_course`;
             const doc = await db.collection('progress').doc(progressId).get();
             if (doc.exists) {
                 const data = doc.data();
@@ -978,7 +929,6 @@
         setTimeout(() => toast.style.display = 'none', 3000);
     }
 
-    // User auth
     function checkUserSession() {
         const storedEmail = sessionStorage.getItem('userEmail');
         const storedName = sessionStorage.getItem('userName');
@@ -1020,7 +970,7 @@
         await db.collection('users').doc(userEmail).set({
             name: userName,
             email: userEmail,
-            enrolledCourses: firebase.firestore.FieldValue.arrayUnion('director_women_affairs'),
+            enrolledCourses: firebase.firestore.FieldValue.arrayUnion('etlc_course'),
             createdAt: firebase.firestore.FieldValue.serverTimestamp()
         }, { merge: true });
         document.getElementById('emailModal').remove();
@@ -1034,7 +984,6 @@
         window.location.href = "index.html";
     };
 
-    // Event listeners
     document.getElementById('prevPageBtn').addEventListener('click', () => { if (currentPage > 0) { currentPage--; loadPage(); } });
     document.getElementById('nextPageBtn').addEventListener('click', () => {
         if (currentPage === pages.length - 1) startQuiz();

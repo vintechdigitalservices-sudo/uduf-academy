@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UDUF Africa | Executive Certificate Portal</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Great+Vibes&family=Montserrat:wght@400;600;800&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <style>
+        :root {
+            --navy: #0A1931;
+            --gold: #FFC947;
+            --gold-dark: #B8860B;
+            --white: #FFFFFF;
+        }
+
+        body { font-family: 'Montserrat', sans-serif; background: #e0e0e0; margin: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+
+        /* ── FORM STYLING ── */
+        .portal-container { background: white; padding: 40px; border-radius: 15px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); width: 100%; max-width: 500px; }
+        .form-header { text-align: center; margin-bottom: 30px; }
+        .form-header h2 { color: var(--navy); font-family: 'Cinzel', serif; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 8px; color: #555; }
+        input, select { width: 100%; padding: 12px; border: 2px solid #eee; border-radius: 8px; font-size: 15px; transition: 0.3s; }
+        input:focus { border-color: var(--navy); outline: none; }
+        .gen-btn { width: 100%; padding: 15px; background: var(--navy); color: white; border: none; border-radius: 8px; font-weight: 800; cursor: pointer; }
+
+        /* ── CERTIFICATE CANVAS (CSS ONLY) ── */
+        #cert-wrapper { position: absolute; left: -9999px; }
+        #cert-capture {
+            width: 1123px; height: 794px; /* A4 Landscape at 96 DPI */
+            background: var(--white);
+            position: relative;
+            box-sizing: border-box;
+            border: 20px solid var(--navy);
+            display: flex; flex-direction: column; align-items: center;
+            overflow: hidden;
+        }
+
+        /* Gold Inner Border */
+        #cert-capture::after {
+            content: ''; position: absolute; inset: 15px;
+            border: 5px solid var(--gold); pointer-events: none;
+        }
+
+        /* Logo Watermark Background */
+        .watermark {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            width: 500px; opacity: 0.05; z-index: 0;
+        }
+
+        /* ── CERTIFICATE CONTENT ── */
+        .cert-header { margin-top: 60px; text-align: center; z-index: 1; }
+        .main-logo { width: 120px; margin-bottom: 15px; }
+        
+        .title-top { font-family: 'Cinzel', serif; font-size: 42px; color: var(--navy); letter-spacing: 4px; border-bottom: 3px solid var(--gold); padding-bottom: 5px; }
+        .sub-title { font-size: 18px; margin-top: 20px; color: #444; font-weight: 600; text-transform: uppercase; }
+
+        .recipient-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 72px; color: var(--navy);
+            margin: 30px 0 10px 0;
+            border-bottom: 1px solid #ccc; width: 80%; text-align: center;
+        }
+
+        .office-text {
+            font-size: 24px; font-weight: 700; color: #2e7d32; /* Deep Green for Executive look */
+            margin: 20px 0; font-family: 'Lora', serif; max-width: 80%; text-align: center;
+        }
+
+        .desc-text { font-size: 16px; color: #666; line-height: 1.6; max-width: 75%; text-align: center; font-style: italic; }
+
+        .date-line { margin-top: 30px; font-weight: 700; color: var(--navy); font-size: 18px; }
+
+        /* Signatures Area */
+        .sig-container {
+            position: absolute; bottom: 80px; width: 85%;
+            display: flex; justify-content: space-between; align-items: flex-end;
+        }
+        .sig-box { text-align: center; width: 250px; }
+        .sig-img { height: 70px; object-fit: contain; margin-bottom: -10px; }
+        .sig-line { border-top: 2px solid #333; padding-top: 8px; font-weight: 700; font-size: 14px; color: var(--navy); }
+        .sig-title { font-size: 12px; color: #777; font-weight: 600; }
+
+        .cert-footer { position: absolute; bottom: 30px; font-size: 14px; font-weight: 800; color: var(--navy); }
+
+        /* Modal Preview */
+        #preview-modal { display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); justify-content:center; align-items:center; flex-direction:column; z-index:1000; }
+        .modal-content { background:white; padding:10px; border-radius:10px; max-width:90%; }
+    </style>
+</head>
+<body>
+
+    <div class="portal-container">
+        <div class="form-header">
+            <h2>Executive Portal</h2>
+            <p>Generate your Commissioning Certificate</p>
+        </div>
+        <form id="execForm">
+            <div class="form-group">
+                <label>FULL NAME (As it will appear)</label>
+                <input type="text" id="execName" placeholder="e.g. Chukwuemeka Chimaobi Emmanuel" required>
+            </div>
+            <div class="form-group">
+                <label>OFFICIAL EMAIL</label>
+                <input type="email" id="execEmail" placeholder="email@udufafrica.org" required>
+            </div>
+            <div class="form-group">
+                <label>EXECUTIVE OFFICE</label>
+                <select id="execOffice" required>
+                    <option value="">-- Select Office --</option>
+                    <option value="President">President</option>
+                    <option value="Vice President 1">Vice President 1</option>
+                    <option value="Vice President 2">Vice President 2</option>
+                    <option value="Executive Secretary">Executive Secretary</option>
+                    <option value="Assistant Executive Secretary">Assistant Executive Secretary</option>
+                    <option value="Director of Programs">Director of Programs</option>
+                    <option value="Assistant Director of Programs">Assistant Director of Programs</option>
+                    <option value="Director of Media">Director of Media</option>
+                    <option value="Assistant Director of Media">Assistant Director of Media</option>
+                    <option value="Director of Assets & Internal Affairs">Director of Assets & Internal Affairs</option>
+                    <option value="Assistant Director of Assets & Internal Affairs">Assistant Director of Assets & Internal Affairs</option>
+                    <option value="Director of Finance">Director of Finance</option>
+                    <option value="Director of Women Affairs">Director of Women Affairs</option>
+                    <option value="Assistant Director of Women Affairs">Assistant Director of Women Affairs</option>
+                </select>
+            </div>
+            <button type="submit" class="gen-btn" id="submitBtn">GENERATE EXECUTIVE CERTIFICATE</button>
+        </form>
+        <p id="status" style="text-align:center; font-size:12px; margin-top:15px;"></p>
+    </div>
+
+    <div id="preview-modal">
+        <div class="modal-content">
+            <img id="preview-img" style="width:100%;" src="">
+        </div>
+        <div style="margin-top:20px;">
+            <button onclick="closeModal()" style="padding:10px 20px; background:#666; color:white; border:none; border-radius:5px; cursor:pointer;">Edit</button>
+            <button id="downloadPdf" style="padding:10px 20px; background:#2e7d32; color:white; border:none; border-radius:5px; cursor:pointer; margin-left:10px;">Download PDF</button>
+        </div>
+    </div>
+
+    <div id="cert-wrapper">
+        <div id="cert-capture">
+            <img src="logo.webp" class="watermark">
+            
+            <div class="cert-header">
+                <img src="logo.webp" class="main-logo">
+                <div class="title-top">CERTIFICATE OF COMPLETION</div>
+                <div class="sub-title">THIS IS TO CERTIFY THAT</div>
+            </div>
+
+            <div class="recipient-name" id="draw-name">Test User</div>
+            
+            <div class="sub-title" style="margin-top:5px;">has successfully completed the</div>
+            <div class="office-text" id="draw-office">Executive Leadership Course for Vice President 1</div>
+            
+            <div class="desc-text">
+                under the Executive Leadership Academy of UDUF Africa, having met all requirements and demonstrated outstanding leadership competence.
+            </div>
+
+            <div class="date-line" id="draw-date">Issued this 24th of April, 2026</div>
+
+            <div class="sig-container">
+                <div class="sig-box">
+                    <img src="founder_sig.png" class="sig-img">
+                    <div class="sig-line">Ezuma Chinedu Smart</div>
+                    <div class="sig-title">(Founder)</div>
+                </div>
+                <div class="sig-box">
+                    <img src="sec_sig.png" class="sig-img">
+                    <div class="sig-line">Ezeudo Henry</div>
+                    <div class="sig-title">(Secretary)</div>
+                </div>
+            </div>
+
+            <div class="cert-footer">
+                Certificate ID: <span id="draw-id">UDUF-AFR9425</span>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        // [CITE: Logic from your previous build used for Firebase integration]
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, query, where, getDocs, doc, updateDoc, addDoc, limit, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyD_m5yTOkHCj42f8zzmpNmg7I6dqtc1vNY",
+            authDomain: "udufafrica-project.firebaseapp.com",
+            projectId: "udufafrica-project",
+            storageBucket: "udufafrica-project.firebasestorage.app",
+            messagingSenderId: "1070479742500",
+            appId: "1:1070479742500:web:3b77676d5592860d44aab1"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        let pdfInstance = null;
+        let fileName = "Executive_Certificate.pdf";
+
+        window.closeModal = () => document.getElementById('preview-modal').style.display = 'none';
+
+        function getOrdinal(d) {
+            if (d > 3 && d < 21) return 'th';
+            switch (d % 10) {
+                case 1: return "st";
+                case 2: return "nd";
+                case 3: return "rd";
+                default: return "th";
+            }
+        }
+
+        document.getElementById('execForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('submitBtn');
+            const status = document.getElementById('status');
+            
+            btn.disabled = true;
+            status.innerText = "Verifying executive records...";
+
+            const name = document.getElementById('execName').value;
+            const email = document.getElementById('execEmail').value.toLowerCase();
+            const office = document.getElementById('execOffice').value;
+
+            try {
+                // 1. QUERY: Check if they are in the progress collection
+                const progressRef = collection(db, "progress");
+                const q = query(progressRef, where("userId", "==", email), where("completed", "==", true));
+                const snap = await getDocs(q);
+
+                if(snap.empty) throw new Error("No completed record found for this email.");
+
+                // 2. QUERY: Get available unique code
+                const codesRef = collection(db, "codes");
+                const qCodes = query(codesRef, where("used", "==", false), limit(1));
+                const codeSnap = await getDocs(qCodes);
+                if(codeSnap.empty) throw new Error("No validation codes available.");
+
+                const codeDoc = codeSnap.docs[0];
+                const finalCode = `UDUF-AFR${codeDoc.data().code}`;
+
+                // 3. UPDATE: Mark code as used
+                await updateDoc(doc(db, "codes", codeDoc.id), { used: true, assignedTo: email });
+
+                // 4. GENERATE
+                const today = new Date();
+                const dateString = `Issued this ${today.getDate()}${getOrdinal(today.getDate())} of ${today.toLocaleString('default', {month:'long'})}, ${today.getFullYear()}`;
+
+                document.getElementById('draw-name').innerText = name;
+                document.getElementById('draw-office').innerText = `Executive Leadership Course for ${office}`;
+                document.getElementById('draw-date').innerText = dateString;
+                document.getElementById('draw-id').innerText = finalCode;
+
+                const capture = document.getElementById('cert-capture');
+                const canvas = await html2canvas(capture, { scale: 2 });
+                const imgData = canvas.toDataURL('image/png');
+                
+                document.getElementById('preview-img').src = imgData;
+                
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF('l', 'px', [1123, 794]);
+                pdf.addImage(imgData, 'PNG', 0, 0, 1123, 794);
+                
+                pdfInstance = pdf;
+                fileName = `Executive_Cert_${name.replace(/\s+/g, '_')}.pdf`;
+                
+                document.getElementById('preview-modal').style.display = 'flex';
+                status.innerText = "";
+                btn.disabled = false;
+
+            } catch (err) {
+                status.innerText = err.message;
+                status.style.color = "red";
+                btn.disabled = false;
+            }
+        });
+
+        document.getElementById('downloadPdf').addEventListener('click', () => {
+            if(pdfInstance) pdfInstance.save(fileName);
+        });
+    </script>
+</body>
+</html>

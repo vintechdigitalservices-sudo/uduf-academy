@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Director of Women Affairs Course - Executive Leadership Academy</title>
+    <title>Vice President 1 Course - Executive Leadership Academy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        /* ===== Full CSS (same as previous course pages) ===== */
+        /* Full CSS (same as previous course pages) */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -571,8 +571,8 @@
 
 <div class="course-wrapper">
     <div class="course-header">
-        <h1><i class="fas fa-female"></i> Director of Women Affairs Course</h1>
-        <p>Promoting Women Leadership, Empowerment & Participation</p>
+        <h1><i class="fas fa-building"></i> Vice President 1 Course</h1>
+        <p>Administration and Internal Coordination</p>
         <div class="course-meta">
             <div class="meta-item"><i class="fas fa-book"></i> 7 Pages</div>
             <div class="meta-item"><i class="fas fa-question-circle"></i> Final Quiz (20 Questions)</div>
@@ -586,7 +586,7 @@
     </div>
 
     <div class="module-indicator" id="moduleIndicator">
-        <div class="module-badge" id="moduleBadge"><i class="fas fa-book-open"></i> Director of Women Affairs Training</div>
+        <div class="module-badge" id="moduleBadge"><i class="fas fa-book-open"></i> Vice President 1 Training</div>
         <div class="module-status" id="moduleStatus"><i class="fas fa-lock"></i> Complete quiz to finish</div>
     </div>
 
@@ -620,151 +620,181 @@
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // Course pages (split content into logical sections)
+    // Course pages
     const pages = [
         {
-            title: "Introduction & Purpose",
+            title: "Introduction & Welcome",
             content: `<div class="course-text">
                 <h3>Introduction</h3>
-                <p>The Office of the Director of Women Affairs in UDUF Africa plays an important role in promoting the participation, development, and empowerment of women within the organisation. The Director serves as the coordinator and representative of all female members and ensures that women are actively involved in leadership, entrepreneurship, and community service programmes.</p>
-                <p>This orientation course is designed to guide the Director of Women Affairs on how to effectively carry out the responsibilities of the office and contribute to the growth of UDUF Africa.</p>
-                <h3>Purpose of the Office</h3>
-                <p>The purpose of the Office of Women Affairs is to promote the growth, inclusion, and empowerment of female members of the foundation. The office ensures that women are given opportunities to develop leadership skills, participate in programmes, and contribute to the vision of the organisation.</p>
-                <p>The Director of Women Affairs helps create an environment where women feel respected, supported, and encouraged to grow personally and professionally.</p>
+                <p>The Vice President 1 (Administration and Internal Coordination) holds a critical leadership position within UDUF Africa. As the second-in-command with a specialised focus on internal operations, you serve as a strong partner to the President by ensuring that the organisation functions efficiently from within.</p>
+                <p>This role requires discipline, structure, coordination skills, and the ability to translate decisions into action. While the President provides vision and direction, you ensure that the internal system works smoothly, tasks are completed, and the executive team remains aligned.</p>
+                <p>The Vice President 1 training course equips you with practical tools to supervise internal coordination, monitor performance, ensure accountability, support decision implementation, and maintain organisational order and discipline.</p>
+                <h3>Welcome to UDUF Africa</h3>
+                <p>Dear Vice President 1,</p>
+                <p>Congratulations on your election as Vice President 1 (Administration and Internal Coordination) of Ultimate Destiny Uplifters Foundation (UDUF Africa). You are now entrusted with the responsibility of strengthening the internal structure of a movement committed to raising young African leaders and transforming communities.</p>
+                <p>Your role is vital in ensuring that the organisation operates effectively, efficiently, and with discipline. You are not just supporting leadership, you are sustaining the system that makes impact possible.</p>
+                <p><strong>Message to You, Vice President 1</strong><br>
+                Your leadership is the backbone of internal coordination. You are responsible for ensuring that the organisation runs smoothly, decisions are implemented, and departments function effectively.</p>
+                <p>Get inspired. Take action. Transform Africa.</p>
             </div>`
         },
         {
-            title: "Key Responsibilities & Powers",
+            title: "About UDUF Africa",
             content: `<div class="course-text">
-                <h3>Key Responsibilities of the Director of Women Affairs</h3>
-                <ul><li>Coordinate and support all female members of the organisation.</li>
-                <li>Promote active participation of women in UDUF Africa activities and programmes.</li>
-                <li>Design programmes that support women leadership, entrepreneurship, and personal development.</li>
-                <li>Serve as the voice of female members in executive discussions and planning.</li>
-                <li>Encourage unity, inclusion, and cooperation among women in the organisation.</li>
-                <li>Work with the Director of Programmes to ensure that women-focused initiatives are included in events.</li>
-                <li>Organise mentorship, training, and empowerment sessions for female members.</li>
-                <li>Support the recruitment and engagement of new female members.</li>
-                <li>Promote the welfare, safety, and respect of women within the organisation.</li>
-                <li>Submit activity reports to the Executive at agreed intervals.</li>
-                <li>Perform any other duty assigned by the President, CEO, or Executive of UDUF Africa.</li></ul>
-                <h3>Powers of the Director of Women Affairs</h3>
-                <ul><li>Convene meetings of female members when necessary.</li>
-                <li>Propose programmes or policies that will improve the participation and development of women.</li>
-                <li>Recommend committees or volunteers to assist in women-related projects.</li>
-                <li>Represent the organisation in women-focused programmes or partnerships when delegated.</li>
-                <li>Advise the Executive on matters affecting female members.</li></ul>
-                <h3>Leadership Expectations</h3>
-                <p>The Director of Women Affairs must demonstrate strong leadership qualities, promote teamwork, cooperation, and respect among female members, encourage women to participate in leadership and organisational activities, inspire confidence, motivate women to develop their skills, and always act with integrity and responsibility.</p>
-            </div>`
-        },
-        {
-            title: "Programme Development, Mentorship & Engagement",
-            content: `<div class="course-text">
-                <h3>Programme Development</h3>
-                <p>The Director should design programmes that promote women development in areas such as leadership, entrepreneurship, education, and community service. These programmes may include leadership workshops, business training sessions, mentoring programmes, and empowerment conferences. Such programmes help women build confidence and become more effective leaders.</p>
-                <h3>Mentorship and Women Empowerment</h3>
-                <p>Mentorship programmes are important for developing strong female leaders. The Director should create opportunities where experienced women can guide younger members. Mentorship helps women learn leadership skills, gain confidence, and develop their careers and businesses.</p>
-                <h3>Recruitment and Engagement</h3>
-                <p>The Director should encourage more women to join UDUF Africa through outreach, networking, and engagement activities. The Director must also ensure that female members remain active and involved in organisational activities.</p>
-                <h3>Reporting and Accountability</h3>
-                <p>The Director of Women Affairs must provide reports of activities and programmes organised. Reports help the Executive understand the progress of women-related programmes and plan future activities. Transparency and accountability are important parts of leadership.</p>
-            </div>`
-        },
-        {
-            title: "Understanding UDUF Africa (Vision, Mission, Focus Areas)",
-            content: `<div class="course-text">
-                <h3>Understanding UDUF Africa</h3>
-                <p>UDUF Africa is a platform that provides capacity building opportunities to young leaders, entrepreneurs, politicians, traditional rulers, religious leaders, and student leaders who are committed to selfless service and the transformation of African communities.</p>
-                <p>The organisation is legally registered in Nigeria with the Corporate Affairs Commission (CAC), Registration Number CAC/IT/NO 103111, registered on 15th November 2017.</p>
-                <h3>Vision of UDUF Africa</h3>
-                <p>To be a sought-after organisation that inspires Africa's new generation of ethical and community-focused servant leaders and entrepreneurs.</p>
-                <h3>Mission of UDUF Africa</h3>
-                <p>To Connect, Inspire, and Transform young people and communities across Africa.</p>
-                <ul><li><strong>CONNECT</strong> – Facilitate networking among young people across cultures, religions, and political beliefs.</li>
-                <li><strong>INSPIRE</strong> – Encourage responsible action and personal, professional, and societal growth.</li>
-                <li><strong>TRANSFORM</strong> – Lead activities that positively impact communities across Africa.</li></ul>
+                <h3>About UDUF Africa</h3>
+                <p>UDUF Africa is a platform that provides capacity-building opportunities to young leaders, entrepreneurs, politicians, traditional rulers, religious leaders, and student leaders committed to selfless service and the transformation of African communities.</p>
+                <p>We are legally registered in Nigeria with the Corporate Affairs Commission (CAC), Reg. No CAC/IT/NO 103111 (15th November 2017).</p>
+                <div class="vision-mission">
+                    <h4><i class="fas fa-eye"></i> Vision</h4>
+                    <p>To be a sought-after organisation that inspires Africa’s new generation of ethical, community-focused servant leaders and entrepreneurs.</p>
+                    <h4><i class="fas fa-bullseye"></i> Mission</h4>
+                    <p>To CONNECT, INSPIRE, and TRANSFORM young people and communities across Africa:</p>
+                    <ul><li><strong>CONNECT:</strong> Facilitate networking among young people across cultures, religions, and political beliefs.</li>
+                    <li><strong>INSPIRE:</strong> Encourage responsible action and personal, professional, and societal growth.</li>
+                    <li><strong>TRANSFORM:</strong> Lead activities that positively impact communities across Africa.</li></ul>
+                </div>
                 <h3>Core Focus Areas</h3>
-                <ul><li>Entrepreneurship</li><li>Leadership</li><li>Community Service</li><li>Volunteerism</li></ul>
+                <ul><li><strong>Entrepreneurship:</strong> Equipping young people with skills, mentorship, and resources to create sustainable businesses.</li>
+                <li><strong>Leadership:</strong> Nurturing ethical, visionary, and servant leaders for political, business, and social impact.</li>
+                <li><strong>Community Service:</strong> Engaging youth in projects that solve real-life challenges in communities.</li>
+                <li><strong>Volunteerism:</strong> Offering platforms for meaningful service, personal growth, and social impact.</li></ul>
                 <p><strong>Motto:</strong> Connecting youth leaders, shaping minds, transforming communities in Africa.<br>
                 <strong>Slogan:</strong> Get Inspired, Transform Africa.</p>
                 <h3>Faith and Values</h3>
-                <p>We believe in God, human potential, and selfless service. Members are encouraged to commit their time, talent, and resources to uplift communities, develop leaders, and make Africa better.</p>
-            </div>`
-        },
-        {
-            title: "Membership, Logo Meaning & Executive Structure",
-            content: `<div class="course-text">
-                <h3>Membership and Volunteering</h3>
-                <p>Members have opportunities to develop skills through training and mentorship, connect with leaders and entrepreneurs, participate in community development projects, and grow in confidence and ethical leadership.</p>
+                <p>We believe in God, human potential, and selfless service. We commit resources, time, and talent to uplift communities, develop leaders, and make Africa better.</p>
                 <h3>Logo Meaning</h3>
                 <ul><li><strong style="color:#1e3c72;">Blue</strong> – Stability, trust, leadership</li>
                 <li><strong style="color:#f39c12;">Orange</strong> – Energy, innovation, enthusiasm</li>
                 <li><strong style="color:#27ae60;">Green</strong> – Growth, transformation, community service</li>
                 <li><strong>Four interconnected human figures</strong> – Unity, collaboration, inclusivity, equal participation</li></ul>
+                <h3>Why You Lead UDUF Africa</h3>
+                <ul><li>You help maintain a credible and well-structured organisation</li>
+                <li>You ensure that plans are properly executed</li>
+                <li>You uphold discipline, accountability, and operational excellence</li>
+                <li>You support the President in delivering lasting impact</li></ul>
                 <h3>Executive Structure</h3>
                 <ol><li>Founder & Chairman, Board of Directors</li>
                 <li>Chief Executive Officer (Non-elected)</li>
                 <li><strong>President</strong></li>
                 <li><strong>Vice President 1</strong></li>
                 <li><strong>Vice President 2</strong></li>
-                <li><strong>Executive Secretary</strong></li>
-                <li><strong>Assistant Executive Secretary</strong></li>
-                <li><strong>Director of Media</strong></li>
-                <li><strong>Assistant Director of Media</strong></li>
-                <li><strong>Director of Finance</strong></li>
-                <li><strong>Director of Programmes</strong></li>
-                <li><strong>Assistant Director of Programmes</strong></li>
-                <li><strong>Director of Assets & Internal Affairs</strong></li>
-                <li><strong>Assistant Director of Assets & Internal Affairs</strong></li>
-                <li><strong>Director of Women Affairs</strong></li>
-                <li><strong>Assistant Director of Women Affairs</strong></li></ol>
-                <p>All executive and business meetings follow the <strong>parliamentary system</strong>.</p>
+                <li>Executive Secretary</li>
+                <li>Assistant Executive Secretary</li>
+                <li>Director of Media</li>
+                <li>Assistant Director of Media</li>
+                <li>Director of Finance</li>
+                <li>Director of Programmes</li>
+                <li>Assistant Director of Programmes</li>
+                <li>Director of Assets & Internal Affairs</li>
+                <li>Assistant Director of Assets & Internal Affairs</li></ol>
+                <p>All executive and business meetings follow the parliamentary system. As VP1, you must ensure that meetings are structured, productive, and result-oriented.</p>
             </div>`
         },
         {
-            title: "A Story About Leadership: Two Directors, Two Paths",
+            title: "Role, Core Focus & Duties",
+            content: `<div class="course-text">
+                <h3>Role of the Vice President 1 (Administration and Internal Coordination)</h3>
+                <p>As Vice President 1, you:</p>
+                <ul><li>Support the President in leading UDUF Africa and executing the vision</li>
+                <li>Ensure internal coordination across all departments</li>
+                <li>Oversee the implementation of executive decisions</li>
+                <li>Maintain discipline, accountability, and structure</li>
+                <li>Step in to lead when the President is absent</li></ul>
+                <h3>Core Focus: Internal Leadership and Organisational Efficiency</h3>
+                <p>Your primary responsibility is to help the President keep the house in order internally. This means:</p>
+                <ul><li>Ensuring all departments are active and aligned</li>
+                <li>Promoting accountability across the executive team</li>
+                <li>Following up on tasks and ensuring completion</li>
+                <li>Maintaining order, discipline, and effective communication</li></ul>
+                <p><strong>Daily Reminder:</strong> A strong internal system guarantees sustainable impact.</p>
+                <h3>Duties of Vice President 1</h3>
+                <div class="highlight-box"><h4>1. Supervise Internal Coordination of Directors and Committees</h4><p>Maintain regular communication with all directors, ensure departments understand their roles, promote collaboration across units, prevent duplication and confusion.</p><p><strong>Daily Reminder:</strong> Coordination builds strength and unity.</p></div>
+                <div class="highlight-box"><h4>2. Support the President in Implementing Executive Decisions</h4><p>Break decisions into actionable steps, assign responsibilities where necessary, follow up on implementation, keep records of decisions and progress.</p><p><strong>Daily Reminder:</strong> Leadership is proven through execution.</p></div>
+                <div class="highlight-box"><h4>3. Monitor Performance of Departments and Follow Up on Tasks</h4><p>Track departmental activities and progress, ensure tasks are completed on time, identify delays and address them early, provide feedback and recommendations.</p><p><strong>Daily Reminder:</strong> What is tracked gets done.</p></div>
+                <div class="highlight-box"><h4>4. Step in for the President When He or She is Absent</h4><p>Preside over meetings when necessary, lead with confidence and clarity, make decisions within your authority, maintain the President’s direction.</p><p><strong>Daily Reminder:</strong> Always be prepared to lead.</p></div>
+                <div class="highlight-box"><h4>5. Handle Internal Conflict Resolution and Organisational Discipline Support</h4><p>Address conflicts fairly and calmly, promote unity and understanding, support enforcement of rules and policies, encourage respect and professionalism.</p><p><strong>Daily Reminder:</strong> Discipline sustains growth and unity.</p></div>
+            </div>`
+        },
+        {
+            title: "Operational Pillars, Leadership Challenge & Why Your Role Matters",
+            content: `<div class="course-text">
+                <h3>Your Five Operational Pillars as VP1</h3>
+                <ul><li><strong>1. Structure</strong> – Build systems that support smooth operations</li>
+                <li><strong>2. Accountability</strong> – Ensure everyone is responsible for their duties</li>
+                <li><strong>3. Coordination</strong> – Align all departments towards common goals</li>
+                <li><strong>4. Discipline</strong> – Maintain order and respect for organisational values</li>
+                <li><strong>5. Execution</strong> – Ensure plans are completed effectively</li></ul>
+                <h3>Your Leadership Challenge</h3>
+                <p>Every day, you must ensure that UDUF Africa works effectively from within. Your impact will be seen in:</p>
+                <ul><li>Smooth operations</li><li>Active departments</li><li>Completed tasks</li><li>Strong executive coordination</li></ul>
+                <p>Your leadership is measured by results, not noise.</p>
+                <h3>Why Your Role Matters</h3>
+                <ul><li>You are the engine of internal coordination</li>
+                <li>You ensure the President’s vision is implemented</li>
+                <li>You prevent delays, confusion, and inefficiency</li>
+                <li>You build a system that sustains long-term impact</li></ul>
+            </div>`
+        },
+        {
+            title: "Two Vice Presidents 1, Two Paths (Story)",
             content: `<div class="course-text">
                 <div class="vision-mission">
-                    <h3>A Story About Leadership: Two Directors, Two Paths</h3>
-                    <p>There was once a time when two different women served as Director of Women Affairs in two different organisations. Both were educated and given the same opportunity to lead.</p>
-                    <p>The first Director understood that leadership is service. She met regularly with female members, listened to their concerns, organised training programmes, and created mentorship opportunities. She worked with other leaders and encouraged women to grow in leadership and entrepreneurship. Because of her dedication, female participation increased and many women discovered their leadership potential. At the end of her tenure, she left the office with great honour, respect, and appreciation. Her leadership was remembered as a period of growth and unity.</p>
-                    <p>The second Director followed another path. She rarely communicated with female members and did not organise programmes for their development. She focused more on personal recognition than service. Gradually the women became inactive and discouraged. By the end of her tenure, she left the office with disappointment and criticism.</p>
-                    <p><strong>The lesson is simple.</strong> Leadership is not about position. Leadership is about responsibility and service. As the new Director of Women Affairs in UDUF Africa, you must choose the path of honour. Choose the path of dedication, service, unity, and empowerment. If you serve faithfully and build people, your leadership will also be remembered with honour.</p>
+                    <h3>Two Vice Presidents 1, Two Paths</h3>
+                    <p>Once upon a time in UDUF Africa, two individuals were elected as Vice President 1 in different years. Both inherited the same platform, the same President, and the same opportunity to make a lasting difference.</p>
+                    <p>The first Vice President 1, <strong>Chinedu</strong>, understood that his role was to support, complement, and strengthen the President’s leadership while ensuring strong internal coordination. He learned the constitution, supervised directors effectively, and ensured that all departments worked in alignment. He followed up on executive decisions, monitored performance, and made sure that every programme under his supervision ran smoothly.</p>
+                    <p>He organised volunteer initiatives, ensured accountability across teams, and inspired members to give their best. When the President was unavailable, he stepped in confidently, led meetings with structure, and made sound decisions. He handled internal issues wisely, maintained discipline, and ensured unity within the organisation.</p>
+                    <p>By the end of his term, the foundation had well-coordinated departments, thriving projects, an empowered executive team, and engaged volunteers. Chinedu handed over his office with pride, respected by all, and remembered for building a strong and efficient internal system.</p>
+                    <p>The second Vice President 1, <strong>Amara</strong>, approached her office carelessly. She failed to coordinate directors, skipped follow-up on tasks, and ignored the implementation of executive decisions. Departments became disconnected, responsibilities were unclear, and projects suffered delays.</p>
+                    <p>She avoided meetings, neglected internal structure, and failed to support the President effectively. When called upon to step in, she was unprepared and lacked direction. Conflicts were ignored, discipline weakened, and accountability disappeared.</p>
+                    <p>By the end of her term, programmes had stalled, departments were disorganised, volunteers had lost motivation, and the executive structure had weakened. Her successors had to rebuild the system almost from the beginning. She handed over her office with little pride, leaving a legacy of confusion and missed opportunities.</p>
+                    <p><strong>The Outcomes</strong><br>
+                    Chinedu's path brought strong internal coordination, discipline, accountability, and lasting impact. His leadership strengthened the President's vision and ensured smooth organisational operations.<br>
+                    Amara's path resulted in disorganisation, weak coordination, stalled projects, and frustration. Her negligence affected the entire system and slowed down progress.</p>
+                    <p><strong>The Lesson</strong><br>
+                    Being Vice President 1 is not about a title. It is about ensuring that the organisation works effectively from within. You are the backbone of internal coordination, the driver of accountability, and the support system of the President.<br>
+                    Your diligence can strengthen the entire organisation, while negligence can weaken it.<br>
+                    <strong>Choose the path of Chinedu.</strong><br>
+                    Coordinate effectively. Follow up consistently. Maintain discipline. Support the President fully. Never be distracted by past failures. Focus on building a strong internal system and a lasting legacy of impact.</p>
                 </div>
             </div>`
         },
         {
-            title: "Your Leadership Challenge",
+            title: "Final Charge & Quiz",
             content: `<div class="course-text">
-                <h3>Your Leadership Challenge</h3>
-                <p>Every day as Director of Women Affairs is an opportunity to uplift, empower, and unite the women of UDUF Africa. Lead with purpose, serve with dedication, and build a legacy of growth and inclusion. Your work ensures that women are not just participants but leaders and change-makers in the organisation.</p>
-                <p><strong>Motto to Remember:</strong><br>Get Inspired. Take Action. Transform Africa.</p>
+                <h3>Final Charge</h3>
+                <p>Serve with purpose.<br>
+                Strengthen internal systems.<br>
+                Ensure accountability.<br>
+                Deliver results.</p>
+                <p>As Vice President 1, choose the path of diligence, structure, and responsibility. Support the President fully, coordinate effectively, and ensure every task is completed.</p>
+                <p>Do not allow disorder, delay, or negligence weaken the system. Build a legacy of excellence, discipline, and impact.</p>
+                <p><strong>Motto to Remember:</strong> Get Inspired. Take Action. Transform Africa.</p>
+                <p>Now, test your understanding with the quiz.</p>
             </div>`
         }
     ];
 
     const quizQuestions = [
-        { text: "What is the primary duty of the Director of Women Affairs?", options: ["Managing organisational finances", "Coordinating female members and promoting participation", "Supervising media activities", "Managing assets"], correct: 1 },
-        { text: "The Director of Women Affairs represents who in executive discussions?", options: ["External organisations", "Male members", "Female members", "Government agencies"], correct: 2 },
-        { text: "Which officer does the Director of Women Affairs collaborate with to include women initiatives in events?", options: ["Director of Finance", "Director of Media", "Director of Programmes", "Executive Secretary"], correct: 2 },
-        { text: "Which of the following is one of the responsibilities of the Director of Women Affairs?", options: ["Auditing accounts", "Designing women empowerment programmes", "Supervising elections", "Managing assets"], correct: 1 },
-        { text: "The Director of Women Affairs may organise meetings for:", options: ["Only executives", "Female members", "Government officials", "External partners"], correct: 1 },
-        { text: "UDUF Africa was registered in which year?", options: ["2015", "2016", "2017", "2018"], correct: 2 },
-        { text: "The mission of UDUF Africa includes which three key actions?", options: ["Build, Train, Empower", "Connect, Inspire, Transform", "Lead, Manage, Control", "Plan, Finance, Expand"], correct: 1 },
-        { text: "Which of the following is NOT a focus area of UDUF Africa?", options: ["Entrepreneurship", "Leadership", "Community Service", "Aviation"], correct: 3 },
-        { text: "The motto of UDUF Africa focuses on:", options: ["Youth leadership and community transformation", "Government administration", "Banking and finance", "Political campaigns"], correct: 0 },
-        { text: "Blue in the UDUF Africa logo represents:", options: ["Agriculture", "Leadership and trust", "Wealth", "Politics"], correct: 1 },
-        { text: "Orange in the UDUF Africa logo represents:", options: ["Discipline", "Energy and innovation", "Security", "Authority"], correct: 1 },
-        { text: "Green in the UDUF Africa logo represents:", options: ["Government", "Growth and community service", "Competition", "Politics"], correct: 1 },
-        { text: "The four human figures in the logo symbolise:", options: ["Political unity", "Collaboration and inclusiveness", "Government leadership", "Military strength"], correct: 1 },
-        { text: "Which leadership system guides UDUF Africa meetings?", options: ["Military system", "Parliamentary system", "Judicial system", "Traditional system"], correct: 1 },
-        { text: "One responsibility of the Director of Women Affairs is to:", options: ["Promote unity among female members", "Control government funds", "Supervise political campaigns", "Manage banking systems"], correct: 0 },
-        { text: "Mentorship programmes help women to:", options: ["Reduce meetings", "Develop leadership and career skills", "Avoid responsibilities", "Replace training"], correct: 1 },
-        { text: "The Director of Women Affairs should submit activity reports to:", options: ["Government agencies", "The Executive", "The public", "External donors"], correct: 1 },
-        { text: "One lesson from the story of the two Directors is that:", options: ["Leadership is about popularity", "Leadership is about service and responsibility", "Leadership is about power", "Leadership is about wealth"], correct: 1 },
-        { text: "The successful Director in the story succeeded because she:", options: ["Avoided meetings", "Focused on personal recognition", "Served members and organised programmes", "Ignored female members"], correct: 2 },
-        { text: "A Director of Women Affairs who serves with dedication will leave office with:", options: ["Confusion", "Honour and respect", "Fear", "Opposition"], correct: 1 }
+        { text: "What is the primary role of the Vice President 1?", options: ["Set the vision for UDUF Africa", "Ensure internal coordination and support the President", "Handle external partnerships only", "Lead all community projects"], correct: 1 },
+        { text: "Which of the following is NOT a core focus area of UDUF Africa?", options: ["Leadership", "Volunteerism", "Real estate investment", "Entrepreneurship"], correct: 2 },
+        { text: "What does the VP1 ensure when the President is absent?", options: ["Cancel all meetings", "Step in to lead with confidence and make decisions", "Delegate all work to members", "Focus only on financial matters"], correct: 1 },
+        { text: "Which colour in the UDUF Africa logo represents stability and leadership?", options: ["Orange", "Green", "Blue", "Red"], correct: 2 },
+        { text: "What is the key daily reminder for monitoring departments?", options: ["What is ignored gets done", "What is tracked gets done", "Meetings are optional", "Tasks will complete themselves"], correct: 1 },
+        { text: "One of the Five Operational Pillars of VP1 is:", options: ["Expansion", "Coordination", "Negotiation", "Marketing"], correct: 1 },
+        { text: "Why is discipline important for VP1?", options: ["To punish members", "To maintain order, respect, and organisational growth", "To avoid meetings", "To focus only on personal tasks"], correct: 1 },
+        { text: "Which of the following is part of VP1’s duty in implementing executive decisions?", options: ["Attend meetings only", "Break decisions into actionable steps", "Ignore departmental delays", "Delegate without follow-up"], correct: 1 },
+        { text: "What does the logo’s four interconnected human figures signify?", options: ["Business success", "Unity, collaboration, inclusivity, equal participation", "Financial stability", "Competition among members"], correct: 1 },
+        { text: "Which statement reflects the lesson from the two Vice Presidents 1 story?", options: ["The title is more important than action", "Negligence has no lasting effect", "Diligence, coordination, and support build lasting impact", "Only the President matters"], correct: 2 },
+        { text: "What is VP1’s role in conflict resolution?", options: ["Ignore conflicts to avoid stress", "Address conflicts fairly and calmly", "Punish volunteers publicly", "Focus only on finance"], correct: 1 },
+        { text: "What should VP1 monitor regularly?", options: ["Personal schedule only", "Departmental activities, performance, and task completion", "External partnerships", "Political campaigns"], correct: 1 },
+        { text: "Which is NOT a responsibility of VP1 in internal coordination?", options: ["Ensure departments understand their roles", "Promote collaboration", "Delegate work without follow-up", "Maintain communication with directors"], correct: 2 },
+        { text: "What is the motto of UDUF Africa?", options: ["Build wealth, grow power", "Connecting youth leaders, shaping minds, transforming communities in Africa", "Lead first, follow later", "Serve yourself first"], correct: 1 },
+        { text: "What is the slogan of UDUF Africa?", options: ["Lead, Follow, Repeat", "Get Inspired, Transform Africa", "Think Big, Win Big", "Discipline Above All"], correct: 1 },
+        { text: "What is VP1’s responsibility regarding executive meetings?", options: ["Ensure meetings are structured, productive, and result-oriented", "Only attend when convenient", "Delegate meeting organisation to volunteers", "Avoid recording decisions"], correct: 0 },
+        { text: "What happens when VP1 neglects duties, like Amara in the story?", options: ["Departments remain functional", "Projects stall, volunteers lose motivation, and organisation weakens", "Everything works automatically", "Only finances are affected"], correct: 1 },
+        { text: "Which pillar ensures plans are completed effectively?", options: ["Coordination", "Execution", "Discipline", "Structure"], correct: 1 },
+        { text: "Which of the following BEST describes VP1’s function?", options: ["External ambassador", "Backbone of internal coordination", "Solely responsible for finances", "Event organiser only"], correct: 1 },
+        { text: "What is the final charge to Vice President 1?", options: ["Build personal wealth", "Serve with purpose, strengthen internal systems, ensure accountability, deliver results", "Focus only on volunteers", "Avoid responsibility"], correct: 1 }
     ];
 
     // State
@@ -775,14 +805,14 @@
     let userName = null;
     let quizAnswers = [];
 
-    // Page functions (same pattern as previous pages)
+    // Helper functions (same pattern as previous pages)
     function loadPage() {
         if (moduleCompleted) {
             document.getElementById('pageContent').innerHTML = `
                 <div class="module-complete">
                     <i class="fas fa-check-circle"></i>
                     <h3>Course Completed!</h3>
-                    <p>You have successfully completed the Director of Women Affairs course. Well done!</p>
+                    <p>You have successfully completed the Vice President 1 course. Well done!</p>
                     <button class="complete-module-btn" onclick="goToCertificate()"><i class="fas fa-certificate"></i> Get Your Certificate</button>
                     <p style="margin-top:15px;"><a href="executive-leadership-academy.html" style="color:#27ae60;">Return to Academy Hub</a></p>
                 </div>
@@ -837,7 +867,7 @@
     }
 
     function renderQuiz() {
-        let html = `<div class="quiz-container"><h3><i class="fas fa-question-circle"></i> Director of Women Affairs Knowledge Quiz</h3><p>Answer all 20 questions to complete the course. You need 80% to pass.</p>`;
+        let html = `<div class="quiz-container"><h3><i class="fas fa-question-circle"></i> Vice President 1 Knowledge Quiz</h3><p>Answer all 20 questions to complete the course. You need 80% to pass.</p>`;
         quizQuestions.forEach((q, idx) => {
             const saved = quizAnswers[idx];
             html += `<div class="quiz-question"><h4>${idx+1}. ${q.text}</h4><div class="quiz-options">`;
@@ -897,7 +927,7 @@
     }
 
     function updateOutline() {
-        let html = `<div class="module-outline"><div class="module-header expanded"><span>Director of Women Affairs Course</span><i class="fas fa-chevron-down"></i></div><div class="module-pages show">`;
+        let html = `<div class="module-outline"><div class="module-header expanded"><span>Vice President 1 Course</span><i class="fas fa-chevron-down"></i></div><div class="module-pages show">`;
         pages.forEach((page, idx) => {
             let statusClass = '';
             let statusIcon = '<i class="far fa-circle"></i>';
@@ -918,10 +948,10 @@
     async function saveProgress() {
         if (!userEmail) return;
         try {
-            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_director_women_affairs`;
+            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_vice_president_1`;
             await db.collection('progress').doc(progressId).set({
                 userId: userEmail,
-                courseId: "director_women_affairs",
+                courseId: "vice_president_1",
                 currentPage: currentPage,
                 moduleCompleted: moduleCompleted,
                 moduleQuizPassed: moduleQuizPassed,
@@ -933,7 +963,7 @@
     async function saveQuizProgress() {
         if (!userEmail) return;
         try {
-            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_director_women_affairs`;
+            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_vice_president_1`;
             await db.collection('progress').doc(progressId).set({
                 quizAnswers: quizAnswers,
                 lastAccessed: firebase.firestore.FieldValue.serverTimestamp()
@@ -944,7 +974,7 @@
     async function saveModuleCompletion() {
         if (!userEmail) return;
         try {
-            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_director_women_affairs`;
+            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_vice_president_1`;
             await db.collection('progress').doc(progressId).set({
                 moduleCompleted: moduleCompleted,
                 moduleQuizPassed: moduleQuizPassed,
@@ -957,7 +987,7 @@
     async function loadProgress() {
         if (!userEmail) return;
         try {
-            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_director_women_affairs`;
+            const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_vice_president_1`;
             const doc = await db.collection('progress').doc(progressId).get();
             if (doc.exists) {
                 const data = doc.data();
@@ -978,7 +1008,7 @@
         setTimeout(() => toast.style.display = 'none', 3000);
     }
 
-    // User auth
+    // User authentication
     function checkUserSession() {
         const storedEmail = sessionStorage.getItem('userEmail');
         const storedName = sessionStorage.getItem('userName');
@@ -1020,7 +1050,7 @@
         await db.collection('users').doc(userEmail).set({
             name: userName,
             email: userEmail,
-            enrolledCourses: firebase.firestore.FieldValue.arrayUnion('director_women_affairs'),
+            enrolledCourses: firebase.firestore.FieldValue.arrayUnion('vice_president_1'),
             createdAt: firebase.firestore.FieldValue.serverTimestamp()
         }, { merge: true });
         document.getElementById('emailModal').remove();

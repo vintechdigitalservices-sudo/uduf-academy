@@ -704,19 +704,23 @@
                 <li><strong style="color:#27ae60;">Green</strong> – Growth, transformation, community service</li>
                 <li><strong>Four human figures</strong> – Unity, collaboration, inclusivity, equal participation</li></ul>
                 <h3>Executive Structure</h3>
-                <p>UDUF Africa is guided by: Founder & Chairman, Board of Directors; Chief Executive Officer (Non-elected); and Elected officers including President, Vice President, Executive Secretary, Assistant Executive Secretary, Director and Assistant Director of Media, Director and Assistant Director of Finance, Director and Assistant Director of Programmes, Director and Assistant Director of Assets & Internal Affairs, and Director and Assistant Director of Women Affairs.</p>
+                <p>UDUF Africa is guided by: Founder & Chairman, Board of Directors; Chief Executive Officer (Non-elected); and Elected officers including President, Vice President 1,Vice President 2 Executive Secretary, Assistant Executive Secretary, Director and Assistant Director of Media, Director and Assistant Director of Finance, Director and Assistant Director of Programmes, Director and Assistant Director of Assets & Internal Affairs, and Director and Assistant Director of Women Affairs.</p>
                 <h3>Meetings and Operations</h3>
                 <p>All executive and business meetings follow the parliamentary system. The Assistant Director participates actively, supporting the Director and ensuring women-focused initiatives are executed effectively.</p>
             </div>`
         },
         {
-            title: "Story About Leadership & Your Leadership Challenge",
-            content: `<div class="course-text">
-                <div class="vision-mission">
-                    <h3>Story About Leadership: Learning from the Director</h3>
-                    <p>The previous story of two Directors of Women Affairs teaches the Assistant Director a valuable lesson: The Director who served with dedication, organised programmes, and empowered women left office with honour. The Director who ignored members and sought personal recognition failed and left with shame.</p>
-                    <p>As the Assistant Director, your role is to support the path of honour, learn from the Director, serve with dedication, and ensure female members are empowered and engaged. Your efforts contribute to building a strong, respected, and impactful leadership legacy.</p>
-                </div>
+            
+  "title": "Story About Leadership & Your Leadership Challenge",
+  "content": `<div class="course-text">
+    <div class="vision-mission">
+      <h3>A Story About Leadership: The Assistant Director’s Role</h3>
+      <p>There was once a time when two different women served as Assistant Director of Women Affairs in two different organisations. Both were given the same position and the same opportunity to support their leaders.</p>
+      <p>The first Assistant Director understood that leadership is not only about being in charge, but also about supporting effectively. She worked closely with the Director, helped organise meetings, followed up with female members, and ensured that plans were properly executed. She stayed committed even when she was not in the spotlight. She listened, learned, and contributed ideas that improved programmes. Because of her dedication, the Director’s work became easier, programmes were successful, and women felt more engaged and valued. In time, she gained respect and was seen as a reliable and capable leader.</p>
+      <p>The second Assistant Director chose a different approach. She believed her role was not important and waited only to be instructed. She did not take initiative, rarely followed up on tasks, and was not actively involved in programmes. She distanced herself from both the Director and the members. As a result, many plans were poorly executed, and her impact was barely felt. By the end of her tenure, she was not remembered for any meaningful contribution.</p>
+      <p><strong>The lesson is clear.</strong> Leadership is not about title or position. Even in a supporting role, your impact can be great. As the Assistant Director of Women Affairs in UDUF Africa, choose the path of responsibility, support, and commitment. Add value, take initiative, and work in unity with the Director. When you serve faithfully, your contribution will be seen, and your leadership journey will grow with honour.</p>
+    </div>
+  </div>
                 <h3>Conclusion</h3>
                 <p>The Assistant Director of Women Affairs plays a vital supportive role in UDUF Africa. By assisting in programme execution, mentoring, recruitment, and engagement, the Assistant Director ensures the Director's vision is realised and female members are empowered to contribute to the organisation's mission.</p>
                 <h3>Your Leadership Challenge</h3>
@@ -819,7 +823,7 @@
     }
 
     function renderQuiz() {
-        let html = `<div class="quiz-container"><h3><i class="fas fa-question-circle"></i> Assistant Director of Women Affairs Knowledge Quiz</h3><p>Answer all 20 questions to complete the course. You need 70% to pass.</p>`;
+        let html = `<div class="quiz-container"><h3><i class="fas fa-question-circle"></i> Assistant Director of Women Affairs Knowledge Quiz</h3><p>Answer all 20 questions to complete the course. You need 80% to pass.</p>`;
         quizQuestions.forEach((q, idx) => {
             const saved = quizAnswers[idx];
             html += `<div class="quiz-question"><h4>${idx+1}. ${q.text}</h4><div class="quiz-options">`;
@@ -847,10 +851,10 @@
         if (allAnswered) {
             const correctCount = quizQuestions.filter((q,i) => quizAnswers[i] === q.correct).length;
             const percentage = (correctCount/quizQuestions.length)*100;
-            const passed = percentage >= 70;
+            const passed = percentage >= 80;
             html += `<div style="margin-top:30px; padding:20px; background:${passed?'#e8f5e9':'#fee'}; border-radius:15px; text-align:center;">
                         <h3>Your Score: ${correctCount}/${quizQuestions.length} (${percentage}%)</h3>
-                        ${passed ? '<p style="color:#27ae60;">Congratulations! You passed!</p><button class="complete-module-btn" onclick="completeCourse()">Complete Course</button>' : '<p style="color:#e74c3c;">You need 70% to pass. Please review and try again.</p><button class="complete-module-btn" onclick="resetQuiz()" style="background:#f39c12;">Retake Quiz</button>'}
+                        ${passed ? '<p style="color:#27ae60;">Congratulations! You passed!</p><button class="complete-module-btn" onclick="completeCourse()">Complete Course</button>' : '<p style="color:#e74c3c;">You need 80% to pass. Please review and try again.</p><button class="complete-module-btn" onclick="resetQuiz()" style="background:#f39c12;">Retake Quiz</button>'}
                      </div>`;
         }
         return html;
@@ -865,7 +869,7 @@
 
     function resetQuiz() { quizAnswers = []; document.getElementById('pageContent').innerHTML = renderQuiz(); }
     function completeCourse() { moduleQuizPassed = true; saveModuleCompletion(); loadPage(); }
-    function goToCertificate() { window.location.href = "certificate.html"; }
+    function goToCertificate() { window.location.href = "certificates.html"; }
 
     function updateOverallProgress() {
         let percent = 0;

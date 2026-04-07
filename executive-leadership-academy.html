@@ -299,8 +299,8 @@
     // List of offices and corresponding page filenames
     const offices = [
         { name: "President", page: "president.html" },
-        { name: "Vice President 1", page: "vice-president.html" },
-        { name: "Vice President 2", page: "vice-president.html" },
+        { name: "Vice President 1", page: "vp-1.html" },
+        { name: "Vice President 2", page: "vp-2.html" },
         { name: "Executive Secretary", page: "executive-secretary.html" },
         { name: "Assistant Executive Secretary", page: "assistant-executive-secretary.html" },
         { name: "Director of Programs", page: "director-programs.html" },
@@ -403,6 +403,30 @@
     });
 
     updatePagination();
+</script>
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+function startPayment(courseId, amount, userEmail) {
+  let handler = PaystackPop.setup({
+    key: 'pk_test_51d77463757586d69cbf1a4d631859c5de74eceb',
+    email: userEmail,
+    amount: amount * 100,
+
+    metadata: {
+      courseId: courseId
+    },
+
+    callback: function(response) {
+      alert('Payment successful. Ref: ' + response.reference);
+    },
+
+    onClose: function() {
+      alert('Payment cancelled');
+    }
+  });
+
+  handler.openIframe();
+}
 </script>
 </body>
 </html>

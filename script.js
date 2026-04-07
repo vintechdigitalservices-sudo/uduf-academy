@@ -20,7 +20,6 @@ document.addEventListener("DOMContentLoaded", () => {
   if (slides.length && mapImage) {
     const images = ["slide1.webp", "slide2.webp", "slide3.webp"];
     let index = 0;
-
     setInterval(() => {
       slides[index].classList.remove("active");
       index = (index + 1) % slides.length;
@@ -33,16 +32,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const animateOnScroll = (selector, className, threshold = 0.1) => {
     const el = document.querySelector(selector);
     if (!el) return;
-
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting) el.classList.add(className);
       });
     }, { threshold });
-
     observer.observe(el);
   };
-
   animateOnScroll(".categories-container", "show");
   animateOnScroll(".why-container", "show");
 
@@ -54,7 +50,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (entry.isIntersecting) entry.target.classList.add("show");
       });
     }, { threshold: 0.15 });
-
     cards.forEach(card => observer.observe(card));
   }
 
@@ -63,26 +58,18 @@ document.addEventListener("DOMContentLoaded", () => {
   hearts.forEach(heart => {
     const card = heart.closest(".course-card");
     if (!card) return;
-
     const courseId = card.dataset.course;
     const countEl = heart.querySelector(".like-count");
-
     if (!courseId || !countEl) return;
-
     let likes = JSON.parse(localStorage.getItem("courseLikes")) || {};
     let liked = JSON.parse(localStorage.getItem("likedCourses")) || {};
-
     if (!likes[courseId]) likes[courseId] = 0;
     countEl.textContent = likes[courseId];
-
     if (liked[courseId]) heart.classList.add("liked");
-
     heart.addEventListener("click", () => {
       likes = JSON.parse(localStorage.getItem("courseLikes")) || {};
       liked = JSON.parse(localStorage.getItem("likedCourses")) || {};
-
       if (!likes[courseId]) likes[courseId] = 0;
-
       if (liked[courseId]) {
         likes[courseId] = Math.max(0, likes[courseId] - 1);
         delete liked[courseId];
@@ -92,7 +79,6 @@ document.addEventListener("DOMContentLoaded", () => {
         liked[courseId] = true;
         heart.classList.add("liked");
       }
-
       localStorage.setItem("courseLikes", JSON.stringify(likes));
       localStorage.setItem("likedCourses", JSON.stringify(liked));
       countEl.textContent = likes[courseId];
@@ -108,50 +94,29 @@ document.addEventListener("DOMContentLoaded", () => {
     certificate.addEventListener("touchstart", prevent, { passive: false });
   }
 
-  // ========== SIDE MENU (FIXED VERSION) ==========
+  // ========== SIDE MENU ==========
   const hamburger = document.getElementById("hamburger");
   const navMenu = document.getElementById("navMenu");
   const navDropdowns = document.querySelectorAll(".nav-dropdown");
-
   if (hamburger && navMenu) {
-    // Open/Close main side drawer
     hamburger.addEventListener("click", (e) => {
       e.stopPropagation();
-      
-      // Toggle the X animation and the slide menu
       hamburger.classList.toggle("active");
       navMenu.classList.toggle("active");
-      
-      // Prevent scrolling when menu is open
-      if (navMenu.classList.contains("active")) {
-        document.body.style.overflow = "hidden";
-      } else {
-        document.body.style.overflow = "";
-      }
+      document.body.style.overflow = navMenu.classList.contains("active") ? "hidden" : "";
     });
-
-    // Handle Dropdowns within the menu
     navDropdowns.forEach(drop => {
       const btn = drop.querySelector(".nav-dropbtn");
       if (btn) {
         btn.addEventListener("click", (e) => {
           if (window.innerWidth <= 900) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            // Toggle open state for this dropdown (matches CSS .open)
+            e.preventDefault(); e.stopPropagation();
             drop.classList.toggle("open");
-            
-            // Close other dropdowns
-            navDropdowns.forEach(other => {
-              if (other !== drop) other.classList.remove("open");
-            });
+            navDropdowns.forEach(other => { if (other !== drop) other.classList.remove("open"); });
           }
         });
       }
     });
-
-    // Close menu when clicking outside
     document.addEventListener("click", (e) => {
       if (!navMenu.contains(e.target) && !hamburger.contains(e.target)) {
         hamburger.classList.remove("active");
@@ -164,40 +129,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ========== CATEGORY DROPDOWNS ==========
   const catDropdowns = document.querySelectorAll(".category-dropdown");
-
   catDropdowns.forEach(drop => {
     const btn = drop.querySelector(".dropdown-btn");
-    if (!btn) return;
-
-    btn.addEventListener("click", (e) => {
-      e.stopPropagation();
-
-      catDropdowns.forEach(d => {
-        if (d !== drop) d.classList.remove("active");
+    if (btn) {
+      btn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        catDropdowns.forEach(d => { if (d !== drop) d.classList.remove("active"); });
+        drop.classList.toggle("active");
       });
-
-      drop.classList.toggle("active");
-    });
+    }
   });
-
-  document.addEventListener("click", () => {
-    catDropdowns.forEach(d => d.classList.remove("active"));
-  });
+  document.addEventListener("click", () => catDropdowns.forEach(d => d.classList.remove("active")));
 
   // ========== SCROLL ==========
   function scrollToElement(selector) {
     const target = document.querySelector(selector);
     if (!target) return;
-
     target.scrollIntoView({ behavior: "smooth", block: "start" });
-
-    if (navMenu) {
-        navMenu.classList.remove("active");
-        hamburger.classList.remove("active");
-    }
+    if (navMenu) { hamburger.classList.remove("active"); navMenu.classList.remove("active"); }
     document.body.style.overflow = "";
   }
-
   document.querySelectorAll("[data-scroll]").forEach(link => {
     link.addEventListener("click", e => {
       e.preventDefault();
@@ -206,12 +157,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // ========== COURSE FORM ==========
+  // ========== COURSE FORM LOGIC ==========
   const courseButtons = document.querySelectorAll(".course-card .course-btn");
   const popup = document.getElementById("courseFormPopup");
   const form = document.getElementById("courseForm");
   const closeFormBtn = document.getElementById("closeFormBtn");
+  const closeFormX = document.getElementById("closeFormX");
   const courseNameInput = document.getElementById("courseNameInput");
+  const redirectModal = document.getElementById("redirectModal");
+  const certFieldContainer = document.getElementById("certFieldContainer");
+  const formMessage = document.getElementById("formMessage");
 
   const courseRedirectMap = {
     "Volunteer Orientation Course": "volunteer-orientation.html",
@@ -223,55 +178,83 @@ document.addEventListener("DOMContentLoaded", () => {
     "Community Service in Leadership": "community-service.html"
   };
 
-  if (courseButtons.length && popup && form) {
+  const showMessage = (msg, isError = true) => {
+    formMessage.textContent = msg;
+    formMessage.className = isError ? "form-message error" : "form-message success";
+    formMessage.style.display = "block";
+  };
 
+  if (courseButtons.length && popup && form) {
     courseButtons.forEach(btn => {
       btn.addEventListener("click", async (e) => {
         e.preventDefault();
-
         const courseName = btn.getAttribute("data-course-name");
         const userEmail = localStorage.getItem("userEmail");
+        formMessage.style.display = "none";
 
+        // Check if already signed up
         if (userEmail) {
           const docId = `${userEmail}_${courseName.replace(/\s/g, "_")}`;
           const docSnap = await db.collection("users").doc(docId).get();
-
           if (docSnap.exists) {
-            alert("You've already signed up for this course.");
+            if (redirectModal) redirectModal.style.display = "flex";
             const redirectPage = courseRedirectMap[courseName];
-            if (redirectPage) window.location.href = redirectPage;
+            if (redirectPage) setTimeout(() => { window.location.href = redirectPage; }, 2000);
             return;
           }
         }
 
-        if (courseNameInput) courseNameInput.value = courseName;
+        // Setup Form
+        courseNameInput.value = courseName;
+        // Show cert field for all courses EXCEPT orientation
+        if (courseName === "Volunteer Orientation Course") {
+          certFieldContainer.style.display = "none";
+          document.getElementById("certCodeInput").required = false;
+        } else {
+          certFieldContainer.style.display = "block";
+          document.getElementById("certCodeInput").required = true;
+        }
         popup.style.display = "flex";
       });
     });
 
-    closeFormBtn?.addEventListener("click", () => {
-      popup.style.display = "none";
-      form.reset();
-    });
+    const closeAll = () => { popup.style.display = "none"; form.reset(); formMessage.style.display = "none"; };
+    closeFormBtn?.addEventListener("click", closeAll);
+    closeFormX?.addEventListener("click", closeAll);
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-
-      const courseName = courseNameInput?.value || "";
+      const courseName = courseNameInput.value;
       const name = form.name.value.trim();
       const email = form.email.value.trim();
       const phone = form.phone.value.trim();
+      const certCode = form.certCode ? form.certCode.value.trim() : "";
 
-      if (!name || !email || !phone) return;
+      // 1. Validation for Non-Orientation courses
+      if (courseName !== "Volunteer Orientation Course") {
+        try {
+          const certSnap = await db.collection("certificates").doc(certCode).get();
+          
+          if (!certSnap.exists || certSnap.data().courseId !== "volunteer_orientation") {
+            showMessage("Please complete the orientation course first and get the certificate ID to unlock this course.");
+            return;
+          }
 
+          if (certSnap.data().email !== email) {
+            showMessage("Please enter the email used in the orientation course.");
+            return;
+          }
+        } catch (err) {
+          showMessage("Error validating certificate. Please try again.");
+          return;
+        }
+      }
+
+      // 2. Process Signup
       try {
         const docId = `${email}_${courseName.replace(/\s/g, "_")}`;
-
         await db.collection("users").doc(docId).set({
-          name,
-          email,
-          phone,
-          courseName,
+          name, email, phone, courseName, certCodeUsed: certCode || "N/A",
           timestamp: firebase.firestore.FieldValue.serverTimestamp()
         });
 
@@ -280,33 +263,27 @@ document.addEventListener("DOMContentLoaded", () => {
         form.reset();
 
         const redirectPage = courseRedirectMap[courseName];
-
         if (redirectPage) {
           window.location.href = redirectPage;
         } else {
           alert("Successfully signed up!");
           window.location.href = "index.html";
         }
-
       } catch (err) {
-        console.error(err);
-        alert("Error submitting form.");
+        showMessage("Error submitting form. Please check your connection.");
       }
     });
   }
 
-  // ========== APPLY BUTTON ==========
+  // ========== APPLY BUTTONS ==========
   const applyButtons = document.querySelectorAll(".apply-now-btn, .explore-programs-btn, .explore-courses-btn");
-
   applyButtons.forEach(btn => {
-    // Skip hero buttons to prevent popup from opening
     if (btn.closest('.hero-buttons')) return;
-
     btn.addEventListener("click", (e) => {
       e.preventDefault();
-      if (courseNameInput) courseNameInput.value = "General Inquiry";
-      if (popup) popup.style.display = "flex";
+      courseNameInput.value = "General Inquiry";
+      certFieldContainer.style.display = "none";
+      popup.style.display = "flex";
     });
   });
-
 });
