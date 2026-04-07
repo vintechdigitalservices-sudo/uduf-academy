@@ -420,21 +420,23 @@ main {
 
 #mapImage {
     width: 100%;
-    /* INCREASED: Increased from 720px to 850px to make the map larger */
     max-width: 850px; 
     aspect-ratio: 4/5;
     background-image: url("slide1.webp");
-    background-size: 80%; 
+    background-size: cover; 
     background-repeat: no-repeat;
     background-position: center;
-    mask-image: url("africa-map.webp");
-    mask-size: contain;
-    mask-repeat: no-repeat;
-    mask-position: center;
+    
+    /* FIX: Corrected Masking Properties */
     -webkit-mask-image: url("africa-map.webp");
     -webkit-mask-size: contain;
     -webkit-mask-repeat: no-repeat;
     -webkit-mask-position: center;
+    mask-image: url("africa-map.webp");
+    mask-size: contain;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    
     transition: background-image .7s ease;
     position: relative;
     z-index: 1;
@@ -489,10 +491,9 @@ main {
         font-size: 14px;
     }
     #mapImage { 
-        /* INCREASED: Increased from 320px to 450px for a larger map on mobile */
         max-width: 450px; 
         width: 95%;
-        background-size: 80%;
+        background-size: cover;
     }
     .hero::before { 
         width: 150px; 
@@ -528,7 +529,6 @@ main {
         align-items: center;
     }
 }
-
 
 /* TOP CATEGORIES */
 .top-categories {
