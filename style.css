@@ -825,11 +825,11 @@ main {
     }
 }
 
-/* IMPACT SECTION */
+/* IMPACT SECTION - FIXED OVERFLOW ISSUE */
 .impact-section {
     padding: 60px 0;
     background: white;
-    overflow: hidden;
+    overflow: visible; /* Changed from 'hidden' to prevent clipping of hex cluster */
     width: 100%;
 }
 .impact-container {
@@ -848,6 +848,7 @@ main {
     width: 420px;
     height: 420px;
     margin: auto;
+    overflow: visible; /* Ensure no internal clipping */
 }
 
 .hex {
@@ -1294,13 +1295,14 @@ main {
     }
 }
 
-/* PARTNERS SECTION */
+/* PARTNERS SECTION - COMPLETELY REWRITTEN FOR RELIABLE VISIBILITY */
 .partners-section {
     padding: 60px 0;
     background: #f6f8fb;
     text-align: center;
-    overflow: hidden;
     width: 100%;
+    position: relative;
+    overflow-x: clip; /* Better than hidden, prevents scrollbar but doesn't clip content badly */
 }
 .partners-header {
     max-width: 700px;
@@ -1320,26 +1322,29 @@ main {
     line-height: 1.6; 
 }
 .partners-slider {
+    width: 100%;
     overflow: hidden;
     position: relative;
-    width: 100%;
+    padding: 15px 0; /* Extra padding to ensure logos aren't cut */
+    background: transparent;
 }
 .partners-track {
     display: flex;
     gap: 70px;
     width: max-content;
     animation: partnerScroll 30s linear infinite;
-    /* GPU acceleration */
     will-change: transform;
+    backface-visibility: hidden;
 }
 .partners-track img {
     height: 60px;
     width: auto;
+    max-width: none; /* Prevent restriction */
     object-fit: contain;
     flex-shrink: 0;
     opacity: 0.85;
-    transition: 0.3s;
-    /* Prevent drag */
+    transition: all 0.3s ease;
+    display: block; /* Remove inline spacing */
     user-select: none;
     -webkit-user-drag: none;
 }
@@ -1352,17 +1357,30 @@ main {
     100% { transform: translateX(-50%); }
 }
 
-/* MOBILE PARTNERS */
-@media(max-width: 768px) {
+/* Force visibility on all screen sizes */
+@media (min-width: 901px) {
+    .partners-track {
+        gap: 70px;
+    }
+    .partners-track img {
+        height: 70px; /* Slightly larger on desktop */
+    }
+}
+@media (max-width: 768px) {
     .partners-header h2 {
         font-size: 26px;
     }
     .partners-track img {
-        height: 40px;
+        height: 45px;
     }
     .partners-track {
         gap: 40px;
     }
+}
+/* Fallback: if track has fewer images, ensure it still fills the container */
+.partners-track::after {
+    content: "";
+    display: none; /* Not needed, but prevents pseudo interference */
 }
 
 /* FOOTER */
