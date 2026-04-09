@@ -512,6 +512,14 @@ main {
     }
 }
 
+/* DESKTOP HERO SCREEN FIT FIX */
+@media (min-width: 901px) {
+    .hero {
+        padding-top: 80px;   /* Match fixed header height */
+        min-height: calc(100vh - 80px);
+    }
+}
+
 /* SMALL MOBILE */
 @media(max-width: 480px) {
     .hero-text h1 {
