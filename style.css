@@ -224,14 +224,16 @@ main {
 
 /* HERO */
 .hero {
-    padding-top: 100px;
-    min-height: 100vh;
-    min-height: 100dvh; /* Dynamic viewport */
+    /* FIX: Changed padding and used box-sizing to ensure 100vh includes padding */
+    padding-top: 80px; 
+    height: 100vh;
+    height: 100dvh; 
     display: flex;
     align-items: center;
+    justify-content: center;
     position: relative;
     overflow: hidden;
-    /* GPU layer */
+    box-sizing: border-box;
     transform: translateZ(0);
 }
 
@@ -248,7 +250,6 @@ main {
     pointer-events: none;
     border-bottom-left-radius: 100%;
     z-index: 0;
-    /* Reduce paint on mobile */
     will-change: transform;
 }
 
@@ -296,27 +297,28 @@ main {
 .hero-container {
     max-width: 1400px;
     width: 100%;
-    margin: auto;
+    margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1.1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 40px;
     align-items: center;
-    padding: 20px;
+    padding: 0 40px;
     position: relative;
     z-index: 2;
+    /* FIX: Prevents container from growing taller than the parent .hero */
+    max-height: 100%;
 }
 
 .hero-text h1 {
-    font-size: 52px;
+    font-size: clamp(40px, 4vw, 52px);
     margin-bottom: 15px;
     text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-    /* Prevent boldness inflation */
     font-weight: 700;
-    line-height: 1.2;
+    line-height: 1.1;
 }
 
 .hero-text p {
-    font-size: 18px;
+    font-size: clamp(16px, 1.5vw, 18px);
     margin-bottom: 30px;
     max-width: 480px;
     text-shadow: 0 1px 5px rgba(0,0,0,0.1);
@@ -336,7 +338,6 @@ main {
     font-weight: bold;
     text-decoration: none;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-    /* Better touch targets */
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -386,9 +387,10 @@ main {
     justify-content: center;
     align-items: center;
     width: 100%;
+    /* FIX: Prevents large images from pushing the viewport height */
+    max-height: 70vh; 
     position: relative;
     filter: drop-shadow(0 15px 15px rgba(0,0,0,0.25));
-    /* Optimize animation performance */
     will-change: transform;
 }
 
@@ -420,14 +422,15 @@ main {
 
 #mapImage {
     width: 100%;
-    max-width: 850px; 
+    /* FIX: Restricted max-height to ensure it stays within viewport */
+    max-width: 600px; 
+    max-height: 65vh;
     aspect-ratio: 4/5;
     background-image: url("slide1.webp");
     background-size: cover; 
     background-repeat: no-repeat;
     background-position: center;
     
-    /* FIX: Corrected Masking Properties */
     -webkit-mask-image: url("africa-map.webp");
     -webkit-mask-size: contain;
     -webkit-mask-repeat: no-repeat;
@@ -441,7 +444,6 @@ main {
     position: relative;
     z-index: 1;
     filter: drop-shadow(5px 10px 15px rgba(0,0,0,0.3));
-    /* Prevent layout shift */
     transform: translateZ(0);
 }
 
@@ -454,28 +456,20 @@ main {
 
 /* MOBILE HERO OPTIMIZATIONS */
 @media(max-width: 900px) {
-    .menu {
-        position: absolute;
-        top: 70px;
-        left: 0;
-        width: 100%;
-        background: #0c8b3f;
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-        padding: 30px 0;
-        display: none;
+    .hero {
+        height: auto;
+        min-height: 100dvh;
+        padding-top: 100px;
+        padding-bottom: 50px;
     }
-    .menu.active { display: flex; }
-    .desktop-btn { display: none; }
-    .hamburger { display: flex; }
     .hero-container { 
         grid-template-columns: 1fr; 
         text-align: center;
         gap: 30px;
+        max-height: none;
     }
     .hero-text h1 {
-        font-size: clamp(32px, 8vw, 48px); /* Fluid typography */
+        font-size: clamp(32px, 8vw, 48px);
     }
     .hero-text p {
         font-size: 16px;
@@ -493,30 +487,19 @@ main {
     #mapImage { 
         max-width: 450px; 
         width: 95%;
+        max-height: none;
         background-size: cover;
     }
-    .hero::before { 
-        width: 150px; 
-        height: 150px; 
-    }
-    .hero::after { 
+    .hero::before, .hero::after { 
         width: 150px; 
         height: 150px; 
     }
     .hero .geometric-accent, .hero .diagonal-lines { 
         display: none; 
     }
-    /* Reduce motion for performance */
     .hero-image {
         animation: none;
-    }
-}
-
-/* DESKTOP HERO SCREEN FIT FIX */
-@media (min-width: 901px) {
-    .hero {
-        padding-top: 80px;   /* Match fixed header height */
-        min-height: calc(100vh - 80px);
+        max-height: none;
     }
 }
 
@@ -537,6 +520,7 @@ main {
         align-items: center;
     }
 }
+
 
 /* TOP CATEGORIES */
 .top-categories {
