@@ -209,10 +209,12 @@ document.addEventListener("DOMContentLoaded", () => {
         // Show cert field for all courses EXCEPT orientation
         if (courseName === "Volunteer Orientation Course") {
           certFieldContainer.style.display = "none";
-          document.getElementById("certCodeInput").required = false;
+          const certInput = document.getElementById("certCodeInput");
+          if (certInput) certInput.required = false;
         } else {
           certFieldContainer.style.display = "block";
-          document.getElementById("certCodeInput").required = true;
+          const certInput = document.getElementById("certCodeInput");
+          if (certInput) certInput.required = true;
         }
         popup.style.display = "flex";
       });
@@ -228,24 +230,58 @@ document.addEventListener("DOMContentLoaded", () => {
       const name = form.name.value.trim();
       const email = form.email.value.trim();
       const phone = form.phone.value.trim();
-      const certCode = form.certCode ? form.certCode.value.trim() : "";
+      const certCodeRaw = form.certCode ? form.certCode.value.trim() : "";
+      const certCode = certCodeRaw.toUpperCase(); // normalize to uppercase for consistent lookup
 
       // 1. Validation for Non-Orientation courses
       if (courseName !== "Volunteer Orientation Course") {
+        if (!certCode) {
+          showMessage("Please enter your Orientation Course certificate code.");
+          return;
+        }
+        
         try {
-          const certSnap = await db.collection("certificates").doc(certCode).get();
+          // Query the certificates collection by the 'code' field (document ID is the code)
+          // First try to get document by ID (if code is used as document ID)
+          let certDoc = await db.collection("certificates").doc(certCode).get();
           
-          if (!certSnap.exists || certSnap.data().courseId !== "volunteer_orientation") {
-            showMessage("Please complete the orientation course first and get the certificate ID to unlock this course.");
+          // If not found by ID, try to query by 'code' field
+          if (!certDoc.exists) {
+            const querySnapshot = await db.collection("certificates").where("code", "==", certCode).get();
+            if (!querySnapshot.empty) {
+              certDoc = querySnapshot.docs[0];
+            }
+          }
+          
+          // Check if certificate document exists
+          if (!certDoc.exists) {
+            showMessage("Invalid certificate code. Please complete the Orientation Course and use the code from your certificate.");
             return;
           }
 
-          if (certSnap.data().email !== email) {
-            showMessage("Please enter the email used in the orientation course.");
+          const certData = certDoc.data();
+          
+          // Verify that the certificate is for the correct course
+          // Check both 'course' and 'courseId' fields for flexibility
+          const certCourse = certData.course || certData.courseId;
+          if (certCourse !== "volunteer_orientation" && certCourse !== "Volunteer Orientation Course") {
+            showMessage("This certificate is not for the Volunteer Orientation Course. Please complete the correct orientation course.");
             return;
           }
+
+          // Verify email matches (case-insensitive)
+          const certEmail = certData.email || certData.userEmail;
+          if (certEmail && certEmail.toLowerCase() !== email.toLowerCase()) {
+            showMessage("Please enter the email address that was used when you completed the Orientation Course.");
+            return;
+          }
+          
+          // Optional: Store the certificate code for reference
+          console.log("Certificate validated successfully for:", email);
+          
         } catch (err) {
-          showMessage("Error validating certificate. Please try again.");
+          console.error("Certificate validation error:", err);
+          showMessage("Unable to verify certificate. Please check your internet connection and try again.");
           return;
         }
       }
@@ -270,7 +306,8 @@ document.addEventListener("DOMContentLoaded", () => {
           window.location.href = "index.html";
         }
       } catch (err) {
-        showMessage("Error submitting form. Please check your connection.");
+        console.error("Signup error:", err);
+        showMessage("Error submitting form. Please check your connection and try again.");
       }
     });
   }
