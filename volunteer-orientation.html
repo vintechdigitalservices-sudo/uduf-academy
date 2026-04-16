@@ -1238,21 +1238,41 @@
     let moduleQuizPassed = [false, false, false];
     let userEmail = null;
     let userName = null;
-    let quizAnswers = [{}, {}, {}]; // Store answers for each module
-    let showIntro = true; // Show intro until user starts course
+    let quizAnswers = [{}, {}, {}];
+    let showIntro = true;
+    
+    // Helper: redirect to certificate page
+    function goToCertificate() {
+        window.location.href = "certificate.html";
+    }
     
     // Load course content
     function loadPage() {
         if (moduleCompleted[currentModule]) {
             // Show module completion screen
-            document.getElementById('pageContent').innerHTML = `
-                <div class="module-complete">
-                    <i class="fas fa-check-circle"></i>
-                    <h3>Module ${currentModule + 1} Completed!</h3>
-                    <p>You have successfully completed this module.</p>
-                    ${currentModule < 2 ? `<button class="complete-module-btn" onclick="moveToNextModule()"><i class="fas fa-arrow-right"></i> Proceed to Module ${currentModule + 2}</button>` : '<p>🎉 Congratulations! You have completed all modules!</p>'}
-                </div>
-            `;
+            let completionHtml = '';
+            if (currentModule === 2 && moduleCompleted[2] === true) {
+                // Final course completion - show certificate & home link
+                completionHtml = `
+                    <div class="module-complete">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Course Completed!</h3>
+                        <p>You have successfully completed the Volunteer Orientation Course. Well done!</p>
+                        <button class="complete-module-btn" onclick="goToCertificate()"><i class="fas fa-certificate"></i> Get Your Certificate</button>
+                        <p style="margin-top:15px;"><a href="index.html" style="color:#27ae60;">Return to Academy Hub</a></p>
+                    </div>
+                `;
+            } else {
+                completionHtml = `
+                    <div class="module-complete">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Module ${currentModule + 1} Completed!</h3>
+                        <p>You have successfully completed this module.</p>
+                        ${currentModule < 2 ? `<button class="complete-module-btn" onclick="moveToNextModule()"><i class="fas fa-arrow-right"></i> Proceed to Module ${currentModule + 2}</button>` : ''}
+                    </div>
+                `;
+            }
+            document.getElementById('pageContent').innerHTML = completionHtml;
             document.getElementById('navButtons').style.display = 'none';
             return;
         }
@@ -1277,10 +1297,7 @@
             </div>
         `;
         
-        // Update page navigation dots
         updatePageNavigation();
-        
-        // Update buttons
         document.getElementById('prevPageBtn').disabled = currentPage === 0;
         
         if (currentPage === module.pages.length - 1) {
@@ -1387,15 +1404,12 @@
     }
     
     window.selectQuizAnswer = function(moduleIdx, qIdx, answerIdx) {
-        if (quizAnswers[moduleIdx][qIdx] !== undefined) return; // Already answered
+        if (quizAnswers[moduleIdx][qIdx] !== undefined) return;
         
         const questions = modules[moduleIdx].quizQuestions;
         quizAnswers[moduleIdx][qIdx] = answerIdx;
         
-        // Auto-save to Firebase
         saveQuizProgress(moduleIdx);
-        
-        // Re-render quiz
         document.getElementById('pageContent').innerHTML = renderQuiz();
     };
     
@@ -1408,17 +1422,14 @@
         moduleQuizPassed[currentModule] = true;
         moduleCompleted[currentModule] = true;
         
-        // Save to Firebase
         saveModuleCompletion();
         
         if (currentModule < 2) {
-            // Move to next module
             currentModule++;
             currentPage = 0;
             updateModuleDisplay();
             loadPage();
         } else {
-            // All modules completed
             loadPage();
         }
         
@@ -1468,7 +1479,6 @@
         modules.forEach((module, mIdx) => {
             const isUnlocked = mIdx === 0 || moduleQuizPassed[mIdx - 1];
             const isCompleted = moduleCompleted[mIdx];
-            const isCurrent = mIdx === currentModule;
             
             html += `
                 <div class="module-outline">
@@ -1565,10 +1575,9 @@
         document.getElementById('outlineModal').classList.toggle('show');
     };
     
-    // Firebase functions
+    // Firebase functions (unchanged)
     async function saveProgress() {
         if (!userEmail) return;
-        
         try {
             const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_volunteer_orientation`;
             await db.collection('progress').doc(progressId).set({
@@ -1580,28 +1589,22 @@
                 moduleQuizPassed: moduleQuizPassed,
                 lastAccessed: firebase.firestore.FieldValue.serverTimestamp()
             }, { merge: true });
-        } catch (error) {
-            console.error('Error saving progress:', error);
-        }
+        } catch (error) { console.error('Error saving progress:', error); }
     }
     
     async function saveQuizProgress(moduleIdx) {
         if (!userEmail) return;
-        
         try {
             const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_volunteer_orientation`;
             await db.collection('progress').doc(progressId).set({
                 quizAnswers: quizAnswers,
                 lastAccessed: firebase.firestore.FieldValue.serverTimestamp()
             }, { merge: true });
-        } catch (error) {
-            console.error('Error saving quiz:', error);
-        }
+        } catch (error) { console.error('Error saving quiz:', error); }
     }
     
     async function saveModuleCompletion() {
         if (!userEmail) return;
-        
         try {
             const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_volunteer_orientation`;
             await db.collection('progress').doc(progressId).set({
@@ -1610,18 +1613,14 @@
                 completed: moduleCompleted.every(c => c === true),
                 lastAccessed: firebase.firestore.FieldValue.serverTimestamp()
             }, { merge: true });
-        } catch (error) {
-            console.error('Error saving module completion:', error);
-        }
+        } catch (error) { console.error('Error saving module completion:', error); }
     }
     
     async function loadProgress() {
         if (!userEmail) return;
-        
         try {
             const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_volunteer_orientation`;
             const doc = await db.collection('progress').doc(progressId).get();
-            
             if (doc.exists) {
                 const data = doc.data();
                 if (data.currentModule !== undefined) currentModule = data.currentModule;
@@ -1629,13 +1628,9 @@
                 if (data.moduleCompleted) moduleCompleted = data.moduleCompleted;
                 if (data.moduleQuizPassed) moduleQuizPassed = data.moduleQuizPassed;
                 if (data.quizAnswers) quizAnswers = data.quizAnswers;
-                
                 showToast(`Welcome back! Resuming from ${modules[currentModule].name}`);
             }
-        } catch (error) {
-            console.error('Error loading progress:', error);
-        }
-        
+        } catch (error) { console.error('Error loading progress:', error); }
         updateModuleDisplay();
         loadPage();
     }
@@ -1644,22 +1639,17 @@
         const toast = document.getElementById('toast');
         document.getElementById('toastMessage').textContent = message;
         toast.style.display = 'block';
-        setTimeout(() => {
-            toast.style.display = 'none';
-        }, 3000);
+        setTimeout(() => { toast.style.display = 'none'; }, 3000);
     }
     
-    // User authentication
     function checkUserSession() {
         const storedEmail = sessionStorage.getItem('userEmail');
         const storedName = sessionStorage.getItem('userName');
-        
         if (storedEmail && storedName) {
             userEmail = storedEmail;
             userName = storedName;
             document.getElementById('userInfo').style.display = 'flex';
             document.getElementById('userEmailDisplay').textContent = userEmail;
-            // Check if user has progress
             checkIfProgressExists().then(hasProgress => {
                 if (hasProgress) {
                     showIntro = false;
@@ -1667,7 +1657,6 @@
                     document.getElementById('courseContent').style.display = 'block';
                     loadProgress();
                 } else {
-                    // Show intro
                     document.getElementById('introSection').style.display = 'block';
                     document.getElementById('courseContent').style.display = 'none';
                 }
@@ -1683,10 +1672,7 @@
             const progressId = `${userEmail.replace(/[.#$/[\]]/g, '_')}_volunteer_orientation`;
             const doc = await db.collection('progress').doc(progressId).get();
             return doc.exists;
-        } catch (error) {
-            console.error('Error checking progress:', error);
-            return false;
-        }
+        } catch (error) { return false; }
     }
     
     function showEmailModal() {
@@ -1708,18 +1694,11 @@
     window.saveUser = async function() {
         const email = document.getElementById('userEmailInput').value;
         const name = document.getElementById('userNameInput').value;
-        
-        if (!email || !name) {
-            alert('Please enter both name and email');
-            return;
-        }
-        
+        if (!email || !name) { alert('Please enter both name and email'); return; }
         userEmail = email;
         userName = name;
-        
         sessionStorage.setItem('userEmail', userEmail);
         sessionStorage.setItem('userName', userName);
-        
         try {
             await db.collection('users').doc(userEmail).set({
                 name: userName,
@@ -1727,15 +1706,10 @@
                 enrolledCourses: firebase.firestore.FieldValue.arrayUnion('volunteer_orientation'),
                 createdAt: firebase.firestore.FieldValue.serverTimestamp()
             }, { merge: true });
-        } catch (error) {
-            console.error('Error saving user:', error);
-        }
-        
+        } catch (error) { console.error('Error saving user:', error); }
         document.getElementById('emailModal').remove();
         document.getElementById('userInfo').style.display = 'flex';
         document.getElementById('userEmailDisplay').textContent = userEmail;
-        
-        // Show intro (no progress yet)
         document.getElementById('introSection').style.display = 'block';
         document.getElementById('courseContent').style.display = 'none';
     };
@@ -1744,21 +1718,17 @@
         showIntro = false;
         document.getElementById('introSection').style.display = 'none';
         document.getElementById('courseContent').style.display = 'block';
-        // Initialize progress in Firebase
-        saveProgress(); // saves initial state
+        saveProgress();
         loadPage();
     };
     
     window.logout = function() {
         sessionStorage.clear();
-        location.href =  "index.html"; };
+        location.href = "index.html";
+    };
     
-    // Event listeners
     document.getElementById('prevPageBtn').addEventListener('click', () => {
-        if (currentPage > 0) {
-            currentPage--;
-            loadPage();
-        }
+        if (currentPage > 0) { currentPage--; loadPage(); }
     });
     
     document.getElementById('nextPageBtn').addEventListener('click', () => {
@@ -1772,15 +1742,10 @@
     });
     
     document.getElementById('outlineModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-            this.classList.remove('show');
-        }
+        if (e.target === this) this.classList.remove('show');
     });
     
-    // Initialize
-    document.addEventListener('DOMContentLoaded', () => {
-        checkUserSession();
-    });
+    document.addEventListener('DOMContentLoaded', () => { checkUserSession(); });
 </script>
 <script src="https://js.paystack.co/v1/inline.js"></script>
 <script>
@@ -1789,20 +1754,10 @@ function startPayment(courseId, amount, userEmail) {
     key: 'pk_test_51d77463757586d69cbf1a4d631859c5de74eceb',
     email: userEmail,
     amount: amount * 100,
-
-    metadata: {
-      courseId: courseId
-    },
-
-    callback: function(response) {
-      alert('Payment successful. Ref: ' + response.reference);
-    },
-
-    onClose: function() {
-      alert('Payment cancelled');
-    }
+    metadata: { courseId: courseId },
+    callback: function(response) { alert('Payment successful. Ref: ' + response.reference); },
+    onClose: function() { alert('Payment cancelled'); }
   });
-
   handler.openIframe();
 }
 </script>
