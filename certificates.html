@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>UDUF Africa — Executive Portal</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;800&family=Cormorant+Garamond:ital,wght@1,600&family=Lora:ital,wght@0,400..700;1,400..700&family=Great+Vibes&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600;800&family=Cormorant+Garamond:ital,wght@1,600&family=Lora:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet"/>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -71,7 +71,8 @@
   .cert-title { font-family: 'Playfair Display', serif; font-size: 38px; color: var(--navy-cert); letter-spacing: 2px; }
   .cert-to-certify { font-size: 16px; font-weight: 800; margin: 15px 0; text-transform: uppercase; }
   
-  .recipient-name { font-family: 'Great Vibes', cursive; font-size: 68px; color: var(--navy-cert); margin: 5px 0; }
+  /* FIXED: New Font for Name */
+  .recipient-name { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 62px; color: var(--navy-cert); margin: 10px 0; text-transform: uppercase; }
   .line-divider { width: 70%; height: 2px; background: #ddd; margin: 0 auto 15px; }
 
   .completed-text { font-size: 18px; font-weight: 800; margin-bottom: 5px; }
@@ -80,10 +81,11 @@
   .desc-text { font-size: 20px; font-weight: 800; color: #222; line-height: 1.4; max-width: 85%; margin: 0 auto; }
   .issued-date { margin-top: 20px; font-weight: 800; font-size: 20px; color: var(--navy-cert); }
 
-  .sig-row { position: absolute; bottom: 65px; width: 85%; display: flex; justify-content: space-between; }
-  .sig-block { text-align: center; width: 220px; }
-  .sig-img { height: 65px; object-fit: contain; margin-bottom: -15px; position: relative; z-index: 10; }
-  .sig-line { border-top: 2px solid #444; padding-top: 5px; font-weight: 800; font-size: 15px; position: relative; }
+  /* FIXED: Spacing for Signatures to prevent interference */
+  .sig-row { position: absolute; bottom: 80px; width: 85%; display: flex; justify-content: space-between; }
+  .sig-block { text-align: center; width: 220px; position: relative; }
+  .sig-img { height: 60px; object-fit: contain; margin-bottom: -10px; position: relative; z-index: 10; pointer-events: none; }
+  .sig-line { border-top: 2px solid #444; padding-top: 5px; font-weight: 800; font-size: 15px; position: relative; z-index: 5; }
 
   #render-id { position: absolute; bottom: 20px; left: 40px; font-size: 14px; font-weight: 800; }
 
