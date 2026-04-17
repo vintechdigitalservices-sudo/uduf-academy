@@ -158,9 +158,9 @@
           <select id="courseSelect" required>
             <option value="">— Select your course —</option>
             <option value="volunteer_orientation">Volunteer Orientation Course</option>
-            <option value="team_leadership">Team Leadership (ATLF) Course</option>
+            <option value="team_leadership">Team Leadership Course</option>
             <option value="dei_course">Diversity Equity and Inclusion (DEI) Course</option>
-            <option value="effective_team_leadership">Effective Team Leadership (ETLC) Course</option>
+            <option value="effective_team_leadership">Effective Team Leadership Course</option>
             <option value="emotional_intelligence">Emotional Intelligence in Leadership</option>
             <option value="community_service">Community Service through Servant Leadership</option>
           </select>
@@ -246,6 +246,14 @@
         // For "Team Leadership Course", query with "atlf_course"
         if (courseKey === "team_leadership") {
             return "atlf_course";
+        }
+        // For "Emotional Intelligence in Leadership", query with "ei_course"
+        if (courseKey === "emotional_intelligence") {
+            return "ei_course";
+        }
+        // For "Community Service through Servant Leadership", query with "servant_course"
+        if (courseKey === "community_service") {
+            return "servant_course";
         }
         // For all other courses, use the original courseKey
         return courseKey;
