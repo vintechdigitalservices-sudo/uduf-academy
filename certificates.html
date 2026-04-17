@@ -66,28 +66,46 @@
 
   .watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 450px; opacity: 0.06; }
 
-  .cert-content { z-index: 5; text-align: center; width: 100%; padding-top: 40px; }
-  .cert-logo { width: 100px; margin-bottom: 10px; }
-  .cert-title { font-family: 'Playfair Display', serif; font-size: 38px; color: var(--navy-cert); letter-spacing: 2px; }
-  .cert-to-certify { font-size: 16px; font-weight: 800; margin: 15px 0; text-transform: uppercase; }
+  .cert-content { z-index: 5; text-align: center; width: 100%; padding-top: 30px; }
+  .cert-logo { width: 85px; margin-bottom: 5px; }
+  .cert-title { font-family: 'Playfair Display', serif; font-size: 34px; color: var(--navy-cert); letter-spacing: 2px; }
+  .cert-to-certify { font-size: 14px; font-weight: 800; margin: 10px 0; text-transform: uppercase; }
   
-  /* FIXED: New Font for Name */
-  .recipient-name { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 62px; color: var(--navy-cert); margin: 10px 0; text-transform: uppercase; }
-  .line-divider { width: 70%; height: 2px; background: #ddd; margin: 0 auto 15px; }
+  /* FIXED: Name Box for long names */
+  .name-container { width: 90%; height: 100px; display: flex; align-items: center; justify-content: center; margin: 0 auto; }
+  .recipient-name { 
+    font-family: 'Playfair Display', serif; 
+    font-weight: 900; 
+    font-size: clamp(30px, 4.5vw, 56px); 
+    color: var(--navy-cert); 
+    text-transform: uppercase; 
+    line-height: 1.1;
+  }
 
-  .completed-text { font-size: 18px; font-weight: 800; margin-bottom: 5px; }
-  .office-title { font-size: 26px; font-weight: 900; color: #1E8C45; font-family: 'Lora', serif; margin-bottom: 15px; }
+  .line-divider { width: 70%; height: 2px; background: #ddd; margin: 8px auto 10px; }
+
+  .completed-text { font-size: 15px; font-weight: 800; margin-bottom: 4px; }
   
-  .desc-text { font-size: 20px; font-weight: 800; color: #222; line-height: 1.4; max-width: 85%; margin: 0 auto; }
-  .issued-date { margin-top: 20px; font-weight: 800; font-size: 20px; color: var(--navy-cert); }
+  /* FIXED: Course Title Box for long titles like Assistant Director of Assets... */
+  .office-container { width: 85%; height: 80px; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px; }
+  .office-title { 
+    font-size: clamp(20px, 2.5vw, 26px); 
+    font-weight: 900; 
+    color: #1E8C45; 
+    font-family: 'Lora', serif; 
+    line-height: 1.2;
+  }
+  
+  .desc-text { font-size: 17px; font-weight: 800; color: #222; line-height: 1.3; max-width: 80%; margin: 0 auto; }
+  .issued-date { margin-top: 12px; font-weight: 800; font-size: 17px; color: var(--navy-cert); }
 
-  /* FIXED: Spacing for Signatures to prevent interference */
-  .sig-row { position: absolute; bottom: 80px; width: 85%; display: flex; justify-content: space-between; }
-  .sig-block { text-align: center; width: 220px; position: relative; }
-  .sig-img { height: 60px; object-fit: contain; margin-bottom: -10px; position: relative; z-index: 10; pointer-events: none; }
-  .sig-line { border-top: 2px solid #444; padding-top: 5px; font-weight: 800; font-size: 15px; position: relative; z-index: 5; }
+  /* FIXED: Signatures pinned to bottom */
+  .sig-row { position: absolute; bottom: 65px; width: 85%; display: flex; justify-content: space-between; z-index: 20; }
+  .sig-block { text-align: center; width: 220px; }
+  .sig-img { height: 50px; width: auto; object-fit: contain; margin-bottom: -10px; position: relative; z-index: 30; pointer-events: none; }
+  .sig-line { border-top: 2px solid #444; padding-top: 5px; font-weight: 800; font-size: 14px; }
 
-  #render-id { position: absolute; bottom: 20px; left: 40px; font-size: 14px; font-weight: 800; }
+  #render-id { position: absolute; bottom: 15px; left: 40px; font-size: 13px; font-weight: 800; }
 
   #cert-section { display: none; margin-top: 40px; text-align: center; }
   #cert-section.show { display: block; }
@@ -159,10 +177,14 @@
             <img src="logo.webp" class="cert-logo">
             <div class="cert-title">CERTIFICATE OF COMPLETION</div>
             <p class="cert-to-certify">This is to certify that</p>
-            <div class="recipient-name" id="render-name">Test User</div>
+            <div class="name-container">
+                <div class="recipient-name" id="render-name">Test User</div>
+            </div>
             <div class="line-divider"></div>
             <p class="completed-text">has successfully completed the</p>
-            <div class="office-title" id="render-office">Executive Leadership Course for Vice President 1</div>
+            <div class="office-container">
+                <div class="office-title" id="render-office">Executive Leadership Course for Vice President 1</div>
+            </div>
             <p class="desc-text">under the Executive Leadership Academy of UDUF Africa, having met all requirements and demonstrated outstanding leadership competence.</p>
             <div class="issued-date" id="render-date">Issued this 24th of April, 2026</div>
         </div>
@@ -170,12 +192,12 @@
             <div class="sig-block">
                 <img src="founder_sig.png" class="sig-img"> 
                 <div class="sig-line">Ezuma Chinedu Smart</div>
-                <div style="font-size:13px; font-weight:800;">(Founder)</div>
+                <div style="font-size:12px; font-weight:800;">(Founder)</div>
             </div>
             <div class="sig-block">
                 <img src="sec_sig.png" class="sig-img"> 
                 <div class="sig-line">Ezeudo Henry</div>
-                <div style="font-size:13px; font-weight:800;">(Secretary)</div>
+                <div style="font-size:12px; font-weight:800;">(Secretary)</div>
             </div>
         </div>
         <div id="render-id">Certificate ID: <span id="cert-id-val">UDUF-AFR0000</span></div>
@@ -233,7 +255,6 @@
 
             if (!dupSnap.empty) {
                 const existingCert = dupSnap.docs[0].data();
-                
                 if (existingCert.email === email) {
                     await generatePreview(existingCert.name, office, existingCert.code);
                     succAlert.innerText = "✅ Returning your existing certificate!";
@@ -249,7 +270,6 @@
             const progressRef = collection(db, "progress");
             const qProg = query(progressRef, where("userId", "==", email));
             const progSnap = await getDocs(qProg);
-            
             if (progSnap.empty) throw new Error("No course record found");
 
             const record = progSnap.docs[0].data();
@@ -279,12 +299,10 @@
             });
 
             await generatePreview(name, office, finalCode);
-            
             succAlert.innerText = "✅ Executive Certificate generated successfully!";
             succAlert.classList.add('show');
             btn.innerText = "GENERATE CERTIFICATE";
             btn.disabled = false;
-
         } catch (err) {
             document.getElementById('error-msg').innerText = err.message;
             errAlert.classList.add('show');
@@ -305,7 +323,8 @@
         const canvas = await html2canvas(document.getElementById('cert-capture'), { 
             scale: 2,
             useCORS: true,
-            logging: false
+            logging: false,
+            allowTaint: true
         });
         const img = canvas.toDataURL('image/png');
         document.getElementById('preview-image').src = img;
