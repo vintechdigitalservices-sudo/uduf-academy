@@ -158,9 +158,9 @@
           <select id="courseSelect" required>
             <option value="">— Select your course —</option>
             <option value="volunteer_orientation">Volunteer Orientation Course</option>
-            <option value="team_leadership">Team Leadership Course</option>
+            <option value="team_leadership">Team Leadership (ATLF) Course</option>
             <option value="dei_course">Diversity Equity and Inclusion (DEI) Course</option>
-            <option value="effective_team_leadership">Effective Team Leadership Course</option>
+            <option value="effective_team_leadership">Effective Team Leadership (ETLC) Course</option>
             <option value="emotional_intelligence">Emotional Intelligence in Leadership</option>
             <option value="community_service">Community Service through Servant Leadership</option>
           </select>
@@ -237,6 +237,20 @@
         }
     }
 
+    // Helper function to get the correct courseId for progress collection queries
+    function getCourseIdForQuery(courseKey) {
+        // For "Effective Team Leadership Course", query with "etlc_course"
+        if (courseKey === "effective_team_leadership") {
+            return "etlc_course";
+        }
+        // For "Team Leadership Course", query with "atlf_course"
+        if (courseKey === "team_leadership") {
+            return "atlf_course";
+        }
+        // For all other courses, use the original courseKey
+        return courseKey;
+    }
+
     document.getElementById('certForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = document.getElementById('generateBtn');
@@ -264,7 +278,9 @@
             }
 
             const progressRef = collection(db, "progress");
-            const q = query(progressRef, where("userId", "==", email), where("courseId", "==", courseKey));
+            // Get the mapped courseId for the progress query
+            const queryCourseId = getCourseIdForQuery(courseKey);
+            const q = query(progressRef, where("userId", "==", email), where("courseId", "==", queryCourseId));
             const snap = await getDocs(q);
             
             if (snap.empty) throw new Error("Enrollment not found for this email/course combination.");
