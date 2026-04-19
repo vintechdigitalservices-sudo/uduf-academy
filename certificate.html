@@ -259,6 +259,38 @@
         return courseKey;
     }
 
+    // Helper: generate preview from certificate data (name, fullCourseName, code, optional issuedDate)
+    async function generatePreviewFromData(name, fullCourseName, code, existingIssuedAt = null) {
+        let dateStr;
+        if (existingIssuedAt && existingIssuedAt.toDate) {
+            const issuedDate = existingIssuedAt.toDate();
+            dateStr = `${issuedDate.getDate()}${getOrdinal(issuedDate.getDate())} of ${issuedDate.toLocaleString('default', { month: 'long' })} ${issuedDate.getFullYear()}`;
+        } else {
+            const today = new Date();
+            dateStr = `${today.getDate()}${getOrdinal(today.getDate())} of ${today.toLocaleString('default', { month: 'long' })} ${today.getFullYear()}`;
+        }
+
+        const nameEl = document.getElementById('render-name');
+        nameEl.innerText = name;
+        adjustFontSize(nameEl, 65);
+
+        document.getElementById('render-course').innerText = fullCourseName;
+        document.getElementById('render-date').innerText = dateStr;
+        document.getElementById('render-id').innerText = code;
+
+        const canvas = await html2canvas(document.getElementById('cert-capture'), { scale: 2, useCORS: true });
+        const imgData = canvas.toDataURL('image/png');
+        document.getElementById('preview-image').src = imgData;
+        
+        const { jsPDF } = window.jspdf;
+        const pdf = new jsPDF('l', 'px', [1000, 780]);
+        pdf.addImage(imgData, 'PNG', 0, 0, 1000, 780);
+        
+        currentPdfData = pdf;
+        currentFileName = `UDUF_Cert_${name.replace(/\s+/g, '_')}.pdf`;
+        document.getElementById('cert-section').classList.add('show');
+    }
+
     document.getElementById('certForm').addEventListener('submit', async (e) => {
         e.preventDefault();
         const btn = document.getElementById('generateBtn');
@@ -273,20 +305,42 @@
         const name = document.getElementById('userName').value.trim();
         const email = document.getElementById('userEmail').value.toLowerCase().trim();
         const courseKey = document.getElementById('courseSelect').value;
+        
+        if (!courseKey) {
+            document.getElementById('error-msg').innerText = "Please select a course.";
+            errAlert.classList.add('show');
+            btn.disabled = false;
+            btn.innerText = "GENERATE CERTIFICATE";
+            return;
+        }
+        
         const fullCourseName = courseMap[courseKey];
 
         try {
-            // Check if certificate already exists for this email/course to avoid duplicates
+            // STEP 1: Check if certificate already exists for this email/course (existing certificate)
             const certsRef = collection(db, "certificates");
-            const qDup = query(certsRef, where("email", "==", email), where("course", "==", fullCourseName));
-            const dupSnap = await getDocs(qDup);
+            const qExisting = query(certsRef, where("email", "==", email), where("course", "==", fullCourseName));
+            const existingSnap = await getDocs(qExisting);
             
-            if (!dupSnap.empty) {
-                throw new Error("You have generated a certificate for this course already. Double generation is not allowed.");
+            if (!existingSnap.empty) {
+                // Existing certificate found! Return it without generating a new one.
+                const existingDoc = existingSnap.docs[0];
+                const existingData = existingDoc.data();
+                const existingCode = existingData.code;
+                const existingIssuedAt = existingData.issuedAt || null;
+                const existingName = existingData.name;
+                
+                // Use the stored name (in case of minor case differences, but we keep consistent)
+                await generatePreviewFromData(existingName, fullCourseName, existingCode, existingIssuedAt);
+                succAlert.innerText = "✅ Your existing certificate has been retrieved. Scroll down to download.";
+                succAlert.classList.add('show');
+                btn.innerText = "GENERATE CERTIFICATE";
+                btn.disabled = false;
+                return;
             }
-
+            
+            // STEP 2: No existing certificate -> proceed with validation & fresh generation
             const progressRef = collection(db, "progress");
-            // Get the mapped courseId for the progress query
             const queryCourseId = getCourseIdForQuery(courseKey);
             const q = query(progressRef, where("userId", "==", email), where("courseId", "==", queryCourseId));
             const snap = await getDocs(q);
@@ -305,8 +359,9 @@
             await updateDoc(doc(db, "codes", codeDoc.id), { used: true, assignedTo: email });
             await addDoc(collection(db, "certificates"), { name, email, course: fullCourseName, code: finalCode, issuedAt: serverTimestamp() });
 
-            await showPreview(name, fullCourseName, finalCode);
+            await generatePreviewFromData(name, fullCourseName, finalCode, null);
             
+            succAlert.innerText = "✅ Certificate generated successfully! Scroll down to download.";
             succAlert.classList.add('show');
             btn.innerText = "GENERATE CERTIFICATE";
             btn.disabled = false;
@@ -317,31 +372,6 @@
             btn.disabled = false;
         }
     });
-
-    async function showPreview(name, course, code) {
-        const today = new Date();
-        const dateStr = `${today.getDate()}${getOrdinal(today.getDate())} of ${today.toLocaleString('default', { month: 'long' })} ${today.getFullYear()}`;
-
-        const nameEl = document.getElementById('render-name');
-        nameEl.innerText = name;
-        adjustFontSize(nameEl, 65);
-
-        document.getElementById('render-course').innerText = course;
-        document.getElementById('render-date').innerText = dateStr;
-        document.getElementById('render-id').innerText = code;
-
-        const canvas = await html2canvas(document.getElementById('cert-capture'), { scale: 2, useCORS: true });
-        const imgData = canvas.toDataURL('image/png');
-        document.getElementById('preview-image').src = imgData;
-        
-        const { jsPDF } = window.jspdf;
-        const pdf = new jsPDF('l', 'px', [1000, 780]);
-        pdf.addImage(imgData, 'PNG', 0, 0, 1000, 780);
-        
-        currentPdfData = pdf;
-        currentFileName = `UDUF_Cert_${name.replace(/\s+/g, '_')}.pdf`;
-        document.getElementById('cert-section').classList.add('show');
-    }
 
     document.getElementById('finalDownloadBtn').addEventListener('click', () => {
         if(currentPdfData) currentPdfData.save(currentFileName);
