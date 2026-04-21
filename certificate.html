@@ -259,7 +259,45 @@
         return courseKey;
     }
 
-    // Helper: generate preview from certificate data (name, fullCourseName, code, optional issuedDate)
+    // Check if browser is offline
+    function isBrowserOffline() {
+        return !navigator.onLine;
+    }
+
+    // Helper: Check if error is a network/firebase connection error
+    function isNetworkError(error) {
+        // First check if browser is offline
+        if (isBrowserOffline()) {
+            return true;
+        }
+        
+        const errorMessage = (error.message || error.toString()).toLowerCase();
+        // Check for common network/firebase connection errors
+        const networkKeywords = [
+            "network", "offline", "connection", "timeout", "fetch", 
+            "failed to fetch", "failed to load", "unavailable", 
+            "internal", "unavailable", "deadline_exceeded", 
+            "not connected", "internet", "disconnected"
+        ];
+        
+        for (const keyword of networkKeywords) {
+            if (errorMessage.includes(keyword)) {
+                return true;
+            }
+        }
+        
+        // Check error code
+        if (error.code) {
+            const errorCode = error.code.toLowerCase();
+            if (errorCode === "unavailable" || errorCode === "deadline-exceeded" || errorCode === "permission-denied" && errorMessage.includes("network")) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
+    // Helper: generate preview from certificate data
     async function generatePreviewFromData(name, fullCourseName, code, existingIssuedAt = null) {
         let dateStr;
         if (existingIssuedAt && existingIssuedAt.toDate) {
@@ -308,6 +346,15 @@
         
         if (!courseKey) {
             document.getElementById('error-msg').innerText = "Please select a course.";
+            errAlert.classList.add('show');
+            btn.disabled = false;
+            btn.innerText = "GENERATE CERTIFICATE";
+            return;
+        }
+        
+        // Check for offline status BEFORE attempting any Firebase operation
+        if (isBrowserOffline()) {
+            document.getElementById('error-msg').innerHTML = "⚠️ No Internet Connection. Please check your network and try again.";
             errAlert.classList.add('show');
             btn.disabled = false;
             btn.innerText = "GENERATE CERTIFICATE";
@@ -366,7 +413,12 @@
             btn.innerText = "GENERATE CERTIFICATE";
             btn.disabled = false;
         } catch (err) {
-            document.getElementById('error-msg').innerText = err.message;
+            // Check if the error is network-related (including after Firebase attempt)
+            if (isNetworkError(err) || isBrowserOffline()) {
+                document.getElementById('error-msg').innerHTML = "⚠️ Unstable Internet Connection. Please check your network and try again.";
+            } else {
+                document.getElementById('error-msg').innerText = err.message;
+            }
             errAlert.classList.add('show');
             btn.innerText = "GENERATE CERTIFICATE";
             btn.disabled = false;
